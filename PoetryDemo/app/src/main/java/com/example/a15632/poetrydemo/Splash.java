@@ -60,6 +60,7 @@ public class Splash extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //设置动画
         getJson();
+        getSupportActionBar().hide();//去掉顶部标题栏
         setContentView(R.layout.activity_splash);
 
         //设置字体

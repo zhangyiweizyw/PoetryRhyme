@@ -2,17 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="15dp">
 
-    <TextView
-        android:textColor="#333"
-        android:textStyle="bold"
-        android:textSize="40dp"
-        android:gravity="center"
-        android:text="HOME"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="40dp">
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="50dp" />
+        <TextView
+            android:id="@+id/tv_to_search"
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:background="@drawable/searchs"
+            android:drawableLeft="@drawable/search3"
+            android:paddingLeft="10dp"
+            android:layout_height="match_parent">
 
 
+        </TextView>
+
+
+    </LinearLayout>
 
 </LinearLayout>

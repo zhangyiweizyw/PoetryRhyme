@@ -1,121 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.app.FragmentTabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <!-- 选项卡按钮所在布局 -->
     <LinearLayout
-        android:id="@+id/tab_widget"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#F8F8FF"
-        android:orientation="horizontal">
-
-        <!-- 消息 -->
-        <LinearLayout
-            android:id="@+id/tab_spec_1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/img_1"
-                android:layout_width="27dp"
-                android:layout_height="27dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginTop="6dp"
-                android:src="@drawable/homee" />
-
-            <TextView
-                android:id="@+id/tv_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="首页" />
-
-        </LinearLayout>
-
-        <!-- 联系人 -->
-        <LinearLayout
-            android:id="@+id/tab_spec_2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/img_2"
-                android:layout_width="27dp"
-                android:layout_height="27dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginTop="6dp"
-                android:src="@drawable/compass" />
-
-            <TextView
-                android:id="@+id/tv_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="社区" />
-
-        </LinearLayout>
-        <!-- 联系人 -->
-        <LinearLayout
-            android:id="@+id/tab_spec_3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/img_3"
-                android:layout_width="27dp"
-                android:layout_height="27dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginTop="6dp"
-                android:src="@drawable/edit" />
-
-            <TextView
-                android:id="@+id/tv_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="创作" />
-
-        </LinearLayout>
-        <!-- 联系人 -->
-        <LinearLayout
-            android:id="@+id/tab_spec_4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/img_4"
-                android:layout_width="27dp"
-                android:layout_height="27dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginTop="6dp"
-                android:src="@drawable/gamepad" />
-
-            <TextView
-                android:id="@+id/tv_4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="游戏" />
-
-        </LinearLayout>
-    </LinearLayout>
-    <!-- Fragment内容显示的帧布局 -->
-    <FrameLayout
-        android:id="@+id/tab_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/tab_widget" />
+        android:orientation="vertical">
 
-</RelativeLayout>
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
+    </LinearLayout>
+</android.support.v4.app.FragmentTabHost>
