@@ -2,30 +2,93 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="15dp">
+    android:orientation="vertical">
 
-    <LinearLayout
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="40dp">
-        <ImageView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="50dp" />
-        <TextView
-            android:id="@+id/tv_to_search"
-            android:orientation="horizontal"
-            android:layout_width="0dp"
-            android:layout_weight="5"
-            android:background="@drawable/searchs"
-            android:drawableLeft="@drawable/search3"
-            android:paddingLeft="10dp"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img__home_avator"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/avatar_unlogin" />
+
+                <LinearLayout
+                    android:id="@+id/linear_click_to_search"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:background="@drawable/searchs"
+                    android:clickable="true">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:padding="2dp"
+                        android:src="@drawable/search3" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/left_drawer"
+            android:layout_width="300dp"
+            android:orientation="vertical"
+            android:layout_gravity="left"
+            android:background="#fcfcfc"
             android:layout_height="match_parent">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:orientation="vertical">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/avatar_unlogin"/>
+                    <TextView
+                        android:gravity="center"
+                        android:text="未登录"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
 
-        </TextView>
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CCCCCC"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="5">
 
+            </LinearLayout>
 
-    </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.DrawerLayout>
+
 
 </LinearLayout>
