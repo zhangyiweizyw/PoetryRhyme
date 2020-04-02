@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -19,6 +21,8 @@ public class HomeFragment extends Fragment {
     private ImageView home_avator;
     private DrawerLayout drawerLayout;
     private LinearLayout left_drawer;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     @Nullable
     @Override
@@ -51,6 +55,8 @@ public class HomeFragment extends Fragment {
         layout_to_search=fragment.findViewById(R.id.linear_click_to_search);
         drawerLayout=fragment.findViewById(R.id.drawer_layout);
         left_drawer=fragment.findViewById(R.id.left_drawer);
+        tabLayout=fragment.findViewById(R.id.tabLayout_id);
+        viewPager=fragment.findViewById(R.id.viewpager_id);
     }
     private void action() {
         //点击后跳转到搜索界面
@@ -67,5 +73,11 @@ public class HomeFragment extends Fragment {
                 drawerLayout.openDrawer(Gravity.LEFT);
             }
         });
+        //TabLayout的设置
+        ViewPagerAdapter adapter=new ViewPagerAdapter(getChildFragmentManager());
+        adapter.AddFragment(new ViewRecommendFragment(),"推荐");
+        adapter.AddFragment(new ViewSortFragment(),"分类");
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 }
