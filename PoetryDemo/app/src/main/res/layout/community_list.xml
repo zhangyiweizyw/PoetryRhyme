@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/community">
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="title"
+            android:textSize="20sp"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="内容简介..."
+            android:textSize="18sp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp">
+        <ImageView
+            android:id="@+id/iv_userhead"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:scaleType="fitCenter"/>
+        <TextView
+            android:id="@+id/username"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户名"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal" >
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发布时间"
+            android:layout_marginLeft="10dp"/>
+        <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right" >
+
+            <ImageView
+                android:id="@+id/see"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/see"/>
+            <TextView
+                android:id="@+id/seecount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="xx浏览"/>
+
+        <!--<ImageView
+            android:id="@+id/like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/heart_gray"/>
+        <TextView
+            android:id="@+id/likecount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="xx喜欢"/>
+            <ImageView
+                android:id="@+id/comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/comment"/>
+            <TextView
+                android:id="@+id/commentcount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="xx评论" />-->
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

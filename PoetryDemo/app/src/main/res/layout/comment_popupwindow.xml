@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#fff"
+    >
+    <RelativeLayout
+        android:id="@+id/top"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <ImageView
+                android:id="@+id/iv_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/deletetip"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="评论"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:layout_marginLeft="20dp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/middle"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:layout_below="@+id/top"
+        android:background="#dbdbdb"></RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/middle"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="评论留言区"
+            android:layout_centerInParent="true"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
