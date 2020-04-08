@@ -22,7 +22,8 @@
             <GridView
                 android:id="@+id/gv_sort_by_person"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="120dp"
+
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
                 android:numColumns="3" />
@@ -35,7 +36,7 @@
             <GridView
                 android:id="@+id/gv_sort_by_time"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
                 android:numColumns="3" />
@@ -48,7 +49,7 @@
             <GridView
                 android:id="@+id/gv_sort_by_theme"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
                 android:numColumns="3" />
