@@ -15,6 +15,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.example.a15632.poetrydemo.drawer.AboutActivity;
+import com.example.a15632.poetrydemo.drawer.CollectActivity;
+import com.example.a15632.poetrydemo.drawer.SettingActivity;
+import com.example.a15632.poetrydemo.drawer.WorksActivity;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class HomeFragment extends Fragment {
     private View fragment;
     private LinearLayout layout_to_search;
@@ -23,6 +30,12 @@ public class HomeFragment extends Fragment {
     private LinearLayout left_drawer;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private CircleImageView circleImageView;
+    private LinearLayout collectLayout;//收藏
+    private LinearLayout worksLayout;//作品
+    private LinearLayout settingLayout;//设置
+    private LinearLayout aboutLayout;//关于
+
 
     @Nullable
     @Override
@@ -57,6 +70,13 @@ public class HomeFragment extends Fragment {
         left_drawer=fragment.findViewById(R.id.left_drawer);
         tabLayout=fragment.findViewById(R.id.tabLayout_id);
         viewPager=fragment.findViewById(R.id.viewpager_id);
+        circleImageView=fragment.findViewById(R.id.img_avator);
+        //drawer
+        collectLayout=fragment.findViewById(R.id.linear_collect);
+        worksLayout=fragment.findViewById(R.id.linear_works);
+        settingLayout=fragment.findViewById(R.id.linear_setting);
+        aboutLayout=fragment.findViewById(R.id.linear_about);
+
     }
     private void action() {
         //点击后跳转到搜索界面
@@ -79,5 +99,37 @@ public class HomeFragment extends Fragment {
         adapter.AddFragment(new ViewSortFragment(),"分类");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+        //点击后跳转到登录界面
+        circleImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),LoginActivity.class));
+            }
+        });
+        //drawer里的点击跳转
+        collectLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),CollectActivity.class));
+            }
+        });
+        worksLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),WorksActivity.class));
+            }
+        });
+        settingLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),SettingActivity.class));
+            }
+        });
+        aboutLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),AboutActivity.class));
+            }
+        });
     }
 }

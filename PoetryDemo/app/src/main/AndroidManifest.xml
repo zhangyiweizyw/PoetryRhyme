@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.a15632.poetrydemo">
-    <!--网络权限-->
+
+    <!-- 网络权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -19,8 +20,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".Search"></activity>
-        <activity android:name=".CommunityDetail"></activity>
+        <activity android:name=".Search" />
+        <activity android:name=".CommunityDetail" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".drawer.WorksActivity" />
+        <activity android:name=".drawer.CollectActivity" />
+        <activity android:name=".drawer.SettingActivity" />
+        <activity android:name=".drawer.AboutActivity"></activity>
     </application>
 
 </manifest>

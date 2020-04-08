@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="110dp"
+    android:orientation="vertical"
+    android:padding="17dp">
+    <TextView
+        android:id="@+id/item_works_title"
+        android:textSize="20dp"
+        android:textColor="#333"
+        android:textStyle="bold"
+        android:text="本来无一物"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <!--摘要-->
+    <TextView
+        android:id="@+id/item_works_content"
+        android:layout_marginTop="5dp"
+        android:textSize="16dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:text="菩提本无树，明镜亦非台，本来无一物，何处惹尘埃。菩提本无树，明镜亦非台，本来无一物，何处惹尘埃。"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/item_works_date"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:textSize="14dp"
+            android:text="2020-04-08"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+
+</LinearLayout>

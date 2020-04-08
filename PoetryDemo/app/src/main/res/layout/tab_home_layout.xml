@@ -83,6 +83,8 @@
                     android:padding="10dp"
                     android:orientation="vertical">
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/img_avator"
+                        android:clickable="true"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:src="@drawable/avatar_unlogin"/>
@@ -104,6 +106,8 @@
                 android:layout_weight="5"
                 android:orientation="vertical">
                 <LinearLayout
+                    android:id="@+id/linear_collect"
+                    android:clickable="true"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:orientation="horizontal"
@@ -124,6 +128,8 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/linear_works"
+                    android:clickable="true"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:orientation="horizontal"
@@ -144,6 +150,8 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/linear_setting"
+                    android:clickable="true"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:orientation="horizontal"
@@ -164,6 +172,8 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/linear_about"
+                    android:clickable="true"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:orientation="horizontal"
