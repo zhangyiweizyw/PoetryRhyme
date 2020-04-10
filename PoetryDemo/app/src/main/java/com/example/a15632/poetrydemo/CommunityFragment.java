@@ -10,6 +10,7 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,6 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -47,7 +47,7 @@ public class CommunityFragment extends Fragment {
                     // userList.add(u);
                     long time=System.currentTimeMillis();
                     Date date=new Date(time);
-                    Community c=new Community("春眠","春眠不觉晓",100,100,date);
+                    Community c=new Community("春眠","春眠不觉晓",100,date);
                     //修改数据源
                     userList.add(0,u);
                     communityList.add(0,c);
@@ -76,6 +76,9 @@ public class CommunityFragment extends Fragment {
 
         initData();
         findViews();
+        //设置刷新头样式
+        // refreshLayout.setRefreshHeader(new DeliveryHeader(getContext()));
+
         setListeners();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -161,7 +164,7 @@ public class CommunityFragment extends Fragment {
             userList.add(u);
             long time=System.currentTimeMillis();
             Date date=new Date(time);
-            Community c=new Community("春眠","春眠不觉晓",100,100,date);
+            Community c=new Community("春眠","春眠不觉晓",100,date);
             communityList.add(c);
             communityAdapter.notifyDataSetChanged();
             //结束加载更多的动画
@@ -178,28 +181,4 @@ public class CommunityFragment extends Fragment {
         Community c=new Community("静夜思","床前明月光",100,100,date);
         communityList.add(c);
     }
-    //喜欢取消喜欢
-/*    public void isLike(View v){
-        ImageView headimg=v.findViewById(R.id.like);
-        headimg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(imgflag==0){
-                    Log.e("flag",imgflag+"");
-                    ImageView headimg1=v.findViewById(R.id.like);
-                    Drawable drawable=getResources().getDrawable(R.drawable.heart_red);
-                    headimg1.setImageDrawable(drawable);
-                    imgflag=1;
-                    //喜欢的数量加1，更新界面，更新数据库
-                }
-                else{
-                    ImageView headimg1=v.findViewById(R.id.like);
-                    Drawable drawable=getResources().getDrawable(R.drawable.heart_gray);
-                    headimg1.setImageDrawable(drawable);
-                    imgflag=0;
-                    //喜欢的数量减1，更新界面，更新数据库
-                }
-            }
-        });
-    }*/
 }

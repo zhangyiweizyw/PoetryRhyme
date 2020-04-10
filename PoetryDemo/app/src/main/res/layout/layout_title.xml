@@ -1,48 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="45dp"
-    android:background="#E33140">
+    android:layout_height="50dp"
+    android:background="#fff"
+    android:orientation="vertical"
+    >
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_weight="1">
-        <ImageView
-            android:id="@+id/left_icon"
+        android:layout_width="match_parent"
+        android:layout_height="49dp">
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/backto"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_weight="1">
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="社区"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:textColor="#fff"
-            android:textSize="25dp"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_weight="1"
-        android:gravity="right">
-        <ImageView
-            android:id="@+id/addcommunity"
+            android:layout_height="49dp"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/left_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/toleft"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"/>
+            <!-- <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="社区首页"
+                 android:layout_gravity="center"
+                 android:layout_marginLeft="10dp"
+                 android:textSize="15sp"/>-->
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/addtip2"
-            android:layout_gravity="center"
-            android:layout_marginRight="10dp"
-            />
+            android:layout_height="49dp"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="社区"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textColor="#000"
+                android:textSize="25dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:layout_weight="1"
+            android:gravity="right">
+            <ImageView
+                android:id="@+id/addcommunity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/plus"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                />
 
+        </LinearLayout>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="1dp"
+        android:background="#fd5640"
+        android:layout_gravity="center"></LinearLayout>
 
 </LinearLayout>

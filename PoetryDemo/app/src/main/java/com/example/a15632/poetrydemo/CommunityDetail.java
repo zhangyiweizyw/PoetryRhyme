@@ -1,6 +1,8 @@
 package com.example.a15632.poetrydemo;
 
 import android.app.ActionBar;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -15,6 +17,8 @@ public class CommunityDetail extends AppCompatActivity {
 
     private ImageView btn_comment=null;
     private ImageView iv_delete=null;
+    private ImageView iv_like=null;
+    private boolean isLike=false;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,11 +28,14 @@ public class CommunityDetail extends AppCompatActivity {
         findViews();
         MyListener myListener=new MyListener();
         btn_comment.setOnClickListener(myListener);
+        iv_like.setOnClickListener(myListener);
 
 
     }
     public void findViews(){
         btn_comment=findViewById(R.id.btn_comment);
+        iv_like=findViewById(R.id.btn_like);
+
     }
 
     private class MyListener implements View.OnClickListener{
@@ -38,6 +45,12 @@ public class CommunityDetail extends AppCompatActivity {
                 case R.id.btn_comment:
                     //弹出评论框
                     showPopupWindow(v);
+                    break;
+                case R.id.btn_like:
+                    //喜欢
+                    isFavourite();
+                    break;
+
             }
         }
     }
@@ -77,6 +90,21 @@ public class CommunityDetail extends AppCompatActivity {
         });
 
 
+    }
+
+    //点击喜欢按钮
+    public void isFavourite(){
+        if(isLike){
+            //点击按钮变灰
+            Drawable drawable=getResources().getDrawable(R.drawable.heart_gray3);
+            iv_like.setImageDrawable(drawable);
+            isLike=false;
+        }
+        else{
+            Drawable drawable=getResources().getDrawable(R.drawable.heart_red2);
+            iv_like.setImageDrawable(drawable);
+            isLike=true;
+        }
     }
 
 

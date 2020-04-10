@@ -8,8 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="社区"
-        app:left_icon="@drawable/backto"
-        app:right_icon="@drawable/addtip2"
+        app:left_icon="@drawable/toleft"
+        app:right_icon="@drawable/plus"
         app:titlebar_type="10"/>
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -17,12 +17,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:srlAccentColor="@android:color/black"
-        app:srlEnablePreviewInEditMode="true">
+        app:srlEnablePreviewInEditMode="true"
+        android:background="#fff">
         <!--srlAccentColor srlPrimaryColor 将会改变 Header 和 Footer 的主题颜色-->
-        <!--srlEnablePreviewInEditMode 可以开启和关闭预览功能-->
-        <com.scwang.smartrefresh.layout.header.BezierRadarHeader
+        <!--srlEnablePreviewInEditMode 可以开启和关闭预览功能BezierRadarHeader-->
+        <!--<com.scwang.smartrefresh.layout.header.BezierRadarHeader
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"/>-->
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:src="@mipmap/refreshbig3"
+            android:background="#fff" />
         <ListView
             android:id="@+id/lv_data"
             android:layout_width="match_parent"
@@ -33,6 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
 
 
 

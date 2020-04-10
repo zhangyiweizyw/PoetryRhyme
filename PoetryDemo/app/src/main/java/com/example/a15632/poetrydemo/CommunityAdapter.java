@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +22,7 @@ public class CommunityAdapter extends BaseAdapter {
     private int itemResId;
     private Context mContext;
 
-    public CommunityAdapter(Context context, List<Community> communities, List<User>userList, int itemResId){
+    public CommunityAdapter(Context context, List<Community> communities,List<User>userList, int itemResId){
         this.mContext = context;
         this.communityList = communities;
         this.userList=userList;
@@ -59,7 +61,7 @@ public class CommunityAdapter extends BaseAdapter {
             viewHolder.tvtime=convertView.findViewById(R.id.tv_time);
            /* viewHolder.likecount=convertView.findViewById(R.id.likecount);
             viewHolder.commentcount=convertView.findViewById(R.id.commentcount);*/
-           viewHolder.seecount=convertView.findViewById(R.id.seecount);
+            viewHolder.seecount=convertView.findViewById(R.id.seecount);
             viewHolder.tvusername=convertView.findViewById(R.id.username);
             viewHolder.userhead=convertView.findViewById(R.id.iv_userhead);
             convertView.setTag(viewHolder);
@@ -72,14 +74,14 @@ public class CommunityAdapter extends BaseAdapter {
 
        /* viewHolder.likecount.setText(communityList.get(position).getLikecount()+"");
         viewHolder.commentcount.setText(communityList.get(position).getCommentcount()+"");*/
-       viewHolder.seecount.setText(communityList.get(position).getSeecount()+"");
+        viewHolder.seecount.setText(communityList.get(position).getSeecount()+"");
         viewHolder.tvusername.setText(userList.get(position).getUsername());
         String imageUrl=userList.get(position).getHeadimg();
         RequestOptions options = new RequestOptions()
-                       .placeholder(R.drawable.default_headimg)//请求过程中显示
-                        .error(R.drawable.default_headimg)//请求失败显示
-                        .fallback(R.drawable.default_headimg)//请求的URL为null时显示
-                        .circleCrop();//圆形剪裁
+                .placeholder(R.drawable.default_headimg)//请求过程中显示
+                .error(R.drawable.default_headimg)//请求失败显示
+                .fallback(R.drawable.default_headimg)//请求的URL为null时显示
+                .circleCrop();//圆形剪裁
         Glide.with(mContext)
                 .load(imageUrl)
                 .apply(options)//应用请求选项
@@ -95,9 +97,9 @@ public class CommunityAdapter extends BaseAdapter {
         public TextView tvcontent;
         public TextView tvusername;
         public TextView tvtime;
-       /* public TextView likecount;
-        public TextView commentcount;*/
-       public TextView seecount;
+        /* public TextView likecount;
+         public TextView commentcount;*/
+        public TextView seecount;
         public ImageView userhead;
     }
 }

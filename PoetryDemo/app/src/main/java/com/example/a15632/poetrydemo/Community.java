@@ -66,10 +66,18 @@ public class Community {
         this.seecount = seecount;
     }
 
+    public Community(String title, String content, int seecount, Date time) {
+        this.title = title;
+        this.content = content;
+        this.seecount = seecount;
+        this.time = time;
+    }
+
     public Community(String title, String content, int likecount, int commentcount, Date time) {
         this.title = title;
         this.content = content;
         this.likecount = likecount;
+
         this.commentcount = commentcount;
         this.time = time;
     }

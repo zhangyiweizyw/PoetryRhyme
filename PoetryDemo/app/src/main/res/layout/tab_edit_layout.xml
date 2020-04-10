@@ -3,14 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/back8"
+    android:background="@drawable/shiyun3"
     android:orientation="vertical">
     <com.example.a15632.poetrydemo.TitleLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="创作"
-        app:left_icon="@drawable/backto"
-        app:right_icon="@drawable/addtip2"
+        app:left_icon="@drawable/toleft"
+        app:right_icon="@drawable/plus"
         app:titlebar_type="12"/>
     <ScrollView
         android:layout_width="match_parent"
@@ -23,6 +23,40 @@
             android:columnCount="2"
             android:orientation="horizontal"
             android:layout_marginTop="20dp">
+            <LinearLayout
+                android:layout_width="160dp"
+                android:layout_height="220dp"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:layout_marginLeft="20dp">
+                <ImageButton
+                    android:background="@drawable/addbutton"
+                    android:layout_width="140dp"
+                    android:layout_height="180dp"
+                    android:src="@drawable/addmaobi"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="title"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="160dp"
+                android:layout_height="220dp"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:layout_marginLeft="20dp">
+                <ImageButton
+                    android:background="@drawable/addbutton"
+                    android:layout_width="140dp"
+                    android:layout_height="180dp"
+                    android:src="@drawable/addmaobi"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="title"/>
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="160dp"
                 android:layout_height="220dp"

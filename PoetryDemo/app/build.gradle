@@ -23,6 +23,8 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-12'
     //glide
     implementation 'com.github.bumptech.glide:glide:4.9.0'
+    //gitimageview
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
     //轮播图
     implementation 'com.github.xiaohaibin:XBanner:1.7.3'
     //圆形图片

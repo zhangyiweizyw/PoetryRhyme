@@ -8,8 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="社区"
-        app:left_icon="@drawable/backto"
-        app:right_icon="@drawable/addtip2"
+        app:left_icon="@drawable/toleft"
+        app:right_icon="@drawable/plus"
         app:titlebar_type="11"/>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -19,7 +19,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:orientation="vertical">
 
@@ -41,16 +40,10 @@
                     android:layout_marginLeft="20dp"
                     android:text="用户名" />
             </LinearLayout>
-            <!--<ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fillViewport="true"
-                android:layout_marginTop="20dp"
-                >-->
             <LinearLayout
-                android:layout_width="320dp"
-                android:layout_height="460dp"
-                android:layout_marginLeft="18dp"
+                android:layout_width="330dp"
+                android:layout_height="480dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/border">
 
@@ -84,7 +77,6 @@
                 </ScrollView>
 
             </LinearLayout>
-            <!-- </ScrollView>-->
         </LinearLayout>
     </RelativeLayout>
 
@@ -105,42 +97,43 @@
                 android:text="发布时间"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:layout_marginRight="10dp">
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <ImageView
-                    android:layout_width="match_parent"
+                android:gravity="right"
+                android:layout_marginRight="10dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/heart_gray1" />
-                <TextView
-                    android:layout_width="match_parent"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/btn_like"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/heart_gray1" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="xxx喜欢"
+                        android:gravity="center"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="xxx喜欢"
-                    android:gravity="center"/>
+                    android:orientation="vertical"
+                    android:layout_marginLeft="20dp">
+                    <ImageView
+                        android:id="@+id/btn_comment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/comment1" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="xxx评论"
+                        android:gravity="center"/>
+                </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="20dp">
-                <ImageView
-                    android:id="@+id/btn_comment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/comment1" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="xxx评论"
-                    android:gravity="center"/>
-            </LinearLayout>
-        </LinearLayout>
         </LinearLayout>
 
     </RelativeLayout>
