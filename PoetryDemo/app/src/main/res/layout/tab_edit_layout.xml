@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/shiyun3"
+    android:background="@drawable/shiyun5"
     android:orientation="vertical">
     <com.example.a15632.poetrydemo.TitleLayout
         android:layout_width="match_parent"
