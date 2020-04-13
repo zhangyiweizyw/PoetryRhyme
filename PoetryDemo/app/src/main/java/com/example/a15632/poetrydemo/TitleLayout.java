@@ -86,4 +86,13 @@ public class TitleLayout extends LinearLayout {
             ivtip.setVisibility(View.GONE);
         }
     }
+
+    //点击左边按钮事件
+    public void setLeftIconOnClickListener(OnClickListener ocl){
+        leftback.setOnClickListener(ocl);
+    }
+    //点击右边按钮事件
+    public void setRightIconOnClickListener(OnClickListener ocl){
+        ivtip.setOnClickListener(ocl);
+    }
 }

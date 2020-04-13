@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="50dp"
+    android:layout_height="51dp"
     android:background="#fff"
     android:orientation="vertical"
     >
@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="49dp">
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="49dp"
             android:layout_weight="1">
             <ImageView
@@ -18,17 +18,10 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/toleft"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"/>
-            <!-- <TextView
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:text="社区首页"
-                 android:layout_gravity="center"
-                 android:layout_marginLeft="10dp"
-                 android:textSize="15sp"/>-->
+                android:paddingLeft="10dp"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="49dp"
             android:layout_weight="1">
             <TextView
@@ -42,7 +35,7 @@
                 android:textSize="25dp"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="49dp"
             android:layout_weight="1"
             android:gravity="right">
@@ -59,8 +52,8 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="350dp"
-        android:layout_height="1dp"
-        android:background="#fd5640"
+        android:layout_height="2dp"
+        android:background="@color/colorTheme"
         android:layout_gravity="center"></LinearLayout>
 
 </LinearLayout>

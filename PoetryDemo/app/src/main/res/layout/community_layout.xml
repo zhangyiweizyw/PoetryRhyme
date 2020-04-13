@@ -110,7 +110,7 @@
                         android:id="@+id/btn_like"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/heart_gray1" />
+                        android:src="@drawable/heart_black" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -126,7 +126,7 @@
                         android:id="@+id/btn_comment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/comment1" />
+                        android:src="@drawable/comment2" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

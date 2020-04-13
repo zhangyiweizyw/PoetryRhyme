@@ -1,17 +1,20 @@
 package com.example.a15632.poetrydemo;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
+
+import okhttp3.OkHttpClient;
 
 public class CommunityDetail extends AppCompatActivity {
 
@@ -19,6 +22,7 @@ public class CommunityDetail extends AppCompatActivity {
     private ImageView iv_delete=null;
     private ImageView iv_like=null;
     private boolean isLike=false;
+    private TitleLayout titlebar=null;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,12 +34,14 @@ public class CommunityDetail extends AppCompatActivity {
         btn_comment.setOnClickListener(myListener);
         iv_like.setOnClickListener(myListener);
 
+        clickTitle();
+
 
     }
     public void findViews(){
         btn_comment=findViewById(R.id.btn_comment);
         iv_like=findViewById(R.id.btn_like);
-
+        titlebar=findViewById(R.id.title_bar);
     }
 
     private class MyListener implements View.OnClickListener{
@@ -50,7 +56,6 @@ public class CommunityDetail extends AppCompatActivity {
                     //喜欢
                     isFavourite();
                     break;
-
             }
         }
     }
@@ -86,7 +91,7 @@ public class CommunityDetail extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(CommunityDetail.this,"返回",Toast.LENGTH_SHORT).show();
                 popupWindow.dismiss();
-                }
+            }
         });
 
 
@@ -96,16 +101,33 @@ public class CommunityDetail extends AppCompatActivity {
     public void isFavourite(){
         if(isLike){
             //点击按钮变灰
-            Drawable drawable=getResources().getDrawable(R.drawable.heart_gray3);
+            Drawable drawable=getResources().getDrawable(R.drawable.heart_black);
             iv_like.setImageDrawable(drawable);
             isLike=false;
         }
+
+
         else{
-            Drawable drawable=getResources().getDrawable(R.drawable.heart_red2);
+            Drawable drawable=getResources().getDrawable(R.drawable.heart_like);
             iv_like.setImageDrawable(drawable);
             isLike=true;
         }
     }
+
+    //标题栏的点击事件
+    public void clickTitle(){
+        titlebar.setLeftIconOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                //跳转社区首页
+                Intent intent=new Intent(CommunityDetail.this,MainActivity.class);
+                intent.putExtra("id",1);
+                startActivity(intent);
+            }
+        });
+
+    }
+
 
 
 
