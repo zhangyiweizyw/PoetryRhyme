@@ -20,17 +20,17 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private FragmentTabHost tabHost=null;
-    private String[] tabStrArr={"首页","社区","创作","游戏"};
+    private String[] tabStrArr={"首页","社区","消息","游戏"};
     private Class[] fragmentArr={HomeFragment.class,CommunityFragment.class,
     EditFragment.class,GameFragment.class};
     private int[] imageNormalArr={R.drawable.homee,
             R.drawable.compass,
-            R.drawable.edit,
+            R.drawable.news_normal,
             R.drawable.gamepad
     };
     private int[] imageClickArr={R.drawable.homee_click,
             R.drawable.compass_click,
-            R.drawable.edit_click,
+            R.drawable.news_click,
             R.drawable.gamepad_click
     };
     @Override
