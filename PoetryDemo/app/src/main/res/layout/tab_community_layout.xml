@@ -11,36 +11,117 @@
         app:left_icon="@drawable/toleft"
         app:right_icon="@drawable/plus"
         app:titlebar_type="10"/>
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/refreshLayout"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_addpoem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="原创诗词"
+            android:background="#fff"
+            />
+        <Button
+            android:id="@+id/btn_addtalk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="社区话题"
+            android:background="#fff"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/cursorarea"
+        android:layout_width="fill_parent"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:layout_height="2dp">
+        <ImageView
+            android:id="@+id/cursor_btn"
+            android:layout_width="180dp"
+            android:layout_height="fill_parent">
+        </ImageView>
+    </LinearLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srlAccentColor="@android:color/black"
-        app:srlEnablePreviewInEditMode="true"
+
+        android:layout_weight="1">
+    </android.support.v4.view.ViewPager>
+    <!--  <com.scwang.smartrefresh.layout.SmartRefreshLayout
+          xmlns:app="http://schemas.android.com/apk/res-auto"
+          android:id="@+id/refreshLayout"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          app:srlAccentColor="@android:color/black"
+          app:srlEnablePreviewInEditMode="true"
+          android:background="#fff">
+          &lt;!&ndash;srlAccentColor srlPrimaryColor 将会改变 Header 和 Footer 的主题颜色&ndash;&gt;
+          &lt;!&ndash;srlEnablePreviewInEditMode 可以开启和关闭预览功能BezierRadarHeader&ndash;&gt;
+          &lt;!&ndash;<com.scwang.smartrefresh.layout.header.BezierRadarHeader
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"/>&ndash;&gt;
+          <pl.droidsonroids.gif.GifImageView
+              android:layout_width="match_parent"
+              android:layout_height="180dp"
+              android:src="@mipmap/refreshbig3"
+              android:background="#fff" />
+        &lt;!&ndash;  <ListView
+              android:id="@+id/lv_data"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:divider="#fff"
+              android:dividerHeight="10dp"/>&ndash;&gt;
+          <com.scwang.smartrefresh.layout.footer.BallPulseFooter
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"/>
+      </com.scwang.smartrefresh.layout.SmartRefreshLayout>-->
+    <!--<LinearLayout
+        android:id="@+id/bottomlinear"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
         android:background="#fff">
-        <!--srlAccentColor srlPrimaryColor 将会改变 Header 和 Footer 的主题颜色-->
-        <!--srlEnablePreviewInEditMode 可以开启和关闭预览功能BezierRadarHeader-->
-        <!--<com.scwang.smartrefresh.layout.header.BezierRadarHeader
+        <Button
+            android:id="@+id/btn_addpoem"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>-->
-        <pl.droidsonroids.gif.GifImageView
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="原创诗词"
+            android:background="#fff"/>
+        <Button
+            android:id="@+id/btn_addtalk"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:src="@mipmap/refreshbig3"
-            android:background="#fff" />
-        <ListView
-            android:id="@+id/lv_data"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="#fbf0e5"
-            android:dividerHeight="10dp"/>
-        <com.scwang.smartrefresh.layout.footer.BallPulseFooter
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="社区话题"
+            android:background="#fff"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/cursorarea"
+        android:layout_width="fill_parent"
+        android:background="#CDCDCD"
+        android:orientation="horizontal"
+        android:layout_height="12dp">
+        <ImageView
+            android:id="@+id/cursor_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        </ImageView>
+    </LinearLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/myviewpager"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="12">
+    </android.support.v4.view.ViewPager>&ndash;&gt;-->
 
 
 
 
 </LinearLayout>
+

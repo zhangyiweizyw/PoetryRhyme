@@ -1,101 +1,64 @@
 package com.example.a15632.poetrydemo;
 
-import android.app.ActionBar;
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
+
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
+
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import android.widget.LinearLayout;
 
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
 
-public class CommunityFragment extends Fragment {
-    private int imgflag=0;
+public class CommunityFragment extends Fragment{
+    //作为指示标签的按钮
+    private ImageView cursor;
+
+    //标志指示标签的横坐标
+    float cursorX = 0;
+    //所有按钮的宽度的数组
+    private int[] widthArgs;
+    //所有标题按钮的数组
+    private Button[] btnArgs;
+    //选项卡中的按钮
+    private Button btn_addpoem=null;
+    private Button btn_addtalk=null;
+
+
+    private  ViewPager mViewPager;
     private View fragment;
-    private List<User>userList=new ArrayList<>();
-    private List<Community>communityList=new ArrayList<>();
-    private ListView listView;
-    private CommunityAdapter communityAdapter;
-    private SmartRefreshLayout refreshLayout;
-    private static final int REFRESH_FINISH = 1;
-    private Handler mainHandler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what){
-                case REFRESH_FINISH:
-                    User u = new User("zhsan","123446","default_headimg.png");
-                    // userList.add(u);
-                    long time=System.currentTimeMillis();
-                    Date date=new Date(time);
-                    Community c=new Community("春眠","春眠不觉晓",100,date);
-                    //修改数据源
-                    userList.add(0,u);
-                    communityList.add(0,c);
-                    //更新Adapter
-                    communityAdapter.notifyDataSetChanged();
-                    //结束刷新动画
-                    refreshLayout.finishRefresh();
-                    break;
-            }
-        }
-    };
+    FragmentManager fragmentManager;
+    ViewPagerFragmentAdapter mViewPagerFragmentAdapter;
 
-
+    List<Fragment> mFragmentList = new ArrayList<Fragment>();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         fragment=inflater.inflate(R.layout.tab_community_layout,container,false);
-        /*ActionBar actionBar=getActivity().getActionBar();
-        if(actionBar!=null){
-            actionBar.hide();
-        }*/
         //code begin
-
-        initData();
         findViews();
-        //设置刷新头样式
-        // refreshLayout.setRefreshHeader(new DeliveryHeader(getContext()));
+        MyListener myListener=new MyListener();
+        btn_addpoem.setOnClickListener(myListener);
+        btn_addtalk.setOnClickListener(myListener);
 
-        setListeners();
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(),CommunityDetail.class);
-                startActivity(intent);
-            }
-        });
-
-
-
-
-
-
-
-        //code end
+        //页面切换
+        fragmentManager =getChildFragmentManager();//定义fragment管理器
+        initFragmetList();//初始化fragment的列表
+        mViewPagerFragmentAdapter = new ViewPagerFragmentAdapter(fragmentManager,mFragmentList);//设置viewpager的适配器
+        initViewPager();//初始化viewpager        //code end
         ViewGroup p=(ViewGroup)fragment.getParent();
         if(p!=null){
             p.removeView(fragment);
@@ -103,82 +66,104 @@ public class CommunityFragment extends Fragment {
 
         return fragment;
     }
-    private void findViews(){
-        listView =fragment.findViewById(R.id.lv_data);
-        communityAdapter= new CommunityAdapter(fragment.getContext(),communityList,userList,R.layout.community_list);
-        listView.setAdapter(communityAdapter);
 
-        //获取智能刷新布局
-        refreshLayout = fragment.findViewById(R.id.refreshLayout);
+    public void findViews(){
+        btn_addpoem=fragment.findViewById(R.id.btn_addpoem);
+        btn_addtalk=fragment.findViewById(R.id.btn_addtalk);
+        cursor = fragment.findViewById(R.id.cursor_btn);
     }
 
-    private void setListeners(){
-        //监听下拉刷新
-        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                //不能执行网络操作，需要使用多线程
-                new Thread(){
-                    @Override
-                    public void run() {
-                        try {
-                            Thread.sleep(2000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        //向主线程发送消息，更新视图
-                        Message msg = new Message();
-                        msg.what = REFRESH_FINISH;
-                        mainHandler.sendMessage(msg);
-                    }
-                }.start();
 
-            }
-        });
+    public void initViewPager() {
+        mViewPager = (ViewPager)fragment.findViewById(R.id.viewpager);
+        mViewPager.addOnPageChangeListener(new ViewPagetOnPagerChangedLisenter());
+        mViewPager.setAdapter(mViewPagerFragmentAdapter);
+        mViewPager.setCurrentItem(0);
 
-        //监听上拉加载更多
-        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                CommunityListTask task = new CommunityListTask();
-                task.execute();
-            }
-        });
+
+
     }
+    public void initFragmetList() {
+        mFragmentList.clear();
+        Fragment addPoemFragment = new AddPoemFragment();
+        Fragment addTalkFragment=new AddTalkFragment();
+        mFragmentList.add(addPoemFragment);
+        mFragmentList.add(addTalkFragment);
 
-    private class CommunityListTask extends AsyncTask {
+        //初始化按钮数组
+        btnArgs = new Button[]{btn_addpoem,btn_addtalk};
+        //指示标签设置为红色
+        cursor.setBackgroundColor(getResources().getColor(R.color.colorTheme));
+        //首先默认选中第一项
+        resetButtonColor();
+        btn_addpoem.setTextColor(getResources().getColor(R.color.colorTheme));
+
+    }
+    private class ViewPagetOnPagerChangedLisenter implements ViewPager.OnPageChangeListener {
         @Override
-        protected Object doInBackground(Object[] objects) {
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
         @Override
-        protected void onPostExecute(Object o) {
-            //更新视图
-            User u = new User("zhsan","123446","default_head.png");
-            userList.add(u);
-            long time=System.currentTimeMillis();
-            Date date=new Date(time);
-            Community c=new Community("春眠","春眠不觉晓",100,date);
-            communityList.add(c);
-            communityAdapter.notifyDataSetChanged();
-            //结束加载更多的动画
-            refreshLayout.finishLoadMore();
+        public void onPageSelected(int position) {
+            Log.d("CHANGE","onPageSelected");
+            if(widthArgs==null){
+                widthArgs = new int[]{btn_addpoem.getWidth(),
+                        btn_addtalk.getWidth()};
+            }
+            //每次滑动首先重置所有按钮的颜色
+            resetButtonColor();
+            //将滑动到的当前按钮颜色设置为红色
+            btnArgs[position].setTextColor(getResources().getColor(R.color.colorTheme));
+            cursorAnim(position);
+
+
+
+        }
+        @Override
+        public void onPageScrollStateChanged(int state) { }
+    }
+
+    //重置所有按钮文字的颜色
+    public void resetButtonColor(){
+        btn_addpoem.setTextColor(getResources().getColor(R.color.colorText));
+        btn_addtalk.setTextColor(getResources().getColor(R.color.colorText));
+    }
+
+
+
+    private class MyListener implements View.OnClickListener{
+        @Override
+        public void onClick(View v) {
+            switch(v.getId()){
+                case R.id.btn_addpoem:
+                    mViewPager.setCurrentItem(0);
+                    btn_addpoem.setTextColor(getResources().getColor(R.color.colorTheme));
+                    btn_addtalk.setTextColor(getResources().getColor(R.color.colorText));
+                    break;
+                case R.id.btn_addtalk:
+                    mViewPager.setCurrentItem(1);
+                    btn_addpoem.setTextColor(getResources().getColor(R.color.colorText));
+                    btn_addtalk.setTextColor(getResources().getColor(R.color.colorTheme));
+                    break;
+            }
         }
     }
 
-    //准备数据源
-    private void initData(){
-        User u = new User("李四","123446","default_headimg.png");
-        userList.add(u);
-        long time=System.currentTimeMillis();
-        Date date=new Date(time);
-        Community c=new Community("静夜思","床前明月光",100,100,date);
-        communityList.add(c);
+    //指示器的跳转，传入当前所处的页面的下标
+    public void cursorAnim(int curItem) {
+        //每次调用，就将指示器的横坐标设置为0，即开始的位置
+        cursorX = 0;
+        //再根据当前的curItem来设置指示器的宽度
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) cursor.getLayoutParams();
+        //减去边距*2，以对齐标题栏文字
+        lp.width = widthArgs[curItem] - btnArgs[0].getPaddingLeft() * 2;
+        cursor.setLayoutParams(lp);
+        //循环获取当前页之前的所有页面的宽度
+        for (int i = 0; i < curItem; i++) {
+            cursorX = cursorX + btnArgs[i].getWidth();
+        }
+        //再加上当前页面的左边距，即为指示器当前应处的位置
+        cursor.setX(cursorX + btnArgs[curItem].getPaddingLeft());
     }
+
+
 }
