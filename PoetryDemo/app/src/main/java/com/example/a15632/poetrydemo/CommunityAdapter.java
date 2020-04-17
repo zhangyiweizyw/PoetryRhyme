@@ -1,11 +1,14 @@
 package com.example.a15632.poetrydemo;
 
 import android.content.Context;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -21,12 +24,14 @@ public class CommunityAdapter extends BaseAdapter {
     private List<User>userList=new ArrayList<>();
     private int itemResId;
     private Context mContext;
+    private int type=1;
 
-    public CommunityAdapter(Context context, List<Community> communities,List<User>userList, int itemResId){
+    public CommunityAdapter(Context context, List<Community> communities,List<User>userList, int itemResId,int type){
         this.mContext = context;
         this.communityList = communities;
         this.userList=userList;
         this.itemResId = itemResId;
+        this.type=type;
     }
 
     @Override
@@ -56,6 +61,19 @@ public class CommunityAdapter extends BaseAdapter {
         if (convertView == null){
             convertView = LayoutInflater.from(mContext).inflate(itemResId,null);
             viewHolder = new ViewHolder();
+            if(type==2){
+                TextView tv=(TextView) convertView.findViewById(R.id.tv_title);
+                TextView tv_type=(TextView) convertView.findViewById(R.id.c_type);
+                LinearLayout lv=(LinearLayout)convertView.findViewById(R.id.middle);
+                lv.setTop(20);
+                Log.e("title",tv.getText().toString());
+                tv.setGravity(Gravity.CENTER);
+                tv_type.setText("原创诗词");
+            }
+            else{
+                TextView tv_type=(TextView) convertView.findViewById(R.id.c_type);
+                tv_type.setText("社区话题");
+            }
             viewHolder.tvtitle=convertView.findViewById(R.id.tv_title);
             viewHolder.tvcontent=convertView.findViewById(R.id.tv_content);
             viewHolder.tvtime=convertView.findViewById(R.id.tv_time);
@@ -101,6 +119,7 @@ public class CommunityAdapter extends BaseAdapter {
          public TextView commentcount;*/
         public TextView seecount;
         public ImageView userhead;
+        public TextView c_type;
     }
 }
 

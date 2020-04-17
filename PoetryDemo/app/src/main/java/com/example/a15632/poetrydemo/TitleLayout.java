@@ -32,7 +32,7 @@ public class TitleLayout extends LinearLayout {
                 Toast.makeText(getContext(),"跳转添加社区页面",Toast.LENGTH_SHORT).show();
             }
         });*/
-       initView(context,attrs);
+        initView(context,attrs);
     }
     //初始化视图
     private void initView(final Context context, AttributeSet attributeSet) {
@@ -65,7 +65,7 @@ public class TitleLayout extends LinearLayout {
         TypedArray typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.CustomTitleBar);
         String title = typedArray.getString(R.styleable.CustomTitleBar_title);//标题
         int leftIcon = typedArray.getResourceId(R.styleable.CustomTitleBar_left_icon, R.drawable.backto);//左边图片
-        int rightIcon = typedArray.getResourceId(R.styleable.CustomTitleBar_right_icon, R.drawable.addtip2);//右边图片
+        int rightIcon = typedArray.getResourceId(R.styleable.CustomTitleBar_right_icon, R.drawable.pencil);//右边图片
         int titleBarType = typedArray.getInt(R.styleable.CustomTitleBar_titlebar_type, 10);//标题栏类型,默认为10
 
         //赋值进去我们的标题栏
@@ -79,7 +79,7 @@ public class TitleLayout extends LinearLayout {
             //ivtip.setVisibility(View.GONE);
 
         }else if(titleBarType == 11){//传入11,显示更多图标按钮,隐藏更多 文字，显示创作文字，隐藏添加按钮
-          //  leftback.setVisibility(View.GONE);
+            //  leftback.setVisibility(View.GONE);
             ivtip.setVisibility(View.GONE);
         }else if(titleBarType==12){
             leftback.setVisibility(View.GONE);

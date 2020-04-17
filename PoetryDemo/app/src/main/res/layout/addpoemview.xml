@@ -4,35 +4,40 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-      <com.scwang.smartrefresh.layout.SmartRefreshLayout
-          xmlns:app="http://schemas.android.com/apk/res-auto"
-          android:id="@+id/refreshLayout"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          app:srlAccentColor="@android:color/black"
-          app:srlEnablePreviewInEditMode="true"
-          android:background="#fff">
-          <!--srlAccentColor srlPrimaryColor 将会改变 Header 和 Footer 的主题颜色-->
-          <!--srlEnablePreviewInEditMode 可以开启和关闭预览功能BezierRadarHeader-->
-          <!--<com.scwang.smartrefresh.layout.header.BezierRadarHeader
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"/>-->
-          <pl.droidsonroids.gif.GifImageView
-              android:layout_width="match_parent"
-              android:layout_height="180dp"
-              android:src="@mipmap/refreshbig3"
-              android:background="#fff" />
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlAccentColor="@android:color/black"
+        app:srlEnablePreviewInEditMode="true"
+        android:background="#fff">
+        <!--srlAccentColor srlPrimaryColor 将会改变 Header 和 Footer 的主题颜色-->
+        <!--srlEnablePreviewInEditMode 可以开启和关闭预览功能BezierRadarHeader-->
+        <!--<com.scwang.smartrefresh.layout.header.BezierRadarHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>-->
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@mipmap/refresh3red"
+            android:background="#fff" />
 
-          <ListView
-              android:id="@+id/lv_data"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:divider="#efefef"
-              android:dividerHeight="10dp"/>
-          <com.scwang.smartrefresh.layout.footer.BallPulseFooter
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"/>
-      </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        <ListView
+            android:id="@+id/lv_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="#efefef"
+            android:dividerHeight="10dp"/>
+        <!--<com.scwang.smartrefresh.layout.footer.BallPulseFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>-->
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@mipmap/refresh6"
+            android:background="#fff" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 
 

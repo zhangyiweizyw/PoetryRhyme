@@ -1,6 +1,8 @@
 package com.example.a15632.poetrydemo;
 
 
+import android.app.ActionBar;
+import android.content.Intent;
 import android.graphics.Matrix;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,14 +14,20 @@ import android.support.v4.view.ViewPager;
 
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
+import android.widget.PopupWindow;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -42,6 +50,10 @@ public class CommunityFragment extends Fragment{
     FragmentManager fragmentManager;
     ViewPagerFragmentAdapter mViewPagerFragmentAdapter;
 
+    private TitleLayout titleLayout;
+    private Button btn_addCommuniy=null;
+    private ImageView iv_delete=null;
+
     List<Fragment> mFragmentList = new ArrayList<Fragment>();
     @Nullable
     @Override
@@ -54,6 +66,8 @@ public class CommunityFragment extends Fragment{
         MyListener myListener=new MyListener();
         btn_addpoem.setOnClickListener(myListener);
         btn_addtalk.setOnClickListener(myListener);
+        //发布按钮
+        titleLayout.setRightIconOnClickListener(myListener);
 
         //页面切换
         fragmentManager =getChildFragmentManager();//定义fragment管理器
@@ -72,6 +86,7 @@ public class CommunityFragment extends Fragment{
 
 
 
+
         if(p!=null){
             p.removeView(fragment);
         }
@@ -84,6 +99,7 @@ public class CommunityFragment extends Fragment{
         btn_addtalk=fragment.findViewById(R.id.btn_addtalk);
         cursor = fragment.findViewById(R.id.cursor);
         mViewPager = (ViewPager)fragment.findViewById(R.id.viewpager);
+        titleLayout=fragment.findViewById(R.id.title_bar);
     }
 
 
@@ -153,9 +169,90 @@ public class CommunityFragment extends Fragment{
                 case R.id.btn_addtalk:
                     mViewPager.setCurrentItem(1);
                     break;
+                case R.id.addcommunity:
+                    // 弹出PopupMenu
+                    showPopupMenu(v);
             }
         }
     }
+
+    private void showPopupMenu(View v) {
+        // 1. 创建PopupMenu
+        PopupMenu popupMenu
+                = new PopupMenu(fragment.getContext(), v);
+        // 2. 通过XML资源文件对PopupMenu进行填充
+        popupMenu.getMenuInflater()
+                .inflate(R.menu.toolbar, popupMenu.getMenu());
+        // 3. 绑定监听器
+        popupMenu.setOnMenuItemClickListener(
+                new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        Toast.makeText(fragment.getContext(),
+                                item.getTitle(),
+                                Toast.LENGTH_SHORT).show();
+                        switch (item.getItemId()){
+                            case R.id.item_addpoem:
+                               /* Intent intent=new Intent(getActivity(),AddCommunity.class);
+                                startActivity(intent);*/
+                                showPopupWindow(fragment);
+                                break;
+                            case R.id.item_addtalk:
+                               /* Intent intent1=new Intent(getActivity(),AddCommunity.class);
+                                startActivity(intent1);*/
+                                showPopupWindow(fragment);
+                                break;
+                        }
+
+                        return false;
+                    }
+                }
+        );
+        // 4. 显示PopupMenu
+        popupMenu.show();
+
+    }
+
+    //显示弹窗
+    private void showPopupWindow(View v){
+        View popupWindowView=getLayoutInflater().inflate(R.layout.addcommunity,null);
+        final PopupWindow popupWindow=new PopupWindow(popupWindowView, ActionBar.LayoutParams.MATCH_PARENT ,ActionBar.LayoutParams.MATCH_PARENT, true);
+        // 设置背景颜色变暗
+        WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
+        lp.alpha = 0.7f;//调节透明度
+        getActivity().getWindow().setAttributes(lp);
+        //dismiss时恢复原样
+        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
+                lp.alpha = 1f;
+                getActivity().getWindow().setAttributes(lp);
+            }
+        });
+        //弹出动画
+        popupWindow.setAnimationStyle(R.style.take_photo_anim);
+        //引入依附的布局
+        View parentView = LayoutInflater.from(getContext()).inflate(R.layout.comment_popupwindow, null);
+        //相对于父控件的位置（例如正中央Gravity.CENTER，下方Gravity.BOTTOM等），可以设置偏移或无偏移
+        popupWindow.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
+        //点击叉号按钮
+        iv_delete=popupWindowView.findViewById( R.id.iv_delete);
+        iv_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"返回",Toast.LENGTH_SHORT).show();
+                popupWindow.dismiss();
+            }
+        });
+
+
+    }
+
+
+
+
+
 
 
 

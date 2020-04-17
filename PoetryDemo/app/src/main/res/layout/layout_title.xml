@@ -43,7 +43,7 @@
                 android:id="@+id/addcommunity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/plus"
+                android:src="@drawable/pencil"
                 android:layout_gravity="center"
                 android:layout_marginRight="10dp"
                 />
