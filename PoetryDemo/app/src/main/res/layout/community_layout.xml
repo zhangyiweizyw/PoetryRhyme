@@ -14,7 +14,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/title_bar">
+        android:layout_below="@+id/title_bar"
+        android:background="#fff">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,44 +40,40 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="20dp"
                     android:text="用户名" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="330dp"
-                android:layout_height="480dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/border">
 
-                <ScrollView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fillViewport="true">
+                    android:layout_height="match_parent"
+                    android:gravity="right"
+                    android:layout_marginRight="40dp">
+                    <ImageView
+                        android:id="@+id/btn_attention"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/attention_gray2"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+            </LinearLayout>
 
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                android:layout_marginTop="20dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="10dp"
-                        android:text="正文内容1.微型小说(数百至几千字) [1]
-　　比短篇更短的小说完全符合瞬息万变的现代社会中忙碌的人们的阅读习惯，几乎每天都可以看到人们为这类的小说赋予一个新名词和新定义。例如极短篇、精短小说、超短篇小说、微信息小说、一分钟小说、一袋烟小说、袖珍小说、焦点小说、瞳孔小说、拇指小说、迷你小说等，族繁不及备载，连专门的文学研究者也很难如数家珍分叙其定义，一般人更容易混淆，故总论之。一般认为小小说的篇幅应在两千字以下。因为题材常是生活经验的片段，因此可以是有头无尾、有尾无头、甚至无头无尾。高潮放在结尾，高潮一出马上完结，营造余音绕梁的意境。由于比短篇更短，字句也需要更加精练，题材能见微知著者为佳。一个意外的结局虽然能吸引眼球，但文章短还是要有伏笔呼应，甚至比起给予读者意外、应该更重视能否带给读者感动。
-2.短篇小说(几千至三万字)
-　　一般认为，篇幅在几千到两万多字的小说会被划归短篇小说。在它的特色中有所谓三一律：一人一地一时，也就是减少角色、缩小舞台、短化故事中流动的时间。另外，虽然它们时常惜墨如金，但一般认为短篇小说仍应符合小说的原始定义、也就是对细节有足够的刻划，绝非长篇故事的节略或纲要。所有小说基础，其发展初期并无长短之分，随时代而区分。今短篇小说多要求文笔洗练，且受西洋三一定律一时一地一物观念影响，使其更生动详实但也限制其发展。
-3.中篇小说(三万至六万字)
-　　一般认为，篇幅在三万字至六万字之间的小说。也有少数十几万字也被算作中篇而不归于长篇，这取决于文章内容的丰富度。其容量大小、篇幅长短、人物多寡、情节繁简等均介于长篇小说和短篇小说之间，通常只是截取主人公一个时期或某一段生活的典型事件塑造形象。反映社会生活的某个方面，故事情节完整。线索比较单一，矛盾斗争不如长篇小说复杂，人物较少。所以，相比于长篇，中篇小说比较容易把握，也更容易成功。因为对于初涉创作领域的人而言，写作长篇易陷入多数的情节造成凌乱难收的困境，而写作短篇不是转折太少而单调、就是转折太多却显得拥挤。这时考虑将原本的构想修改中篇是一个广受推荐的建议。
-4.长篇小说(六万字或十万字以上)
-　　一般认为，字数在六万或十万以上的为长篇小说，还可细分为小长篇（一般六万到十万字），中长篇（一般十几万到三五十万字），超长篇（一般超过百万字）。如果作者打算表现人生中常见的错综复杂关系，则必须使用这么大的篇幅。通常就算是笔调轻松的长篇小说，也会有一个内里的严肃主题，否则很容易陷入无组织或是零乱。初涉者在写作长篇时最需注意全局对主题的呼应、结构的严密性，以及避免重复矛盾或缺漏。
-注：篇幅长短并非明文规定，但按照情节内容丰富度可能会把部分字数多的划入字数少的类别，例如某些十几万二三十万字的小说会因为内容太过不紧凑而被归入中篇小说，而某些仅有六万多字让人觉得篇幅过短的小说会因为内容情节十分紧凑而归为小长篇。
-创作年代
-1.古典小说
-古典小说萌芽于先秦，发展于两汉，雏形于魏晋南北朝，形成于唐代，繁荣于宋元，鼎盛于明清。大致可分以下几个时期：
-（1）先秦两汉时期：当时社会出现的神话传说、寓言故事、史传文学成为古典小说叙事的源头。神话传说已经具备人物和情节两个基本因素，散见于诸子百家书中的寓言典故提供了借鉴经验，历史著作有比较完整的结构、人物形象和历史背景。
-（2）魏晋南北朝时期：出现了志怪、志人小说。严格意义上说这仍然算不上是小说，只能算是小说的雏形。《世说新语》也是这个时期的优秀作品，里面收集了许多短小精悍的小故事。
-（3）唐朝时期：古代小说的发展趋于成熟，形成了独立的文学形式—传奇体小说，由此我国的小说脱离历史领域而成为文学创作。唐代三大爱情传奇是此时期的标志性作品。
-（4）宋元时期：商品经济的发展和市井文化的兴起，给小说创作带来深厚的土壤。话本经过文人加工形成许多话本小说和演义小说。
-（5）明清时期：小说开始走上了文人独立创作之路，这一时期，小说作家主体意识增强。《红楼梦》的出现，把中国古代小说发展推向了高峰，达到前所未有的成就。在明清这一段时间内涌现了无数的经典之作流传于世。如明代四大奇书（《西游记》《水浒传》《三国演义》《金瓶梅》）三言二拍（《醒世恒言》《警世通言》《喻世明言》《初刻拍案惊奇》《二刻拍案惊奇》）清代的《红楼梦》《儒林外史》《老残游记》《聊斋志异》等。明董其昌《袁伯应（袁可立子）诗集序》：“二十年来，破觚为圆，浸淫广肆，子史空玄，旁逮稗官小说，无一不为帖括用者”。" />
-                </ScrollView>
+                        android:gravity="center"
+                        android:text="正文内容"/>
+                </LinearLayout>
+            </ScrollView>
 
-            </LinearLayout>
+
         </LinearLayout>
     </RelativeLayout>
 
@@ -110,8 +107,9 @@
                         android:id="@+id/btn_like"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/heart_black" />
+                        android:src="@drawable/unlike" />
                     <TextView
+                        android:id="@+id/tv_like"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="xxx喜欢"
@@ -126,11 +124,28 @@
                         android:id="@+id/btn_comment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/comment2" />
+                        android:src="@drawable/comment3" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="xxx评论"
+                        android:gravity="center"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="20dp">
+                    <ImageView
+                        android:id="@+id/btn_collect"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/uncollect" />
+                    <TextView
+                        android:layout_marginTop="3dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="收藏"
                         android:gravity="center"/>
                 </LinearLayout>
             </LinearLayout>

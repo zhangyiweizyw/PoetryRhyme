@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import okhttp3.OkHttpClient;
@@ -22,7 +23,12 @@ public class CommunityDetail extends AppCompatActivity {
     private ImageView iv_delete=null;
     private ImageView iv_like=null;
     private boolean isLike=false;
+    private boolean attention=false;
+    private boolean isYour=false;
+    private boolean isCollect=false;
     private TitleLayout titlebar=null;
+    private ImageView btn_attention=null;
+    private ImageView btn_collect=null;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +39,10 @@ public class CommunityDetail extends AppCompatActivity {
         MyListener myListener=new MyListener();
         btn_comment.setOnClickListener(myListener);
         iv_like.setOnClickListener(myListener);
+        btn_attention.setOnClickListener(myListener);
+        btn_collect.setOnClickListener(myListener);
+
+        updateLikeToEdit();
 
         clickTitle();
 
@@ -42,6 +52,8 @@ public class CommunityDetail extends AppCompatActivity {
         btn_comment=findViewById(R.id.btn_comment);
         iv_like=findViewById(R.id.btn_like);
         titlebar=findViewById(R.id.title_bar);
+        btn_attention=findViewById(R.id.btn_attention);
+        btn_collect=findViewById(R.id.btn_collect);
     }
 
     private class MyListener implements View.OnClickListener{
@@ -53,8 +65,22 @@ public class CommunityDetail extends AppCompatActivity {
                     showPopupWindow(v);
                     break;
                 case R.id.btn_like:
-                    //喜欢
-                    isFavourite();
+                    if(isYour){
+                        //是本人执行修改回答方法
+                    }
+                    else{
+                        //不是本人的，则执行喜欢方法
+                        //喜欢
+                        isFavourite();
+                    }
+                    break;
+                case R.id.btn_attention:
+                    //关注
+                    isAttention();
+                    break;
+                case R.id.btn_collect:
+                    //收藏
+                    clickCollect();
                     break;
             }
         }
@@ -101,16 +127,48 @@ public class CommunityDetail extends AppCompatActivity {
     public void isFavourite(){
         if(isLike){
             //点击按钮变灰
-            Drawable drawable=getResources().getDrawable(R.drawable.heart_black);
+            Drawable drawable=getResources().getDrawable(R.drawable.unlike);
             iv_like.setImageDrawable(drawable);
             isLike=false;
         }
 
 
         else{
-            Drawable drawable=getResources().getDrawable(R.drawable.heart_like);
+            Drawable drawable=getResources().getDrawable(R.drawable.like_flower);
             iv_like.setImageDrawable(drawable);
             isLike=true;
+        }
+    }
+    //点击关注按钮
+    public void isAttention(){
+        if(attention){
+            //点击按钮变灰
+            Drawable drawable=getResources().getDrawable(R.drawable.attention_gray2);
+            btn_attention.setImageDrawable(drawable);
+            attention=false;
+        }
+
+
+        else{
+            Drawable drawable=getResources().getDrawable(R.drawable.attention_red);
+            btn_attention.setImageDrawable(drawable);
+            attention=true;
+        }
+    }
+    //点击收藏按钮
+    public void clickCollect(){
+        if(isCollect){
+            //点击按钮变灰
+            Drawable drawable=getResources().getDrawable(R.drawable.uncollect);
+            btn_collect.setImageDrawable(drawable);
+            isCollect=false;
+        }
+
+
+        else{
+            Drawable drawable=getResources().getDrawable(R.drawable.collect1);
+            btn_collect.setImageDrawable(drawable);
+            isCollect=true;
         }
     }
 
@@ -120,11 +178,30 @@ public class CommunityDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //跳转社区首页
-                Intent intent=new Intent(CommunityDetail.this,MainActivity.class);
+                /*Intent intent=new Intent(CommunityDetail.this,MainActivity.class);
                 intent.putExtra("id",1);
-                startActivity(intent);
+                startActivity(intent);*/
+                finish();
             }
         });
+
+    }
+
+    //如果是自己的回答就把喜欢改为修改
+    public void updateLikeToEdit(){
+        //判断当前页面的用户是否为本人
+        //是本人的
+        TextView tv_like=findViewById(R.id.tv_like);
+        if(isYour){
+            Drawable drawable=getResources().getDrawable(R.drawable.toedit);
+            iv_like.setImageDrawable(drawable);
+            tv_like.setText("修改回答");
+        }
+        else{
+            Drawable drawable=getResources().getDrawable(R.drawable.unlike);
+            iv_like.setImageDrawable(drawable);
+            tv_like.setText("xxx喜欢");
+        }
 
     }
 
