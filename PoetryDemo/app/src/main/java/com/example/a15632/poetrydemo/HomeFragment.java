@@ -31,6 +31,7 @@ public class HomeFragment extends Fragment {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private CircleImageView circleImageView;
+    private ImageView daka;//打卡
     private LinearLayout collectLayout;//收藏
     private LinearLayout worksLayout;//作品
     private LinearLayout settingLayout;//设置
@@ -71,6 +72,7 @@ public class HomeFragment extends Fragment {
         tabLayout=fragment.findViewById(R.id.tabLayout_id);
         viewPager=fragment.findViewById(R.id.viewpager_id);
         circleImageView=fragment.findViewById(R.id.img_avator);
+        daka=fragment.findViewById(R.id.img_into_daka);
         //drawer
         collectLayout=fragment.findViewById(R.id.linear_collect);
         worksLayout=fragment.findViewById(R.id.linear_works);
@@ -104,6 +106,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(),LoginActivity.class));
+            }
+        });
+        //点击跳转到打卡页面
+        daka.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),DakaActivity.class));
             }
         });
         //drawer里的点击跳转

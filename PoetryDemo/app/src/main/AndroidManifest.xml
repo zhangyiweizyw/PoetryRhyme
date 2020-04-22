@@ -26,8 +26,10 @@
         <activity android:name=".drawer.WorksActivity" />
         <activity android:name=".drawer.CollectActivity" />
         <activity android:name=".drawer.SettingActivity" />
-        <activity android:name=".drawer.AboutActivity"></activity>
-        <activity android:name=".AddCommunity"></activity>
+        <activity android:name=".drawer.AboutActivity" />
+        <activity android:name=".AddCommunity" />
+        <activity android:name=".DakaActivity" />
+        <activity android:name=".DakaShareActivity"></activity>
     </application>
 
 </manifest>

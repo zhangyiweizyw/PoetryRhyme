@@ -2,15 +2,88 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    <com.stx.xhb.xbanner.XBanner
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/xbanner"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        app:AutoPlayTime="6000"
-        app:pointsContainerBackground="#44aaaaaa"
-        app:tipTextSize="12sp"
-        app:pageChangeDuration="800"/>
+        android:background="@drawable/bg03">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5">
+            <TextView
+                android:textColor="#FFFFFF"
+                android:id="@+id/tv_poetry_everyday"
+                android:layout_marginRight="80dp"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentRight="true"
+                android:textSize="13dp"
+                android:textStyle="bold"
+                android:text="身后有余忘缩手"
+                android:layout_width="13dp"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:textColor="#FFFFFF"
+                android:id="@+id/tv_poetry_everyday2"
+                android:layout_marginRight="101dp"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentRight="true"
+                android:textSize="13dp"
+                android:textStyle="bold"
+                android:text="眼前无路想回头"
+                android:layout_width="13dp"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:layout_marginLeft="20dp"
+               android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:textSize="30dp"
+                        android:textColor="#ffff"
+                        android:text="22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textSize="18dp"
+                        android:textColor="#ffff"
+                        android:text="/04"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_marginBottom="20dp"
+                    android:textColor="#fff"
+                    android:text="农历三月三十"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ListView
+            android:id="@+id/listview_recommend"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+
 
 </LinearLayout>
