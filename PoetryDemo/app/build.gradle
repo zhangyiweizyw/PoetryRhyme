@@ -1,6 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.a15632.poetrydemo"
@@ -19,6 +25,13 @@ android {
 }
 
 dependencies {
+    //badgeview消息气泡
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    implementation files('libs/badgeview.jar')
+    implementation 'q.rorbin:badgeview:1.1.3'
     //智能刷新
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-12'
     //glide
