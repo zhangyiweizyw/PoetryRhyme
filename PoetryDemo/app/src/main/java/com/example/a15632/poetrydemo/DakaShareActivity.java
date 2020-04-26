@@ -8,6 +8,7 @@ public class DakaShareActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();//去掉顶部标题栏
         setContentView(R.layout.activity_daka_share);
     }
 }

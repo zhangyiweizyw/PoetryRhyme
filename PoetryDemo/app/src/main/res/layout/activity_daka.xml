@@ -33,6 +33,7 @@
 
         </LinearLayout>
         <ImageView
+            android:id="@+id/img_done"
             android:layout_marginRight="15dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"

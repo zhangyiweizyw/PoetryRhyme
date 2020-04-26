@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/bg01">
     <RelativeLayout
         android:background="#DA2D3C"
         android:layout_width="match_parent"
@@ -34,13 +35,22 @@
     </RelativeLayout>
    <LinearLayout
        android:layout_width="match_parent"
-       android:layout_height="100dp">
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       android:padding="20dp">
        <TextView
            android:gravity="center"
-           android:textStyle="bold"
-           android:textSize="21dp"
+           android:textSize="19dp"
            android:textColor="#333"
            android:text="连续打卡天数"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content" />
+       <TextView
+           android:gravity="center"
+           android:textSize="25dp"
+           android:layout_marginTop="10dp"
+           android:textColor="#333"
+           android:text="8"
            android:layout_width="match_parent"
            android:layout_height="wrap_content" />
 
