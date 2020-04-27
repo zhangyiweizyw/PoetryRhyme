@@ -193,13 +193,9 @@ public class CommunityFragment extends Fragment{
                                 Toast.LENGTH_SHORT).show();
                         switch (item.getItemId()){
                             case R.id.item_addpoem:
-                               /* Intent intent=new Intent(getActivity(),AddCommunity.class);
-                                startActivity(intent);*/
                                 showPopupWindow(fragment);
                                 break;
                             case R.id.item_addtalk:
-                               /* Intent intent1=new Intent(getActivity(),AddCommunity.class);
-                                startActivity(intent1);*/
                                 showPopupWindow(fragment);
                                 break;
                         }
@@ -221,7 +217,6 @@ public class CommunityFragment extends Fragment{
         WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
         lp.alpha = 0.7f;//调节透明度
         getActivity().getWindow().setAttributes(lp);
-        //dismiss时恢复原样
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
@@ -232,11 +227,8 @@ public class CommunityFragment extends Fragment{
         });
         //弹出动画
         popupWindow.setAnimationStyle(R.style.take_photo_anim);
-        //引入依附的布局
         View parentView = LayoutInflater.from(getContext()).inflate(R.layout.comment_popupwindow, null);
-        //相对于父控件的位置（例如正中央Gravity.CENTER，下方Gravity.BOTTOM等），可以设置偏移或无偏移
         popupWindow.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
-        //点击叉号按钮
         iv_delete=popupWindowView.findViewById( R.id.iv_delete);
         iv_delete.setOnClickListener(new View.OnClickListener() {
             @Override

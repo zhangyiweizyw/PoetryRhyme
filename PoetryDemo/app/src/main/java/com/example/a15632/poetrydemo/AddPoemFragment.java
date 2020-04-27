@@ -19,6 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.a15632.poetrydemo.Entity.Community;
+import com.example.a15632.poetrydemo.Entity.User;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -45,7 +47,7 @@ public class AddPoemFragment extends Fragment{
         public void handleMessage(Message msg) {
             switch (msg.what){
                 case REFRESH_FINISH:
-                    User u = new User("zhsan","123446","default_headimg.png");
+                    User u = new User("zhsan","123446",R.drawable.default_headimg);
                     // userList.add(u);
                     long time=System.currentTimeMillis();
                     Date date=new Date(time);
@@ -158,7 +160,7 @@ public class AddPoemFragment extends Fragment{
         @Override
         protected void onPostExecute(Object o) {
             //更新视图
-            User u = new User("zhsan","123446","default_head.png");
+            User u = new User("zhsan","123446",R.drawable.default_headimg);
             userList.add(u);
             long time=System.currentTimeMillis();
             Date date=new Date(time);
@@ -174,11 +176,11 @@ public class AddPoemFragment extends Fragment{
 
     //准备数据源
     private void initData(){
-        User u = new User("李四","123446","default_headimg.png");
-        User u1 = new User("李四","123446","default_headimg.png");
-        User u2= new User("李四","123446","default_headimg.png");
-        User u3 = new User("李四","123446","default_headimg.png");
-        User u4= new User("李四","123446","default_headimg.png");
+        User u = new User("李四","123446",R.drawable.default_headimg);
+        User u1 = new User("李四","123446",R.drawable.default_headimg);
+        User u2= new User("李四","123446",R.drawable.default_headimg);
+        User u3 = new User("李四","123446",R.drawable.default_headimg);
+        User u4= new User("李四","123446",R.drawable.default_headimg);
         userList.add(u);
         userList.add(u1);
         userList.add(u2);
@@ -186,7 +188,6 @@ public class AddPoemFragment extends Fragment{
         userList.add(u4);
         long time=System.currentTimeMillis();
         Date date=new Date(time);
-
         Community c=new Community("静夜思","床前明月光，疑是地上霜。举头望明月，低头思故乡。",100,100,date);
         Community c1=new Community("惠崇春江晚景","竹外桃花三两枝，春江水暖鸭先知。蒌蒿满地芦芽短，正是河豚欲上时。",100,100,date);
         Community c2=new Community("绝句","迟日江山丽，春风花草香。泥融飞燕子，沙暖睡鸳鸯",100,100,date);

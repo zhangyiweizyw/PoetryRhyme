@@ -1,10 +1,10 @@
-package com.example.a15632.poetrydemo;
+package com.example.a15632.poetrydemo.Entity;
 
 public class User {
 
     private String username;
     private String password;
-    private String headimg;
+    private int headimg;
 
     public String getUsername() {
         return username;
@@ -22,15 +22,15 @@ public class User {
         this.password = password;
     }
 
-    public String getHeadimg() {
+    public int getHeadimg() {
         return headimg;
     }
 
-    public void setHeadimg(String headimg) {
+    public void setHeadimg(int headimg) {
         this.headimg = headimg;
     }
 
-    public User(String username, String password, String headimg) {
+    public User(String username, String password, int headimg) {
         this.username = username;
         this.password = password;
         this.headimg = headimg;

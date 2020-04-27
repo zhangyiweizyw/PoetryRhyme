@@ -1,4 +1,4 @@
-package com.example.a15632.poetrydemo;
+package com.example.a15632.poetrydemo.Entity;
 
 import java.sql.Date;
 
