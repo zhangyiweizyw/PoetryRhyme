@@ -29,7 +29,8 @@
         <activity android:name=".drawer.AboutActivity" />
         <activity android:name=".AddCommunity" />
         <activity android:name=".DakaActivity" />
-        <activity android:name=".DakaShareActivity"></activity>
+        <activity android:name=".DakaShareActivity" />
+        <activity android:name=".GameActivity"></activity>
     </application>
 
 </manifest>
