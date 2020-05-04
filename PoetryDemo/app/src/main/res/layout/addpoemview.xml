@@ -12,11 +12,6 @@
         app:srlAccentColor="@android:color/black"
         app:srlEnablePreviewInEditMode="true"
         android:background="#fff">
-        <!--srlAccentColor srlPrimaryColor 将会改变 Header 和 Footer 的主题颜色-->
-        <!--srlEnablePreviewInEditMode 可以开启和关闭预览功能BezierRadarHeader-->
-        <!--<com.scwang.smartrefresh.layout.header.BezierRadarHeader
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>-->
         <pl.droidsonroids.gif.GifImageView
             android:layout_width="match_parent"
             android:layout_height="150dp"

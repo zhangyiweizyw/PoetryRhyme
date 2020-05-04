@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:text="《静夜思》"
             android:textColor="@color/colorText"
-            android:gravity=""
+            android:gravity="center"
             android:textSize="18sp"
             android:layout_marginLeft="10dp"
             android:textStyle="bold"/>

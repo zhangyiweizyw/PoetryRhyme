@@ -36,10 +36,10 @@ public class AddPoemFragment extends Fragment{
 
     private View fragment;
 
-    private List<User> userList=new ArrayList<>();
-    private List<Community>communityList=new ArrayList<>();
+    // private List<User> userList=new ArrayList<>();
+    private ArrayList<Community>communityList=new ArrayList<>();
+    private MyAdapter<Community>myAdapter;
     private ListView listView;
-    private CommunityAdapter communityAdapter;
     private SmartRefreshLayout refreshLayout;
     private static final int REFRESH_FINISH = 1;
     private Handler mainHandler = new Handler(){
@@ -47,16 +47,6 @@ public class AddPoemFragment extends Fragment{
         public void handleMessage(Message msg) {
             switch (msg.what){
                 case REFRESH_FINISH:
-                    User u = new User("zhsan","123446",R.drawable.default_headimg);
-                    // userList.add(u);
-                    long time=System.currentTimeMillis();
-                    Date date=new Date(time);
-                    Community c=new Community("春眠","春眠不觉晓",100,date);
-                    //修改数据源
-                    userList.add(0,u);
-                    communityList.add(0,c);
-                    //更新Adapter
-                    communityAdapter.notifyDataSetChanged();
                     //结束刷新动画
                     refreshLayout.finishRefresh();
                     break;
@@ -92,23 +82,23 @@ public class AddPoemFragment extends Fragment{
 
         return fragment;
     }
-    //初始化布局
-    private void initLayout(){
-        LayoutInflater factory = LayoutInflater.from(getContext());
-        View layout = factory.inflate(R.layout.community_list, null);
-        TextView tv=(TextView) layout.findViewById(R.id.tv_title);
-        Log.e("title",tv.getText().toString());
-        tv.setGravity(Gravity.CENTER);
-
-    }
 
     private void findViews(){
         listView =fragment.findViewById(R.id.lv_data);
-        // initLayout();
-        communityAdapter= new CommunityAdapter(fragment.getContext(),communityList,userList,R.layout.community_list,2);
-        listView.setAdapter(communityAdapter);
-
-
+        initData();
+        myAdapter=new MyAdapter<Community>(communityList,R.layout.community_list) {
+            @Override
+            public void bindView(ViewHolder holder, Community obj) {
+                holder.setText(R.id.tv_title,obj.getTitle());
+                holder.setImageResource(R.id.iv_userhead,obj.getUser().getHeadimg());
+                holder.setText(R.id.username,obj.getUser().getUsername());
+                holder.setText(R.id.tv_content,obj.getContent());
+                holder.setText(R.id.c_type,"原创诗词");
+                holder.setText(R.id.tv_time,obj.getTime().toString());
+                holder.setText(R.id.seecount,obj.getSeecount()+"");
+            }
+        };
+        listView.setAdapter(myAdapter);
         //获取智能刷新布局
         refreshLayout = fragment.findViewById(R.id.refreshLayout);
     }
@@ -159,44 +149,21 @@ public class AddPoemFragment extends Fragment{
 
         @Override
         protected void onPostExecute(Object o) {
-            //更新视图
-            User u = new User("zhsan","123446",R.drawable.default_headimg);
-            userList.add(u);
-            long time=System.currentTimeMillis();
-            Date date=new Date(time);
-            Community c=new Community("春眠","春眠不觉晓",100,date);
-            communityList.add(c);
-            communityAdapter.notifyDataSetChanged();
             //结束加载更多的动画
             refreshLayout.finishLoadMore();
         }
     }
-
-
-
     //准备数据源
     private void initData(){
         User u = new User("李四","123446",R.drawable.default_headimg);
-        User u1 = new User("李四","123446",R.drawable.default_headimg);
-        User u2= new User("李四","123446",R.drawable.default_headimg);
-        User u3 = new User("李四","123446",R.drawable.default_headimg);
-        User u4= new User("李四","123446",R.drawable.default_headimg);
-        userList.add(u);
-        userList.add(u1);
-        userList.add(u2);
-        userList.add(u3);
-        userList.add(u4);
         long time=System.currentTimeMillis();
         Date date=new Date(time);
-        Community c=new Community("静夜思","床前明月光，疑是地上霜。举头望明月，低头思故乡。",100,100,date);
-        Community c1=new Community("惠崇春江晚景","竹外桃花三两枝，春江水暖鸭先知。蒌蒿满地芦芽短，正是河豚欲上时。",100,100,date);
-        Community c2=new Community("绝句","迟日江山丽，春风花草香。泥融飞燕子，沙暖睡鸳鸯",100,100,date);
-        Community c3=new Community("别董大","千里黄云白日曛，北风吹雁雪纷纷，。莫愁前路无知己，天下谁人不识君",100,100,date);
-        Community c4=new Community("秋浦歌","白发三千丈，缘愁似个长。不知明镜里，何处得秋霜。",100,100,date);
+        Community c=new Community("静夜思","床前明月光，疑是地上霜。举头望明月，低头思故乡。",
+                100,100,100,1,date,u);
         communityList.add(c);
-        communityList.add(c1);
-        communityList.add(c2);
-        communityList.add(c3);
-        communityList.add(c4);
+        communityList.add(c);
+        communityList.add(c);
+        communityList.add(c);
+        communityList.add(c);
     }
 }

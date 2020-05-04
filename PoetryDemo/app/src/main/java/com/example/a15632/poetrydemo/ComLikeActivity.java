@@ -47,7 +47,7 @@ public class ComLikeActivity extends AppCompatActivity {
         long time=System.currentTimeMillis();
         Date date=new Date(time);
         User u = new User("李四","123446", R.drawable.default_head);
-        Community c=new Community("静夜思","床前明月光，疑是地上霜。举头望明月，低头思故乡。",100,100,date);
+        Community c=new Community("静夜思","床前明月光，疑是地上霜。举头望明月，低头思故乡。");
         ComAndLike cal=new ComAndLike(u,date,c);
         comAndLikes.add(cal);
         myAdapter=new MyAdapter<ComAndLike>(comAndLikes, R.layout.item_comlike) {
