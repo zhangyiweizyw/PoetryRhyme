@@ -22,6 +22,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Search" />
         <activity android:name=".CommunityDetail" />
+        <activity android:name=".ComLikeActivity"/>
         <activity android:name=".LoginActivity" />
         <activity android:name=".drawer.WorksActivity" />
         <activity android:name=".drawer.CollectActivity" />

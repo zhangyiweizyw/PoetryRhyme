@@ -1,23 +1,14 @@
 package com.example.a15632.poetrydemo;
 
 import android.app.ActionBar;
-import android.app.Activity;
-import android.content.DialogInterface;
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.button.MaterialButton;
-import android.support.design.card.MaterialCardView;
-import android.support.design.resources.MaterialResources;
-import android.support.design.shape.MaterialShapeDrawable;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.a15632.poetrydemo.Entity.Msg;
@@ -40,7 +30,6 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.List;
 
 import q.rorbin.badgeview.QBadgeView;
 
@@ -214,6 +203,8 @@ public class EditFragment extends Fragment {
                 case R.id.iv_system:
                     break;
                 case R.id.iv_comlike:
+                    Intent intent=new Intent(getActivity(),ComLikeActivity.class);
+                    startActivity(intent);
                     break;
                 case R.id.iv_attention:
                     break;

@@ -1,19 +1,34 @@
 package com.example.a15632.poetrydemo;
 
 import android.app.ActionBar;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.a15632.poetrydemo.Entity.Comment;
+import com.example.a15632.poetrydemo.Entity.Msg;
+import com.example.a15632.poetrydemo.Entity.User;
+
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.OkHttpClient;
 
@@ -29,6 +44,12 @@ public class CommunityDetail extends AppCompatActivity {
     private TitleLayout titlebar=null;
     private ImageView btn_attention=null;
     private ImageView btn_collect=null;
+    private  LinearLayout layout1=null;
+    private  LinearLayout layout2=null;
+
+    private ListView listView=null;
+    private MyAdapter<Comment>myAdapter;
+    private ArrayList<Comment> comments=new ArrayList<>();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +75,7 @@ public class CommunityDetail extends AppCompatActivity {
         titlebar=findViewById(R.id.title_bar);
         btn_attention=findViewById(R.id.btn_attention);
         btn_collect=findViewById(R.id.btn_collect);
+
     }
 
     private class MyListener implements View.OnClickListener{
@@ -90,7 +112,9 @@ public class CommunityDetail extends AppCompatActivity {
     //显示弹窗
     private void showPopupWindow(View v){
         View popupWindowView=getLayoutInflater().inflate(R.layout.comment_popupwindow,null);
-        final PopupWindow popupWindow=new PopupWindow(popupWindowView,ActionBar.LayoutParams.MATCH_PARENT ,2000, true);
+        final PopupWindow popupWindow=new PopupWindow(popupWindowView,ActionBar.LayoutParams.MATCH_PARENT ,ActionBar.LayoutParams.MATCH_PARENT, true);
+
+
         // 设置背景颜色变暗
         WindowManager.LayoutParams lp = getWindow().getAttributes();
         lp.alpha = 0.7f;//调节透明度
@@ -106,11 +130,8 @@ public class CommunityDetail extends AppCompatActivity {
         });
         //弹出动画
         popupWindow.setAnimationStyle(R.style.take_photo_anim);
-        //引入依附的布局
         View parentView = LayoutInflater.from(CommunityDetail.this).inflate(R.layout.comment_popupwindow, null);
-        //相对于父控件的位置（例如正中央Gravity.CENTER，下方Gravity.BOTTOM等），可以设置偏移或无偏移
         popupWindow.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
-        //点击叉号按钮
         iv_delete=popupWindowView.findViewById( R.id.iv_delete);
         iv_delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,7 +140,52 @@ public class CommunityDetail extends AppCompatActivity {
                 popupWindow.dismiss();
             }
         });
+        layout1=popupWindowView.findViewById(R.id.comment_no);
+        layout2=popupWindowView.findViewById(R.id.layout_list);
+        listView=popupWindowView.findViewById(R.id.lv_data);
+        //添加评论
+        addComment(popupWindowView);
 
+
+    }
+    private void addComment(final View popupview){
+        comments.clear();
+        final EditText editText=popupview.findViewById(R.id.edit_comment);
+        TextView tv_publish=popupview.findViewById(R.id.tv_publish);
+
+        tv_publish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (TextUtils.isEmpty(editText.getText())) {
+                    Toast.makeText(v.getContext(), "请输入评论", Toast.LENGTH_SHORT).show();
+                } else {
+                    String content = editText.getText().toString();
+                    User u = new User("张三", "123456", R.drawable.default_headimg);
+                    long time = System.currentTimeMillis();
+                    Date date = new Date(time);
+                    Comment comment = new Comment(u, content, date);
+                    comments.add(comment);
+                    if(comments!=null){
+                        layout1.setVisibility(View.GONE);
+                        layout2.setVisibility(View.VISIBLE);
+                    }
+                    myAdapter = new MyAdapter<Comment>(comments, R.layout.item_comment) {
+                        @Override
+                        public void bindView(ViewHolder holder, Comment obj) {
+                            holder.setImageResource(R.id.imageview, obj.getUser().getHeadimg());
+                            holder.setText(R.id.username, obj.getUser().getUsername());
+                            holder.setText(R.id.content, obj.getContent());
+                            holder.setText(R.id.tv_date, obj.getDate().toString());
+                        }
+                    };
+
+
+                    listView.setAdapter(myAdapter);
+                }
+                editText.setText("");
+                editText.setHint("友善的评论是交流的起点。");
+            }
+        });
 
     }
 
@@ -178,9 +244,7 @@ public class CommunityDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //跳转社区首页
-                /*Intent intent=new Intent(CommunityDetail.this,MainActivity.class);
-                intent.putExtra("id",1);
-                startActivity(intent);*/
+
                 finish();
             }
         });
@@ -204,6 +268,7 @@ public class CommunityDetail extends AppCompatActivity {
         }
 
     }
+
 
 
 
