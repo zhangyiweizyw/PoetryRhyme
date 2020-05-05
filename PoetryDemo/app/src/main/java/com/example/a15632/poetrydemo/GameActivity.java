@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class GameActivity extends AppCompatActivity {
+
+
     private TextView daojishi;
     private ImageView correct_img;
     private ImageView incorrect_img;
@@ -57,19 +59,22 @@ public class GameActivity extends AppCompatActivity {
        B.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-
+               anwser=0;
+               myAsyncTask.execute();
            }
        });
        C.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-
+               anwser=0;
+               myAsyncTask.execute();
            }
        });
        D.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-
+               anwser=0;
+               myAsyncTask.execute();
            }
        });
     }

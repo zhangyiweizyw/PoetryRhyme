@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorTheme">
     <ImageView
+        android:id="@+id/img_game_back2"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
         android:src="@drawable/leftwhite"

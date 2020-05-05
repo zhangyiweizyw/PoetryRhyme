@@ -35,7 +35,7 @@
             android:orientation="horizontal">
             <LinearLayout
                 android:layout_marginRight="30dp"
-                android:id="@+id/linear_game_paihang"
+                android:id="@+id/linear_home_game_paihang"
                 android:layout_toLeftOf="@+id/linear_game_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
