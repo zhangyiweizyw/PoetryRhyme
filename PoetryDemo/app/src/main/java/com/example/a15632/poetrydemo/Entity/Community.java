@@ -9,7 +9,7 @@ public class Community {
     private int likecount;//喜欢数量
     private int commentcount;//评论数量
     private int seecount;//浏览数量
-    private int type;//类型
+    private int type;//类型1:原创诗词 2:社区话题
     private Date time;//发布时间
     // private int userid;//用户id
     private User user;
@@ -26,6 +26,13 @@ public class Community {
     }
 
     public Community(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+    public Community(String title, String content,Date date,int type,User u) {
+        this.user=u;
+        this.time=date;
+        this.type=type;
         this.title = title;
         this.content = content;
     }

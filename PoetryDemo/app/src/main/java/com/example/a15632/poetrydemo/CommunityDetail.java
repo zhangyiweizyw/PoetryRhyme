@@ -75,6 +75,13 @@ public class CommunityDetail extends AppCompatActivity {
         titlebar=findViewById(R.id.title_bar);
         btn_attention=findViewById(R.id.btn_attention);
         btn_collect=findViewById(R.id.btn_collect);
+        Intent intent=this.getIntent();
+        boolean isAttention=intent.getBooleanExtra("isAttention",true);
+        if(isAttention){
+            Drawable drawable=getResources().getDrawable(R.drawable.attention_red);
+            btn_attention.setImageDrawable(drawable);
+            attention=true;
+        }
 
     }
 

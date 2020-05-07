@@ -66,9 +66,9 @@ public class CommunityFragment extends Fragment {
 
     private void initViews() {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
+        viewPagerAdapter.AddFragment(new AddAttention(), "我的关注");
         viewPagerAdapter.AddFragment(new AddPoemFragment(), "原创诗词");
         viewPagerAdapter.AddFragment(new AddTalkFragment(), "社区话题");
-        viewPagerAdapter.AddFragment(new AddPoemFragment(), "我的关注");
         mViewPager.setAdapter(viewPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
     }
