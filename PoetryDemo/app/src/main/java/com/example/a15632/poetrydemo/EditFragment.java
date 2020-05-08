@@ -84,7 +84,7 @@ public class EditFragment extends Fragment {
         iv_offical.setOnClickListener(myListener);
         iv_system.setOnClickListener(myListener);
         iv_comlike.setOnClickListener(myListener);
-        iv_attention.setOnClickListener(myListener);
+        //iv_attention.setOnClickListener(myListener);
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -108,7 +108,7 @@ public class EditFragment extends Fragment {
         iv_offical=fragment.findViewById(R.id.iv_offical);
         iv_system=fragment.findViewById(R.id.iv_system);
         iv_comlike=fragment.findViewById(R.id.iv_comlike);
-        iv_attention=fragment.findViewById(R.id.iv_attention);
+        //iv_attention=fragment.findViewById(R.id.iv_attention);
         listView=fragment.findViewById(R.id.lv_data);
         myAdapter=new MyAdapter<Msg>(msgs,R.layout.item_privatenews) {
             @Override
@@ -206,8 +206,6 @@ public class EditFragment extends Fragment {
                     Intent intent=new Intent(getActivity(),ComLikeActivity.class);
                     startActivity(intent);
                     break;
-                case R.id.iv_attention:
-                    break;
 
             }
         }
@@ -217,7 +215,7 @@ public class EditFragment extends Fragment {
     public void addBadgeView(View v,int count){
         QBadgeView qBadgeView=new QBadgeView(getContext());
         qBadgeView.bindTarget(v);
-        qBadgeView.setBadgeGravity(Gravity.END| Gravity.BOTTOM);
+        qBadgeView.setBadgeGravity(Gravity.END | Gravity.BOTTOM);
         //真实消息数量从数据库获取
         if(count>99){
             qBadgeView.setBadgeText("99+");
