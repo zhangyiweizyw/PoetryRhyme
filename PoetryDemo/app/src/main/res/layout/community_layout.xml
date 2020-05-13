@@ -2,7 +2,8 @@
 <RelativeLayout android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
     <com.example.a15632.poetrydemo.TitleLayout
         android:id="@+id/title_bar"
         android:layout_width="match_parent"

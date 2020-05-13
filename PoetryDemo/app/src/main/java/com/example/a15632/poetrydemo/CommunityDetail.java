@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.example.a15632.poetrydemo.Entity.Comment;
 import com.example.a15632.poetrydemo.Entity.Msg;
 import com.example.a15632.poetrydemo.Entity.User;
+import com.jaeger.library.StatusBarUtil;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -55,6 +56,7 @@ public class CommunityDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();//去掉顶部标题栏
         setContentView(R.layout.community_layout);
+        StatusBarUtil.setColor(this,getResources().getColor(R.color.colorback));
 
         findViews();
         MyListener myListener=new MyListener();

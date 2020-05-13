@@ -32,6 +32,7 @@
         <activity android:name=".DakaActivity" />
         <activity android:name=".DakaShareActivity" />
         <activity android:name=".GameActivity"></activity>
+        <activity android:name=".PoemDetail"></activity>
     </application>
 
 </manifest>

@@ -10,6 +10,7 @@ import android.widget.ListView;
 import com.example.a15632.poetrydemo.Entity.ComAndLike;
 import com.example.a15632.poetrydemo.Entity.Community;
 import com.example.a15632.poetrydemo.Entity.User;
+import com.jaeger.library.StatusBarUtil;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class ComLikeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();//去掉顶部标题栏
         setContentView(R.layout.edit_comlike);
+        StatusBarUtil.setColor(this,getResources().getColor(R.color.colorback));
 
         findViews();
         initViews();

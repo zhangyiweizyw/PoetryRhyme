@@ -29,6 +29,7 @@ import android.app.AlertDialog;
 
 import com.example.a15632.poetrydemo.util.ImageUtils;
 import com.example.a15632.poetrydemo.util.ScreenUtils;
+import com.jaeger.library.StatusBarUtil;
 
 import java.io.FileNotFoundException;
 
@@ -46,6 +47,7 @@ public class AddCommunity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();//去掉顶部标题栏
         setContentView(R.layout.addcommunity);
+        StatusBarUtil.setColor(this,getResources().getColor(R.color.colorback));
 
         findViews();
 
