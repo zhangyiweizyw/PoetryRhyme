@@ -3,7 +3,7 @@
     <!-- 连框颜色值 -->
     <item>
         <shape>
-            <solid android:color="#000" />
+            <solid android:color="#efefef" />
         </shape>
     </item>
     <!-- 主体背景颜色值 -->
@@ -13,7 +13,7 @@
         android:top="1dp"> <!--设置只有底部有边框-->
 
         <shape>
-            <solid android:color="#ffffff" />
+            <solid android:color="#efefef" />
         </shape>
     </item>
 </layer-list>

@@ -1,4 +1,4 @@
-package com.example.a15632.poetrydemo;
+package com.example.a15632.poetrydemo.Entity;
 
 import java.sql.Date;
 
@@ -9,8 +9,49 @@ public class Community {
     private int likecount;//喜欢数量
     private int commentcount;//评论数量
     private int seecount;//浏览数量
+    private int type;//类型1:原创诗词 2:社区话题
     private Date time;//发布时间
-    private int userid;//用户id
+    // private int userid;//用户id
+    private User user;
+
+    public Community(String title, String content, int likecount, int commentcount, int seecount, int type,Date time, User user) {
+        this.title = title;
+        this.content = content;
+        this.likecount = likecount;
+        this.commentcount = commentcount;
+        this.seecount = seecount;
+        this.type=type;
+        this.time = time;
+        this.user = user;
+    }
+
+    public Community(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+    public Community(String title, String content,Date date,int type,User u) {
+        this.user=u;
+        this.time=date;
+        this.type=type;
+        this.title = title;
+        this.content = content;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 
     public String getTitle() {
         return title;
@@ -24,13 +65,7 @@ public class Community {
         return content;
     }
 
-    public int getUserid() {
-        return userid;
-    }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
-    }
 
     public void setContent(String content) {
         this.content = content;
@@ -66,19 +101,6 @@ public class Community {
         this.seecount = seecount;
     }
 
-    public Community(String title, String content, int seecount, Date time) {
-        this.title = title;
-        this.content = content;
-        this.seecount = seecount;
-        this.time = time;
-    }
 
-    public Community(String title, String content, int likecount, int commentcount, Date time) {
-        this.title = title;
-        this.content = content;
-        this.likecount = likecount;
 
-        this.commentcount = commentcount;
-        this.time = time;
-    }
 }

@@ -22,11 +22,17 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Search" />
         <activity android:name=".CommunityDetail" />
+        <activity android:name=".ComLikeActivity"/>
         <activity android:name=".LoginActivity" />
         <activity android:name=".drawer.WorksActivity" />
         <activity android:name=".drawer.CollectActivity" />
         <activity android:name=".drawer.SettingActivity" />
-        <activity android:name=".drawer.AboutActivity"></activity>
+        <activity android:name=".drawer.AboutActivity" />
+        <activity android:name=".AddCommunity" />
+        <activity android:name=".DakaActivity" />
+        <activity android:name=".DakaShareActivity" />
+        <activity android:name=".GameActivity"></activity>
+        <activity android:name=".PoemDetail"></activity>
     </application>
 
 </manifest>

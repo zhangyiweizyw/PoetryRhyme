@@ -4,36 +4,31 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:id="@+id/community">
+
     <LinearLayout android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
             android:id="@+id/tv_title"
             android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="title"
-            android:textSize="20sp"
+            android:text="《静夜思》"
+            android:textColor="@color/colorText"
+            android:gravity="center"
+            android:textSize="18sp"
             android:layout_marginLeft="10dp"
             android:textStyle="bold"/>
     </LinearLayout>
-    <LinearLayout android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/tv_content"
-            android:layout_marginLeft="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="内容简介..."
-            android:textSize="18sp"/>
-    </LinearLayout>
     <LinearLayout
+        android:id="@+id/middle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp">
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp">
         <ImageView
             android:id="@+id/iv_userhead"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:scaleType="fitCenter"/>
         <TextView
             android:id="@+id/username"
@@ -42,11 +37,27 @@
             android:layout_height="wrap_content"
             android:text="用户名"
             android:layout_gravity="center"/>
+
     </LinearLayout>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+        <TextView
+            android:gravity="right|left"
+            android:id="@+id/tv_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="内容简介..."
+            android:textSize="14sp"/>
+    </LinearLayout>
+
+    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
         <TextView
             android:id="@+id/tv_time"
             android:layout_width="wrap_content"
@@ -70,32 +81,75 @@
                 android:layout_marginRight="10dp"
                 android:text="xx浏览"/>
 
-        <!--<ImageView
-            android:id="@+id/like"
-            android:layout_width="wrap_content"
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>-->
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/heart_gray"/>
-        <TextView
-            android:id="@+id/likecount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:text="xx喜欢"/>
-            <ImageView
-                android:id="@+id/comment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/comment"/>
+            android:layout_weight="1">
             <TextView
-                android:id="@+id/commentcount"
+                android:id="@+id/c_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="xx评论" />-->
+                android:text="类型标签"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:background="@color/colorTheme"
+                android:textColor="#fff"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="发布时间"
+                android:layout_marginLeft="10dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:id="@+id/see"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/denglong"/>
+            <TextView
+                android:id="@+id/seecount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:text="1,1K"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="人浏览"/>
         </LinearLayout>
 
 
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"></LinearLayout>
 
 </LinearLayout>

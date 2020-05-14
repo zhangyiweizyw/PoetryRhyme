@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:orientation="vertical"
+    android:padding="10dp">
+    <TextView
+        android:id="@+id/tv_recommend_name"
+        android:layout_gravity="center"
+        android:textSize="19dp"
+        android:textColor="#333"
+        android:text="江城子"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_recommend_author"
+        android:layout_marginTop="5dp"
+        android:textSize="13dp"
+        android:layout_gravity="center"
+        android:textColor="#92C3C0"
+        android:text="宋代/苏轼"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_recommend_content"
+        android:textColor="#333"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:text="十年生死两茫茫，不思量，自难忘。"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
