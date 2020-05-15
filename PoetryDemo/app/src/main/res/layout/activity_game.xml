@@ -3,123 +3,84 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorTheme">
+
     <ImageView
         android:id="@+id/img_game_back2"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
-        android:src="@drawable/leftwhite"
         android:layout_width="40dp"
-        android:layout_height="40dp" />
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/leftwhite" />
 
     <RelativeLayout
-        android:layout_centerInParent="true"
-        android:background="@drawable/border_game"
-        android:padding="25dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/border_game"
+        android:padding="25dp">
+
         <TextView
             android:id="@+id/tv_game_daojishi"
-            android:textColor="#fff"
-            android:textSize="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="35dp"
             android:text="15"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textColor="#fff"
+            android:textSize="40dp" />
+
         <ImageView
             android:id="@+id/img_game_correct"
-            android:visibility="gone"
-            android:layout_marginTop="36dp"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/correct"
             android:layout_width="50dp"
-            android:layout_height="50dp" />
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="36dp"
+            android:src="@drawable/correct"
+            android:visibility="gone" />
+
         <ImageView
             android:id="@+id/img_game_incorrect"
-            android:src="@drawable/incorrect02"
-            android:visibility="gone"
-            android:layout_marginTop="36dp"
-            android:layout_centerHorizontal="true"
             android:layout_width="50dp"
-            android:layout_height="50dp" />
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="36dp"
+            android:src="@drawable/incorrect02"
+            android:visibility="gone" />
+
         <TextView
-            android:layout_marginTop="120dp"
-            android:layout_centerHorizontal="true"
-            android:textSize="20dp"
-            android:textColor="#fff"
-            android:text="“落花人独立”的下一句是什么？"
+            android:id="@+id/tv_game_problem"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <LinearLayout
-            android:id="@+id/linear_A"
-            android:layout_marginTop="200dp"
-            android:background="@drawable/circler_game"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_width="250dp"
-            android:padding="10dp"
-            android:layout_height="wrap_content">
+            android:layout_marginTop="120dp"
+            android:text="落花人独立，微雨_双飞"
+            android:textColor="#fff"
+            android:textSize="20dp" />
+        <LinearLayout
+            android:layout_marginTop="160dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <TextView
-                android:gravity="center"
                 android:textSize="20dp"
-                android:textColor="@color/colorTheme"
-                android:text="A.微雨燕双飞"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="空格里应填的是:"
+                android:textColor="#fff" />
+            <EditText
+                android:id="@+id/et_game_you_anwser"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:hint="请输入"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content" />
         </LinearLayout>
-        <LinearLayout
-            android:id="@+id/linear_B"
-            android:layout_marginTop="260dp"
-            android:background="@drawable/circler_game"
-            android:layout_centerHorizontal="true"
-            android:layout_width="250dp"
-            android:padding="10dp"
-            android:layout_height="wrap_content">
-            <TextView
-                android:gravity="center"
-                android:textSize="20dp"
-                android:textColor="@color/colorTheme"
-                android:text="B.微雨燕单飞"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/linear_C"
-            android:layout_marginTop="320dp"
-            android:background="@drawable/circler_game"
-            android:layout_centerHorizontal="true"
-            android:layout_width="250dp"
-            android:padding="10dp"
-            android:layout_height="wrap_content">
-            <TextView
-                android:gravity="center"
-                android:textSize="20dp"
-                android:textColor="@color/colorTheme"
-                android:text="C.微雪燕双飞"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/linear_D"
-            android:layout_marginTop="380dp"
-            android:background="@drawable/circler_game"
-            android:layout_centerHorizontal="true"
-            android:layout_width="250dp"
-            android:padding="10dp"
-            android:layout_height="wrap_content">
-            <TextView
-                android:gravity="center"
-                android:textSize="20dp"
-                android:textColor="@color/colorTheme"
-                android:text="D.微雨燕扑棱"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+
+
+
     </RelativeLayout>
-
-
-
-
-
 
 
 </RelativeLayout>

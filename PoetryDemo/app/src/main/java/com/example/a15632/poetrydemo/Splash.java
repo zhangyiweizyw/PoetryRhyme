@@ -63,12 +63,8 @@ public class Splash extends AppCompatActivity {
         getSupportActionBar().hide();//去掉顶部标题栏
         setContentView(R.layout.activity_splash);
 
-        //设置字体
         textViewPoetryEveryday = findViewById(R.id.tv_poetry_everyday);
         textViewPoetryEveryday2 = findViewById(R.id.tv_poetry_everyday2);
-//        Typeface typeface = Typeface.createFromAsset(getAssets(), "fontdemo.TTF");
-//        textViewPoetryEveryday.setTypeface(typeface);
-//        textViewPoetryEveryday2.setTypeface(typeface);
         //设置间隔
         Thread thread = new Thread() {
             @Override
