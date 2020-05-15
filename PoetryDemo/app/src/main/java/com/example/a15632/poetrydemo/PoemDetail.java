@@ -26,49 +26,45 @@ public class PoemDetail extends AppCompatActivity {
         StatusBarUtil.setColor(this,getResources().getColor(R.color.colorback));
 
         findViews();
-        List<Fragment> fragments = new ArrayList<>();
-        fragments.add(new PoemContent());
-        fragments.add(new PoemContent());
-        fragments.add(new PoemContent());
+        initView();
 
-        List<String>titles=new ArrayList<>();
-        titles.add("正文");
-        titles.add("译文");
-        titles.add("默写");
-
-
-        ViewPagerAdapter adapter=new ViewPagerAdapter(getSupportFragmentManager());
-        for(int i=0;i<titles.size();i++){
-            adapter.AddFragment(fragments.get(i),titles.get(i));
-        }
-        viewPager.setAdapter(adapter);
-
-        tabLayout.setupWithViewPager(viewPager);
-
-        for (int i = 0; i < tabLayout.getTabCount(); i++) {
-            TabLayout.Tab tab = tabLayout.getTabAt(i);
-            Drawable d = null;
-            switch (i) {
-                case 0:
-                    d = getResources().getDrawable(R.drawable.setup2);
-                    break;
-                case 1:
-                    d = getResources().getDrawable(R.drawable.set);
-                    break;
-                case 2:
-                    d = getResources().getDrawable(R.drawable.collect1);
-                    break;
-                case 3:
-                    d = getResources().getDrawable(R.drawable.search);
-                    break;
-            }
-            tab.setIcon(d);
-        }
     }
     private void findViews(){
         tabLayout=findViewById(R.id.tab);
         viewPager=findViewById(R.id.mviewpager);
 
+    }
+    private void initView(){
+        List<Fragment> fragments = new ArrayList<>();
+        fragments.add(new PoemContent());
+        fragments.add(new PoemTranslate());
+        fragments.add(new PoemWrite());
+        List<String>titles=new ArrayList<>();
+        titles.add("正文");
+        titles.add("译文");
+        titles.add("默写");
+        ViewPagerAdapter adapter=new ViewPagerAdapter(getSupportFragmentManager());
+        for(int i=0;i<titles.size();i++){
+            adapter.AddFragment(fragments.get(i),titles.get(i));
+        }
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
+        for (int i = 0; i < tabLayout.getTabCount(); i++) {
+            TabLayout.Tab tab = tabLayout.getTabAt(i);
+            Drawable d = null;
+            switch (i) {
+                case 0:
+                    d = getResources().getDrawable(R.drawable.book);
+                    break;
+                case 1:
+                    d = getResources().getDrawable(R.drawable.translate);
+                    break;
+                case 2:
+                    d = getResources().getDrawable(R.drawable.write);
+                    break;
+            }
+            tab.setIcon(d);
+        }
     }
 
 
