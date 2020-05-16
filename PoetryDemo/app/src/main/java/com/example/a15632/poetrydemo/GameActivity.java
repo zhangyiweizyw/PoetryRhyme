@@ -53,6 +53,7 @@ public class GameActivity extends AppCompatActivity {
                 case CHANGEPROBLEM:{
                     if(my_problem.length()>0){
                         problem.setText(my_problem);
+                        anwser.setText("");
                     }
                     break;
                 }
@@ -109,25 +110,27 @@ public class GameActivity extends AppCompatActivity {
         //2,更新题目ui
         changeProblem();
         //3.开始倒计时
-        countDown();
+        final MyCountDown myCountDown=new MyCountDown(15*1000,1000);
+        myCountDown.start();
         //4.判断对错
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                myCountDown.cancel();
                 if(anwser.getText().toString().equals(my_key)){
-                    alert();
+                    alertSuccess();
                     Log.e("成功！","回答正确！！");
                 }else
                 {
                     Log.e("失败！","回答错误！！");
-                    finish();
+                    alertFail();
                 }
 
             }
         });
 
     }
-    public void alert(){
+    public void alertSuccess(){
         final AlertDialog.Builder builder=new AlertDialog.Builder(GameActivity.this);
         builder.setTitle("回答正确！");
         builder.setPositiveButton("下一题", new DialogInterface.OnClickListener() {
@@ -142,6 +145,19 @@ public class GameActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(GameActivity.this,"取消",Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
+            }
+        });
+        AlertDialog dialog=builder.create();
+        dialog.show();
+    }
+    public void alertFail(){
+        final AlertDialog.Builder builder=new AlertDialog.Builder(GameActivity.this);
+        builder.setTitle("回答错误QAQ");
+        builder.setNegativeButton("结束", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                finish();
             }
         });
         AlertDialog dialog=builder.create();
@@ -254,14 +270,35 @@ public class GameActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                daojishi.setEnabled(true);
-                current=0;
-                MyAsyncTask myAsyncTask=new MyAsyncTask();
-                myAsyncTask.execute();
 
             }
         }.start();
     }
+    private class MyCountDown extends CountDownTimer{
+
+        /**
+         * @param millisInFuture    The number of millis in the future from the call
+         *                          to {@link #start()} until the countdown is done and {@link #onFinish()}
+         *                          is called.
+         * @param countDownInterval The interval along the way to receive
+         *                          {@link #onTick(long)} callbacks.
+         */
+        public MyCountDown(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            daojishi.setEnabled(false);
+            daojishi.setText(millisUntilFinished/1000+"");
+        }
+
+        @Override
+        public void onFinish() {
+
+        }
+    }
+
     private class MyAsyncTask extends AsyncTask{
 
         @Override
