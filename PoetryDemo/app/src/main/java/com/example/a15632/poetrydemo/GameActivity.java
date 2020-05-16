@@ -1,17 +1,22 @@
 package com.example.a15632.poetrydemo;
 
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,6 +38,7 @@ public class GameActivity extends AppCompatActivity {
     private ImageView correct_img;
     private ImageView incorrect_img;
     private TextView problem;
+    private Button done;
     private EditText anwser;
     private OkHttpClient okHttpClient=new OkHttpClient();
     private String my_problem;
@@ -74,6 +80,7 @@ public class GameActivity extends AppCompatActivity {
         incorrect_img=findViewById(R.id.img_game_incorrect);
         problem=findViewById(R.id.tv_game_problem);
         anwser=findViewById(R.id.et_game_you_anwser);
+        done=findViewById(R.id.btn_game_done);
 
     }
     private void action() {
@@ -89,6 +96,8 @@ public class GameActivity extends AppCompatActivity {
         gameBegin();
 
 
+
+
     }
 
     /**
@@ -102,8 +111,43 @@ public class GameActivity extends AppCompatActivity {
         //3.开始倒计时
         countDown();
         //4.判断对错
+        done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(anwser.getText().toString().equals(my_key)){
+                    alert();
+                    Log.e("成功！","回答正确！！");
+                }else
+                {
+                    Log.e("失败！","回答错误！！");
+                    finish();
+                }
+
+            }
+        });
 
     }
+    public void alert(){
+        final AlertDialog.Builder builder=new AlertDialog.Builder(GameActivity.this);
+        builder.setTitle("回答正确！");
+        builder.setPositiveButton("下一题", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(GameActivity.this,"下一题",Toast.LENGTH_SHORT).show();
+                gameBegin();
+            }
+        });
+        builder.setNegativeButton("结束", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(GameActivity.this,"取消",Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog=builder.create();
+        dialog.show();
+    }
+
 
     private void changeProblem() {
         new Thread(){
