@@ -41,6 +41,7 @@ public class ViewRecommendFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(),PoemDetail.class);
+                intent.putExtra("poem",rec.get(position));
                 startActivity(intent);
             }
         });
@@ -56,10 +57,10 @@ public class ViewRecommendFragment extends Fragment {
     }
 
     private void initData() {
-        rec.add(new Poetry("木兰花慢", "佚名", "问花花不语，为谁开，为谁落"));
+        rec.add(new Poetry("木兰花慢", "佚名", "问花花不语，为谁开，为谁落。"));
         rec.add(new Poetry("秋风词", "唐代/李白", "落叶聚还散，寒鸦栖复惊。"));
-        rec.add(new Poetry("定风波", "欧阳修", "把酒花前欲问君，世间何计可留春？"));
-        rec.add(new Poetry("木兰花慢", "佚名", "问花花不语，为谁开，为谁落"));
+        rec.add(new Poetry("定风波", "欧阳修", "把酒花前欲问君，世间何计可留春？纵使青春留得住。虚语。"));
+        rec.add(new Poetry("木兰花慢", "佚名", "问花花不语，为谁开，为谁落。"));
         rec.add(new Poetry("秋风词", "唐代/李白", "落叶聚还散，寒鸦栖复惊。"));
         rec.add(new Poetry("定风波", "欧阳修", "把酒花前欲问君，世间何计可留春？"));
     }

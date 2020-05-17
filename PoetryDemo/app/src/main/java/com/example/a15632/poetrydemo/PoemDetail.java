@@ -1,5 +1,6 @@
 package com.example.a15632.poetrydemo;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,7 +8,10 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
+import com.example.a15632.poetrydemo.Entity.Poetry;
 import com.jaeger.library.StatusBarUtil;
 
 import java.util.ArrayList;
@@ -17,6 +21,9 @@ public class PoemDetail extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private Intent intent;
+    private Toolbar toolbar;
+    private Poetry poetry;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,9 +39,15 @@ public class PoemDetail extends AppCompatActivity {
     private void findViews(){
         tabLayout=findViewById(R.id.tab);
         viewPager=findViewById(R.id.mviewpager);
+        intent=getIntent();
+        toolbar=findViewById(R.id.toolbar);
+        poetry=(Poetry)intent.getSerializableExtra("poem");
+        //Log.e("name","name"+poetry.getName());
+
 
     }
     private void initView(){
+        toolbar.setTitle(poetry.getName());
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(new PoemContent());
         fragments.add(new PoemTranslate());

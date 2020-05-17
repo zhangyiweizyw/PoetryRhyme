@@ -1,6 +1,8 @@
 package com.example.a15632.poetrydemo.Entity;
 
-public class Poetry {
+import java.io.Serializable;
+
+public class Poetry implements Serializable {
     public Poetry(String name,String author,String content){
         this.name=name;
         this.author=author;
@@ -9,6 +11,22 @@ public class Poetry {
     private String name;
     private String author;
     private String content;
+    private String dynasty;//朝代
+
+    public Poetry(String name, String author, String content, String dynasty) {
+        this.name = name;
+        this.author = author;
+        this.content = content;
+        this.dynasty = dynasty;
+    }
+
+    public String getDynasty() {
+        return dynasty;
+    }
+
+    public void setDynasty(String dynasty) {
+        this.dynasty = dynasty;
+    }
 
     public String getName() {
         return name;
