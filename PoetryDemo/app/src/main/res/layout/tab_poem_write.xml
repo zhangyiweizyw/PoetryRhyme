@@ -3,19 +3,20 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/tools"
     android:background="#fff">
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:gravity="center">
+        android:gravity="center"
+        android:background="@drawable/poem48">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
@@ -24,6 +25,7 @@
 
             </LinearLayout>
             <TextView
+                android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="静夜思"
@@ -34,9 +36,10 @@
                 android:letterSpacing="0.08"/>
             <LinearLayout
                 android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <!--<TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="["/>
@@ -47,51 +50,44 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="]"/>
+                    android:text="]"/>-->
                 <TextView
+                    android:id="@+id/tv_author"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="李白"
                     android:layout_marginLeft="5dp"
                     android:letterSpacing="0.08"/>
             </LinearLayout>
-            <EditText
-                android:layout_marginTop="10dp"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:background="@null"
-                android:drawableBottom="@drawable/editline"/>
-            <EditText
-                android:layout_marginTop="10dp"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:background="@null"
-                android:drawableBottom="@drawable/editline"/>
-            <EditText
-                android:layout_marginTop="10dp"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:background="@null"
-                android:drawableBottom="@drawable/editline"/>
-            <EditText
-                android:layout_marginTop="10dp"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:background="@null"
-                android:drawableBottom="@drawable/editline"/>
             <LinearLayout
+                android:layout_marginTop="10dp"
+                android:id="@+id/layout_content"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center">
 
+
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:orientation="vertical">
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="30dp"
+                    android:src="@drawable/tip"
+                    app:layout_anchor="@id/app_bar" />
+
+            </LinearLayout>
+
+
         </LinearLayout>
+
 
 
     </android.support.v4.widget.NestedScrollView>

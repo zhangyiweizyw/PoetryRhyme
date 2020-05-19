@@ -8,7 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:gravity="center">
+        android:gravity="center"
+        android:background="@drawable/poem48">
 
 
         <LinearLayout
