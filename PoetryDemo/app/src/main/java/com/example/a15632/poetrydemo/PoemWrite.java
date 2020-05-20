@@ -2,6 +2,7 @@ package com.example.a15632.poetrydemo;
 
 import android.app.ActionBar;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -29,6 +30,8 @@ import android.widget.Toast;
 import com.example.a15632.poetrydemo.Entity.Poetry;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,12 +41,16 @@ public class PoemWrite extends Fragment {
     private Intent intent;
     private LinearLayout layout_content;
 
+    private int index=0;
+    private List<EditText> editTextList=new ArrayList<>();
+
     private Poetry poetry;
     private TextView tv_title;
     private TextView tv_author;
     private FloatingActionButton floatingActionButton;
 
     private String write;
+    private String answer;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -51,6 +58,9 @@ public class PoemWrite extends Fragment {
         //code begin
         findViews();
         initViews();
+
+
+
 
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -86,26 +96,7 @@ public class PoemWrite extends Fragment {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(480, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(0, 10, 0, 0);
         editText.setLayoutParams(layoutParams);
-        editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                //输入内容之前你想做什么
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //输入的时候你想做什么
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                //输入之后你想做什么
-                write=write+editText.getText();
-                Log.e("write","write"+write);
-            }
-        });
-
+        editTextList.add(editText);
         layout_content.addView(editText);
     }
     private void initViews(){
@@ -124,7 +115,9 @@ public class PoemWrite extends Fragment {
         Matcher m = p.matcher(str);
         /*按照句子结束符分割句子*/
         String[] words = p.split(str);
-        Log.e("length",words.length+"");
+        for(int i=0;i<words.length;i++) {
+            answer = answer + words[i];
+        }
         return words.length;
     }
     private void showPopupMenu(View v) {
@@ -144,8 +137,21 @@ public class PoemWrite extends Fragment {
                                 showPopupWindow(item.getActionView());
                                 break;
                             case R.id.item_submit:
-                                if(write.equals(poetry.getContent())){
-
+                                for(int i=0;i<editTextList.size();i++){
+                                    write=write+editTextList.get(i).getText().toString();
+                                }
+                                Log.e("name","name"+editTextList.get(0).getText().toString());
+                                if(write.equals(answer)){
+                                    new AlertDialog.Builder(getContext())
+                                            .setTitle("您已经背会这首诗了！")
+                                            .setNegativeButton("确定", null)
+                                            .show();
+                                }
+                                else{
+                                    new AlertDialog.Builder(getContext())
+                                            .setTitle("默写有错误，再检查一下吧！")
+                                            .setNegativeButton("检查", null)
+                                            .show();
                                 }
                                 break;
                         }
@@ -158,9 +164,7 @@ public class PoemWrite extends Fragment {
     }
     private void showPopupWindow(View v){
         View popupWindowView=getLayoutInflater().inflate(R.layout.answer_popupwindow,null);
-        final PopupWindow popupWindow=new PopupWindow(popupWindowView, ActionBar.LayoutParams.MATCH_PARENT ,500, true);
-
-
+        final PopupWindow popupWindow=new PopupWindow(popupWindowView, ActionBar.LayoutParams.MATCH_PARENT ,600, true);
         // 设置背景颜色变暗
         WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
         lp.alpha = 0.7f;//调节透明度

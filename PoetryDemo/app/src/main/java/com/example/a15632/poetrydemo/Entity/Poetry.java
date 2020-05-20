@@ -8,16 +8,23 @@ public class Poetry implements Serializable {
         this.author=author;
         this.content=content;
     }
+
     private String name;
     private String author;
     private String content;
     private String dynasty;//朝代
+    private String translate;//译文
 
-    public Poetry(String name, String author, String content, String dynasty) {
+
+
+
+
+
+    public Poetry(String name, String author, String content, String translate) {
         this.name = name;
         this.author = author;
         this.content = content;
-        this.dynasty = dynasty;
+        this.translate = translate;
     }
 
     public String getDynasty() {
@@ -50,5 +57,13 @@ public class Poetry implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getTranslate() {
+        return translate;
+    }
+
+    public void setTranslate(String translate) {
+        this.translate = translate;
     }
 }
