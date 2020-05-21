@@ -1,6 +1,7 @@
 package com.example.a15632.poetrydemo;
 
 import android.content.DialogInterface;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -43,6 +44,8 @@ public class GameActivity extends AppCompatActivity {
     private OkHttpClient okHttpClient=new OkHttpClient();
     private String my_problem;
     private String my_key;//答案
+
+    private MediaPlayer music;
 
     private final static int CHANGEPROBLEM=1;
     private Handler handler=new Handler(){
@@ -110,7 +113,7 @@ public class GameActivity extends AppCompatActivity {
         //2,更新题目ui
         changeProblem();
         //3.开始倒计时
-        final MyCountDown myCountDown=new MyCountDown(15*1000,1000);
+        final MyCountDown myCountDown=new MyCountDown(20*1000,1000);
         myCountDown.start();
         //4.判断对错
         done.setOnClickListener(new View.OnClickListener() {
@@ -130,9 +133,14 @@ public class GameActivity extends AppCompatActivity {
         });
 
     }
+    public void playSound(int MusicId){
+        music=MediaPlayer.create(this,MusicId);
+        music.start();
+    }
     public void alertSuccess(){
+        playSound(R.raw.game_success_sound);
         final AlertDialog.Builder builder=new AlertDialog.Builder(GameActivity.this);
-        builder.setTitle("回答正确！");
+        builder.setTitle("回答正确！(。・∀・)ノ");
         builder.setPositiveButton("下一题", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -151,8 +159,10 @@ public class GameActivity extends AppCompatActivity {
         dialog.show();
     }
     public void alertFail(){
+        playSound(R.raw.game_fail_sound);
         final AlertDialog.Builder builder=new AlertDialog.Builder(GameActivity.this);
         builder.setTitle("回答错误QAQ");
+        builder.setMessage("正确答案是： "+my_key);
         builder.setNegativeButton("结束", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -295,7 +305,7 @@ public class GameActivity extends AppCompatActivity {
 
         @Override
         public void onFinish() {
-
+            alertFail();
         }
     }
 

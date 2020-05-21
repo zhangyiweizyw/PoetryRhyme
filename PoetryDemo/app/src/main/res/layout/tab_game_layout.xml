@@ -13,10 +13,20 @@
         android:layout_height="200dp" />
     <Button
         android:id="@+id/btn_into_game"
-        android:layout_marginBottom="170dp"
+        android:layout_marginBottom="200dp"
         android:layout_alignParentBottom="true"
         android:textSize="20dp"
-        android:text="进入游戏 "
+        android:text="单人游戏"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/circler_game"
+        android:layout_width="200dp"
+        android:layout_height="50dp" />
+    <Button
+        android:id="@+id/btn_into_double_game"
+        android:layout_marginBottom="140dp"
+        android:layout_alignParentBottom="true"
+        android:textSize="20dp"
+        android:text="双人游戏"
         android:layout_centerHorizontal="true"
         android:background="@drawable/circler_game"
         android:layout_width="200dp"
