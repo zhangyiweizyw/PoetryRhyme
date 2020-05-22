@@ -81,6 +81,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="内容简介..."
+            android:maxEms="18"
+            android:singleLine="true"
+            android:ellipsize="end"
             android:textSize="14sp"/>
     </LinearLayout>
     <LinearLayout

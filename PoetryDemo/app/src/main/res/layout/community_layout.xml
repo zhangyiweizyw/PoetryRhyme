@@ -4,18 +4,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
-    <com.example.a15632.poetrydemo.TitleLayout
-        android:id="@+id/title_bar"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/mytoolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:title="社区"
-        app:left_icon="@drawable/toleft"
-        app:right_icon="@drawable/plus"
-        app:titlebar_type="11"/>
+        android:layout_height="?attr/actionBarSize"
+        app:layout_collapseMode="pin"
+        android:background="#fff"
+        app:navigationIcon="@drawable/toleft"
+        android:fontFamily="serif"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="社区"
+            android:textColor="@color/colorText"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+    </android.support.v7.widget.Toolbar>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/title_bar"
+        android:layout_below="@+id/mytoolbar"
         android:background="#fff">
 
         <LinearLayout
@@ -28,14 +39,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="5dp">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/default_head2" />
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_userhead"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/default_head2"/>
 
                 <TextView
+                    android:id="@+id/tv_author"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -55,6 +70,12 @@
                         android:layout_gravity="center"/>
                 </LinearLayout>
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="350dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="#dbdbdb"></LinearLayout>
 
 
             <ScrollView
@@ -66,11 +87,51 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
-                    <TextView
+                    <LinearLayout
+                        android:id="@+id/layout_poem"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="正文内容"/>
+                        android:orientation="vertical"
+                        android:visibility="gone">
+                        <TextView
+                            android:id="@+id/tv_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="原创诗词题目"
+                            android:textColor="@color/colorText"
+                            android:textSize="20sp"/>
+                        <LinearLayout
+                            android:layout_marginTop="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/layout_content"
+                            android:orientation="vertical"
+                            android:gravity="center"></LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/layout_talk"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+                        <TextView
+                            android:id="@+id/tv_title2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="社区话题题目"
+                            android:layout_marginLeft="20dp"
+                            android:textColor="@color/colorText"
+                            android:textSize="20sp"/>
+                        <LinearLayout
+                            android:layout_marginTop="30dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/layout_content2"
+                            android:orientation="vertical">
+
+                        </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
             </ScrollView>
 

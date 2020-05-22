@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.a15632.poetrydemo.Entity.Poetry;
+import com.example.a15632.poetrydemo.util.AddViewsUtil;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,6 +26,7 @@ public class PoemTranslate extends Fragment {
     private Intent intent;
     private LinearLayout layout_translate;
     private Poetry poetry;
+    private AddViewsUtil addViewsUtil=new AddViewsUtil();
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -50,41 +52,11 @@ public class PoemTranslate extends Fragment {
     }
     private void initViews(){
 
-        String translates[]=spiltString(poetry.getTranslate());
+        String translates[]=addViewsUtil.spiltString(poetry.getTranslate());
         for(int i=0;i<translates.length;i++){
-            addTextView(translates[i]);
+            TextView textView=addViewsUtil.addTextView4(translates[i],getContext());
+            layout_translate.addView(textView);
         }
     }
-    private String[] spiltString(String str){
-        /*正则表达式：句子结束符*/
-        String regEx="[`~!|':;'\\\\\\\\[\\\\\\\\].<>/?~！;‘；：”“’。？|-]";
-        Pattern p =Pattern.compile(regEx);
-        Matcher m = p.matcher(str);
-        /*按照句子结束符分割句子*/
-        String[] words = p.split(str);
-        /*将句子结束符连接到相应的句子后*/
-        if(words.length > 0) {
-            int count = 0;
-            while(count < words.length) {
-                if(m.find()) {
-                    words[count] += m.group();
-                }
-                count++;
-            }
-        }
-        return words;
-    }
-    //@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private void addTextView(String text){
-        TextView textView=new TextView(getContext());
-        textView.setText(text);
-        textView.setTextSize(18);
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(0,30,0,0);
-        textView.setLayoutParams(layoutParams);
-        // textView.setLetterSpacing(0.09f);//字间距
-        textView.setScaleX(1.0f);
-        textView.setTypeface(Typeface.SERIF);//字体样式
-        layout_translate.addView(textView);
-    }
+
 }

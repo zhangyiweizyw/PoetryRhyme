@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 
 import android.support.v4.view.ViewPager;
 
+import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -23,6 +24,7 @@ import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+
 import java.util.ArrayList;
 
 import java.util.List;
@@ -32,7 +34,10 @@ public class CommunityFragment extends Fragment {
     private View fragment;
     private TabLayout mTabLayout;
 
-    private TitleLayout titleLayout;
+    private Toolbar toolbar;
+    private ImageView iv_pencil;
+
+    //private TitleLayout titleLayout;
     private ImageView iv_delete = null;
 
     List<Fragment> mFragmentList = new ArrayList<Fragment>();
@@ -48,7 +53,8 @@ public class CommunityFragment extends Fragment {
         initViews();
         MyListener myListener = new MyListener();
         //发布按钮
-        titleLayout.setRightIconOnClickListener(myListener);
+        //titleLayout.setRightIconOnClickListener(myListener);
+        iv_pencil.setOnClickListener(myListener);
         //code end
         ViewGroup p = (ViewGroup) fragment.getParent();
         if (p != null) {
@@ -61,7 +67,8 @@ public class CommunityFragment extends Fragment {
     public void findViews() {
         mViewPager = (ViewPager) fragment.findViewById(R.id.viewpager);
         mTabLayout = (TabLayout) fragment.findViewById(R.id.tabLayout);
-        titleLayout = fragment.findViewById(R.id.title_bar);
+        iv_pencil=fragment.findViewById(R.id.iv_pencil);
+        //titleLayout = fragment.findViewById(R.id.title_bar);
     }
 
     private void initViews() {
@@ -77,7 +84,7 @@ public class CommunityFragment extends Fragment {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.addcommunity:
+                case R.id.iv_pencil:
                     // 弹出PopupMenu
                     showPopupMenu(v);
             }

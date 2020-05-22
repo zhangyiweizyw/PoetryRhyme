@@ -36,7 +36,7 @@ public class AddPoemFragment extends Fragment{
 
     private View fragment;
 
-    // private List<User> userList=new ArrayList<>();
+
     private ArrayList<Community>communityList=new ArrayList<>();
     private MyAdapter<Community>myAdapter;
     private ListView listView;
@@ -55,7 +55,7 @@ public class AddPoemFragment extends Fragment{
     };
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         fragment=inflater.inflate(R.layout.addpoemview,container,false);
         //codebegin
@@ -70,9 +70,11 @@ public class AddPoemFragment extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(),CommunityDetail.class);
+                intent.putExtra("community",communityList.get(position));
                 startActivity(intent);
             }
         });
+
 
         //code end
         ViewGroup p=(ViewGroup)fragment.getParent();

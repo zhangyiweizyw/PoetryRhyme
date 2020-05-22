@@ -1,8 +1,9 @@
 package com.example.a15632.poetrydemo.Entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Community {
+public class Community implements Serializable {
 
     private String title;//标题
     private String content;//文本
@@ -11,8 +12,9 @@ public class Community {
     private int seecount;//浏览数量
     private int type;//类型1:原创诗词 2:社区话题
     private Date time;//发布时间
-    // private int userid;//用户id
     private User user;
+
+
 
     public Community(String title, String content, int likecount, int commentcount, int seecount, int type,Date time, User user) {
         this.title = title;

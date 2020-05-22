@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.a15632.poetrydemo.Entity.Poetry;
+import com.example.a15632.poetrydemo.util.AddViewsUtil;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -51,6 +52,7 @@ public class PoemWrite extends Fragment {
 
     private String write;
     private String answer;
+    private AddViewsUtil addViewsUtil=new AddViewsUtil();
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -58,11 +60,6 @@ public class PoemWrite extends Fragment {
         //code begin
         findViews();
         initViews();
-
-
-
-
-
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,40 +83,18 @@ public class PoemWrite extends Fragment {
         layout_content=fragment.findViewById(R.id.layout_content);
         floatingActionButton=fragment.findViewById(R.id.fab);
     }
-    private void addEditText(){
-        final EditText editText=new EditText(getContext());
-        editText.setTextSize(18);
-        editText.setTextScaleX(1.0f);
-        Drawable drawable=getResources().getDrawable(R.drawable.edittext_selector);
-        editText.setBackground(drawable);
-        editText.setInputType(InputType.TYPE_CLASS_TEXT);
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(480, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(0, 10, 0, 0);
-        editText.setLayoutParams(layoutParams);
-        editTextList.add(editText);
-        layout_content.addView(editText);
-    }
+
     private void initViews(){
         tv_title.setText(poetry.getName());
         tv_author.setText(poetry.getAuthor());
-        int length=spiltString(poetry.getContent());
+        int length=addViewsUtil.spiltString2(poetry.getContent(),answer);
         for(int i=0;i<length;i++){
-            addEditText();
+            EditText editText=addViewsUtil.addEditText(getContext(),getActivity(),editTextList);
+            layout_content.addView(editText);
         }
 
     }
-    private int spiltString(String str){
-        /*正则表达式：句子结束符*/
-        String regEx="[`~!|':;',\\\\\\\\[\\\\\\\\].<>/?~！;‘；：”“’。，、？|-]";
-        Pattern p =Pattern.compile(regEx);
-        Matcher m = p.matcher(str);
-        /*按照句子结束符分割句子*/
-        String[] words = p.split(str);
-        for(int i=0;i<words.length;i++) {
-            answer = answer + words[i];
-        }
-        return words.length;
-    }
+
     private void showPopupMenu(View v) {
         final PopupMenu popupMenu
                 = new PopupMenu(fragment.getContext(), v);
@@ -145,6 +120,12 @@ public class PoemWrite extends Fragment {
                                     new AlertDialog.Builder(getContext())
                                             .setTitle("您已经背会这首诗了！")
                                             .setNegativeButton("确定", null)
+                                            .show();
+                                }
+                                else if(write.length()==0){
+                                    new AlertDialog.Builder(getContext())
+                                            .setTitle("请先默写再提交")
+                                            .setNegativeButton("默写", null)
                                             .show();
                                 }
                                 else{

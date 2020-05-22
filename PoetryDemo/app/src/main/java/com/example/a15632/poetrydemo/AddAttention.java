@@ -32,7 +32,7 @@ public class AddAttention extends Fragment {
     private ArrayList<Community>communities=new ArrayList<>();
 
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
+    public View onCreateView(@NonNull final LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         fragment = inflater.inflate(R.layout.activity_attention, container, false);
@@ -45,6 +45,7 @@ public class AddAttention extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(),CommunityDetail.class);
                 intent.putExtra("isAttention",true);
+                intent.putExtra("community",communities.get(position));
                 startActivity(intent);
             }
         });

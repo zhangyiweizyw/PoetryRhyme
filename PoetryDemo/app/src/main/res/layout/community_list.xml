@@ -25,11 +25,13 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp">
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_userhead"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:scaleType="fitCenter"/>
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/default_head2"/>
         <TextView
             android:id="@+id/username"
             android:layout_marginLeft="5dp"
@@ -50,43 +52,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="内容简介..."
-            android:textSize="14sp"/>
+            android:textSize="14sp"
+            android:maxEms="18"
+            android:singleLine="true"
+            android:ellipsize="end"/>
     </LinearLayout>
 
-    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="horizontal"
-        android:layout_marginTop="5dp">
-        <TextView
-            android:id="@+id/tv_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="发布时间"
-            android:layout_marginLeft="10dp"/>
-        <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="right" >
-
-            <ImageView
-                android:id="@+id/see"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/see"/>
-            <TextView
-                android:id="@+id/seecount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="xx浏览"/>
-
-
-        </LinearLayout>
-
-
-
-    </LinearLayout>-->
 
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

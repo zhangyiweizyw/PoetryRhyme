@@ -68,6 +68,7 @@ public class AddTalkFragment extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(),CommunityDetail.class);
+                intent.putExtra("community",communityList.get(position));
                 startActivity(intent);
             }
         });
@@ -156,8 +157,8 @@ public class AddTalkFragment extends Fragment{
         User u = new User("李四","123446",R.drawable.default_headimg);
         long time=System.currentTimeMillis();
         Date date=new Date(time);
-        Community c=new Community("浅谈我对《静夜思》的看法","床前明月光，疑是地上霜。举头望明月，低头思故乡。",
-                100,100,100,1,date,u);
+        Community c=new Community("浅谈我对《静夜思》的看法","《静夜思》没有奇特新颖的想象，没有精工华美的辞藻，只是用叙述的语气，写远客思乡之情，然而它却意味深长，耐人寻绎，千百年来，如此广泛地吸引着读者。全诗从“疑”到“举头”，从“举头”到“低头”，形象地揭示了诗人内心活动，鲜明地勾勒出一幅生动形象的月夜思乡图，抒发了作者在寂静的月夜思念家乡的感受。",
+                100,100,100,2,date,u);
         communityList.add(c);
         communityList.add(c);
         communityList.add(c);
