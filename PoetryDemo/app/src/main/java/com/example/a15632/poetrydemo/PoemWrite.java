@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.PopupWindow;
@@ -42,16 +43,17 @@ public class PoemWrite extends Fragment {
     private Intent intent;
     private LinearLayout layout_content;
 
-    private int index=0;
     private List<EditText> editTextList=new ArrayList<>();
+    private List<ImageView> imageViews=new ArrayList<>();
 
     private Poetry poetry;
     private TextView tv_title;
     private TextView tv_author;
     private FloatingActionButton floatingActionButton;
 
-    private String write;
-    private String answer;
+    private String write="";
+    private String answers[];
+    private String answer="";
     private AddViewsUtil addViewsUtil=new AddViewsUtil();
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
@@ -87,13 +89,25 @@ public class PoemWrite extends Fragment {
     private void initViews(){
         tv_title.setText(poetry.getName());
         tv_author.setText(poetry.getAuthor());
-        int length=addViewsUtil.spiltString2(poetry.getContent(),answer);
+        int length=addViewsUtil.spiltString2(poetry.getContent());
+        Log.e("length",length+"");
+        answers=addViewsUtil.spiltString3(poetry.getContent());
+        for(int i=0;i<answers.length;i++){
+            answer=answer+answers[i];
+        }
         for(int i=0;i<length;i++){
-            EditText editText=addViewsUtil.addEditText(getContext(),getActivity(),editTextList);
-            layout_content.addView(editText);
+            LinearLayout layout=addViewsUtil.addLayout(getContext());
+            EditText editText=addViewsUtil.addEditText(getContext(),getActivity());
+            editTextList.add(editText);
+            ImageView imageView=addViewsUtil.addImageView(getContext(),getActivity());
+            imageViews.add(imageView);
+            layout.addView(editText);
+            layout.addView(imageView);
+            layout_content.addView(layout);
         }
 
     }
+
 
     private void showPopupMenu(View v) {
         final PopupMenu popupMenu
@@ -112,27 +126,37 @@ public class PoemWrite extends Fragment {
                                 showPopupWindow(item.getActionView());
                                 break;
                             case R.id.item_submit:
+                                write="";
                                 for(int i=0;i<editTextList.size();i++){
                                     write=write+editTextList.get(i).getText().toString();
+                                    Log.e("content",editTextList.get(i).getText().toString());
+                                    Log.e("content2","aaa"+write);
                                 }
-                                Log.e("name","name"+editTextList.get(0).getText().toString());
-                                if(write.equals(answer)){
+                                if(write.equals(answer)&&write!=""){
                                     new AlertDialog.Builder(getContext())
                                             .setTitle("您已经背会这首诗了！")
                                             .setNegativeButton("确定", null)
                                             .show();
-                                }
-                                else if(write.length()==0){
-                                    new AlertDialog.Builder(getContext())
-                                            .setTitle("请先默写再提交")
-                                            .setNegativeButton("默写", null)
-                                            .show();
+                                    for(int i=0;i<editTextList.size();i++){
+                                        imageViews.get(i).setVisibility(View.VISIBLE);
+                                        imageViews.get(i).setImageDrawable(getResources().getDrawable(R.drawable.right));
+                                    }
                                 }
                                 else{
                                     new AlertDialog.Builder(getContext())
                                             .setTitle("默写有错误，再检查一下吧！")
                                             .setNegativeButton("检查", null)
                                             .show();
+                                    for(int i=0;i<editTextList.size();i++){
+                                        if(editTextList.get(i).getText().toString().equals(answers[i])){
+                                            imageViews.get(i).setVisibility(View.VISIBLE);
+                                            imageViews.get(i).setImageDrawable(getResources().getDrawable(R.drawable.right));
+                                        }
+                                        else{
+                                            imageViews.get(i).setVisibility(View.VISIBLE);
+                                            imageViews.get(i).setImageDrawable(getResources().getDrawable(R.drawable.error));
+                                        }
+                                    }
                                 }
                                 break;
                         }

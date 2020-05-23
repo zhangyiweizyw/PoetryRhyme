@@ -40,7 +40,7 @@ public class AddTalkFragment extends Fragment{
     private ListView listView;
     private SmartRefreshLayout refreshLayout;
     private static final int REFRESH_FINISH = 1;
-    private Handler mainHandler = new Handler(){
+    /*private Handler mainHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what){
@@ -50,7 +50,7 @@ public class AddTalkFragment extends Fragment{
                     break;
             }
         }
-    };
+    };*/
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -103,7 +103,7 @@ public class AddTalkFragment extends Fragment{
     }
     private void setListeners(){
         //监听下拉刷新
-        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+       /* refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 //不能执行网络操作，需要使用多线程
@@ -123,7 +123,7 @@ public class AddTalkFragment extends Fragment{
                 }.start();
 
             }
-        });
+        });*/
 
         //监听上拉加载更多
         refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {

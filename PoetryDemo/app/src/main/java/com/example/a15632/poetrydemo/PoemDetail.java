@@ -42,7 +42,6 @@ public class PoemDetail extends AppCompatActivity {
         intent=getIntent();
         toolbar=findViewById(R.id.toolbar);
         poetry=(Poetry)intent.getSerializableExtra("poem");
-        //Log.e("name","name"+poetry.getName());
 
 
     }
