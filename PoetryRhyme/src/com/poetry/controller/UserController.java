@@ -41,11 +41,7 @@ public class UserController {
 	@RequestMapping("/load")
 	public void load(Model model) {
 		
-		
-		
 	}
-	
-	
 	
 
 }
