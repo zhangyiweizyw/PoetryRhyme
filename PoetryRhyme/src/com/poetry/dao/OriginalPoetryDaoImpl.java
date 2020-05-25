@@ -20,7 +20,7 @@ public class OriginalPoetryDaoImpl {
 	@Resource
 	private SessionFactory sessionFactory;
 	
-	//查询所有原创诗词及对应作者
+	//查询所有原创诗词及对应作者姓名
 	public List<Object> selectOriginalPeotry() {
 		System.out.println("originalpoetry");
 		String hql = "select u.userName,o.title,o.content,o.likequantity,o.commentquantity,o.pageview,o.issuedate from User u,OriginalPoetry o where u.id=o.userId";

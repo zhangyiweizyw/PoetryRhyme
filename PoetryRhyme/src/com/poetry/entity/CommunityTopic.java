@@ -2,15 +2,42 @@ package com.poetry.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Table(name = "communitytopic")
 public class CommunityTopic {
+	@Id
+	@GeneratedValue(generator="increment_generator")
+	@GenericGenerator(name="increment_generator",strategy="increment")
+	private int id;
+	@Column(name="title")
 	private String title;//标题
+	@Column(name="content")
     private String content;//文本
+	@Column(name="likequantity")
     private int likequantity;//喜欢数量
+	@Column(name="commentquantity")
     private int commentquantity;//评论数量
+	@Column(name="pageview")
     private int pageview;//浏览数量
+	@Column(name="issuedate")
     private Date issuedate;//发布时间
+	@Column(name="type")
     private int type;//区别原创诗词or诗词赏析
-    private int userid;//用户id
+   
+	//社区话题与用户为多对一关系，映射到表中外键为userId
+	@ManyToOne
+	@JoinColumn(name="userId")
+	private User user;
 	public String getTitle() {
 		return title;
 	}
@@ -53,16 +80,24 @@ public class CommunityTopic {
 	public void setType(int type) {
 		this.type = type;
 	}
-	public int getUserid() {
-		return userid;
+	public int getId() {
+		return id;
 	}
-	public void setUserid(int userid) {
-		this.userid = userid;
+	public void setId(int id) {
+		this.id = id;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	@Override
 	public String toString() {
-		return "OriginalPoetry [title=" + title + ", content=" + content + ", likequantity=" + likequantity
-				+ ", commentquantity=" + commentquantity + ", pageview=" + pageview + ", issuedate=" + issuedate
-				+ ", type=" + type + ", userid=" + userid + "]";
+		return "CommunityTopic [id=" + id + ", title=" + title + ", content=" + content + ", likequantity="
+				+ likequantity + ", commentquantity=" + commentquantity + ", pageview=" + pageview + ", issuedate="
+				+ issuedate + ", type=" + type + ", user=" + user + "]";
 	}
+	
+	
 }

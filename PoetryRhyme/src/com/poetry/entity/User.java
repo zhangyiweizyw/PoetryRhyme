@@ -24,16 +24,25 @@ public class User {
 
 	@Column(name="user_name")
 	private String userName;
+	@Column(name="phone")
+	private String phone;
 	@Column(name="password")
     private String password;
 	@Column(name="head_img")
     private String headimg;
 	
-	//每个用户拥有一个原创诗词集合
+	//每个用户拥有多个原创诗词集合
 	@OneToMany(mappedBy="user",targetEntity=OriginalPoetry.class,
 			cascade=CascadeType.ALL)
 	@OrderColumn(name="originalpoetryindex")
 	private List<OriginalPoetry> origianlPoetrys = new ArrayList<>();
+	
+	//每个用户都有多个社区话题集合
+	@OneToMany(mappedBy="user",targetEntity=CommunityTopic.class,
+			cascade=CascadeType.ALL)
+	@OrderColumn(name="communitytopicindex")
+	private List<CommunityTopic> communityTopics = new ArrayList<>();
+	
 	
 	public int getId() {
 		return id;
