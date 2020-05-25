@@ -9,13 +9,23 @@ public class Poetry implements Serializable {
         this.content=content;
     }
 
+<<<<<<< HEAD
     private int id;
     private int authorId;
+=======
+>>>>>>> f5f9d82d1c020d387ffc50b24bcf78cc4f0d78e0
     private String name;
     private String author;
     private String content;
     private String dynasty;//朝代
+    private String translate;//译文
 
+
+
+
+
+
+<<<<<<< HEAD
     public Poetry(){
 
     }
@@ -48,10 +58,13 @@ public class Poetry implements Serializable {
 
 
     public Poetry(String name, String author, String content, String dynasty) {
+=======
+    public Poetry(String name, String author, String content, String translate) {
+>>>>>>> f5f9d82d1c020d387ffc50b24bcf78cc4f0d78e0
         this.name = name;
         this.author = author;
         this.content = content;
-        this.dynasty = dynasty;
+        this.translate = translate;
     }
 
     public String getDynasty() {
@@ -84,5 +97,13 @@ public class Poetry implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getTranslate() {
+        return translate;
+    }
+
+    public void setTranslate(String translate) {
+        this.translate = translate;
     }
 }

@@ -23,6 +23,7 @@ import java.util.ArrayList;
 public class GameFragment extends Fragment {
     private View fragment;
     private Button intoGame;
+    private Button intoDoubleGame;
     private LinearLayout paihang;
     private ImageView imgclose;
     private ListView paihangbanglv;
@@ -51,6 +52,7 @@ public class GameFragment extends Fragment {
 
     private void findView() {
         intoGame=fragment.findViewById(R.id.btn_into_game);
+        intoDoubleGame=fragment.findViewById(R.id.btn_into_double_game);
         paihang=fragment.findViewById(R.id.linear_home_game_paihang);
     }
     private void action(){
@@ -59,6 +61,12 @@ public class GameFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(),GameActivity.class));
+            }
+        });
+        intoDoubleGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),DoublePlayActivity.class));
             }
         });
         //点击弹窗事件

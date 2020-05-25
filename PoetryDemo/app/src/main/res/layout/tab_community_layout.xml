@@ -4,14 +4,40 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-    <com.example.a15632.poetrydemo.TitleLayout
+    <!--<com.example.a15632.poetrydemo.TitleLayout
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="社区"
         app:left_icon="@drawable/toleft"
         app:right_icon="@drawable/pencil"
-        app:titlebar_type="10"/>
+        app:titlebar_type="10"/>-->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_collapseMode="pin"
+        android:background="#fff"
+        android:fontFamily="serif"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="社区"
+            android:textColor="@color/colorText"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+        <ImageView
+            android:id="@+id/iv_pencil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pencil"
+            android:layout_gravity="right"
+            android:layout_marginRight="15dp"
+            />
+    </android.support.v7.widget.Toolbar>
     <RelativeLayout android:layout_width="match_parent"
         android:layout_below="@+id/title_bar"
         android:layout_height="match_parent"

@@ -3,9 +3,11 @@ package com.example.a15632.poetrydemo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+
 
 import com.example.a15632.poetrydemo.Entity.ComAndLike;
 import com.example.a15632.poetrydemo.Entity.Community;
@@ -22,7 +24,7 @@ public class ComLikeActivity extends AppCompatActivity {
     private ListView listView;
     private MyAdapter<ComAndLike> myAdapter;
     private ArrayList<ComAndLike>comAndLikes=new ArrayList<>();
-    private TitleLayout titleLayout;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,7 +35,12 @@ public class ComLikeActivity extends AppCompatActivity {
 
         findViews();
         initViews();
-        clickTitle();
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 
@@ -41,7 +48,7 @@ public class ComLikeActivity extends AppCompatActivity {
         layout=findViewById(R.id.comlike_no);
         layout1=findViewById(R.id.list_no);
         listView=findViewById(R.id.lv_data);
-        titleLayout=findViewById(R.id.toolbar);
+        toolbar=findViewById(R.id.title_bar);
     }
     private void initViews(){
         layout.setVisibility(View.GONE);
@@ -62,16 +69,6 @@ public class ComLikeActivity extends AppCompatActivity {
             }
         };
         listView.setAdapter(myAdapter);
-
-    }
-    //标题栏的点击事件
-    public void clickTitle(){
-        titleLayout.setLeftIconOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
     }
 

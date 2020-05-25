@@ -1,19 +1,21 @@
 package com.example.a15632.poetrydemo;
 
+
+
 import android.app.ActionBar;
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,15 +25,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.a15632.poetrydemo.Entity.Comment;
-import com.example.a15632.poetrydemo.Entity.Msg;
+import com.example.a15632.poetrydemo.Entity.Community;
 import com.example.a15632.poetrydemo.Entity.User;
+import com.example.a15632.poetrydemo.util.AddViewsUtil;
 import com.jaeger.library.StatusBarUtil;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import okhttp3.OkHttpClient;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CommunityDetail extends AppCompatActivity {
 
@@ -42,23 +46,45 @@ public class CommunityDetail extends AppCompatActivity {
     private boolean attention=false;
     private boolean isYour=false;
     private boolean isCollect=false;
-    private TitleLayout titlebar=null;
+    private Toolbar titlebar=null;
     private ImageView btn_attention=null;
     private ImageView btn_collect=null;
     private  LinearLayout layout1=null;
     private  LinearLayout layout2=null;
+    private Intent intent;
+    private Community community;
+
+    private TextView tv_title;
+    private TextView tv_title2;
+    private LinearLayout layout_poem;
+    private LinearLayout layout_talk;
+    private LinearLayout layout_content;
+    private LinearLayout layout_content2;
 
     private ListView listView=null;
     private MyAdapter<Comment>myAdapter;
     private ArrayList<Comment> comments=new ArrayList<>();
+    private TextView tv_author;
+    private CircleImageView iv_userhead;
 
-    protected void onCreate(Bundle savedInstanceState) {
+    private AddViewsUtil addViewsUtil=new AddViewsUtil();
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();//去掉顶部标题栏
         setContentView(R.layout.community_layout);
         StatusBarUtil.setColor(this,getResources().getColor(R.color.colorback));
 
+
         findViews();
+        initViews();
+        titlebar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         MyListener myListener=new MyListener();
         btn_comment.setOnClickListener(myListener);
         iv_like.setOnClickListener(myListener);
@@ -67,25 +93,59 @@ public class CommunityDetail extends AppCompatActivity {
 
         updateLikeToEdit();
 
-        clickTitle();
 
 
     }
     public void findViews(){
         btn_comment=findViewById(R.id.btn_comment);
         iv_like=findViewById(R.id.btn_like);
-        titlebar=findViewById(R.id.title_bar);
+        titlebar=findViewById(R.id.mytoolbar);
         btn_attention=findViewById(R.id.btn_attention);
         btn_collect=findViewById(R.id.btn_collect);
-        Intent intent=this.getIntent();
+        intent=getIntent();
         boolean isAttention=intent.getBooleanExtra("isAttention",false);
         if(isAttention){
             Drawable drawable=getResources().getDrawable(R.drawable.attention_red);
             btn_attention.setImageDrawable(drawable);
             attention=true;
         }
+        layout_poem=findViewById(R.id.layout_poem);
+        layout_talk=findViewById(R.id.layout_talk);
+        layout_content=findViewById(R.id.layout_content);
+        layout_content2=findViewById(R.id.layout_content2);
+        community=(Community) intent.getSerializableExtra("community");
+        tv_title2=findViewById(R.id.tv_title2);
+        tv_title=findViewById(R.id.tv_title);
+        tv_author=findViewById(R.id.tv_author);
+        iv_userhead=findViewById(R.id.iv_userhead);
+
 
     }
+
+    public void initViews(){
+        tv_author.setText(community.getUser().getUsername());
+        iv_userhead.setImageDrawable(getResources().getDrawable(community.getUser().getHeadimg()));
+        if(community.getType()==1){
+            //原创诗词
+            layout_poem.setVisibility(View.VISIBLE);
+            layout_talk.setVisibility(View.GONE);
+            tv_title.setText(community.getTitle());
+            String[]words=addViewsUtil.spiltString(community.getContent());
+            for(int index = 0; index < words.length; index++) {
+                TextView t=addViewsUtil.addTextView(words[index],CommunityDetail.this);
+                layout_content.addView(t);
+            }
+        }
+        else{
+            //社区话题
+            layout_talk.setVisibility(View.VISIBLE);
+            layout_poem.setVisibility(View.GONE);
+            tv_title2.setText(community.getTitle());
+            TextView t=addViewsUtil.addTextView2("\t\t\t\t"+community.getContent(),CommunityDetail.this);//首行缩进
+            layout_content2.addView(t);
+        }
+    }
+
 
     private class MyListener implements View.OnClickListener{
         @Override
@@ -122,8 +182,6 @@ public class CommunityDetail extends AppCompatActivity {
     private void showPopupWindow(View v){
         View popupWindowView=getLayoutInflater().inflate(R.layout.comment_popupwindow,null);
         final PopupWindow popupWindow=new PopupWindow(popupWindowView,ActionBar.LayoutParams.MATCH_PARENT ,ActionBar.LayoutParams.MATCH_PARENT, true);
-
-
         // 设置背景颜色变暗
         WindowManager.LayoutParams lp = getWindow().getAttributes();
         lp.alpha = 0.7f;//调节透明度
@@ -246,20 +304,6 @@ public class CommunityDetail extends AppCompatActivity {
             isCollect=true;
         }
     }
-
-    //标题栏的点击事件
-    public void clickTitle(){
-        titlebar.setLeftIconOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                //跳转社区首页
-
-                finish();
-            }
-        });
-
-    }
-
     //如果是自己的回答就把喜欢改为修改
     public void updateLikeToEdit(){
         //判断当前页面的用户是否为本人
@@ -277,6 +321,8 @@ public class CommunityDetail extends AppCompatActivity {
         }
 
     }
+
+
 
 
 

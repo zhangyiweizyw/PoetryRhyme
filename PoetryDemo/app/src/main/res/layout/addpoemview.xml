@@ -8,10 +8,11 @@
 
     <LinearLayout
         android:layout_marginTop="5dp"
-        android:layout_width="350dp"
-        android:gravity="center"
+        android:layout_width="match_parent"
+        android:gravity="right|left"
         android:layout_height="match_parent"
-        android:layout_gravity="center">
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp">
 
         <com.scwang.smartrefresh.layout.SmartRefreshLayout
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -20,11 +21,6 @@
             android:layout_height="match_parent"
             app:srlEnablePreviewInEditMode="true"
             >
-            <pl.droidsonroids.gif.GifImageView
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:src="@mipmap/refresh3red"
-                android:background="#fff" />
             <ListView
                 android:id="@+id/lv_data"
                 android:layout_width="match_parent"
@@ -35,7 +31,7 @@
             <pl.droidsonroids.gif.GifImageView
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:src="@mipmap/refresh6"
+                android:src="@mipmap/refresh3red"
                 android:background="#fff" />
         </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 

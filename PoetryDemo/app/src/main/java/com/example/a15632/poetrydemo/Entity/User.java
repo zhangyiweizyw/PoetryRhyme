@@ -1,7 +1,14 @@
 package com.example.a15632.poetrydemo.Entity;
 
+<<<<<<< HEAD
 public class User {
     private int id;
+=======
+import java.io.Serializable;
+
+public class User implements Serializable {
+
+>>>>>>> f5f9d82d1c020d387ffc50b24bcf78cc4f0d78e0
     private String username;
     private String password;
     private int headimg;

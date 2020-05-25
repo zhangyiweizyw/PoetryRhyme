@@ -36,13 +36,14 @@ public class AddPoemFragment extends Fragment{
 
     private View fragment;
 
-    // private List<User> userList=new ArrayList<>();
+
     private ArrayList<Community>communityList=new ArrayList<>();
     private MyAdapter<Community>myAdapter;
     private ListView listView;
     private SmartRefreshLayout refreshLayout;
     private static final int REFRESH_FINISH = 1;
-    private Handler mainHandler = new Handler(){
+    //暂不使用下拉刷新，只是用上拉加载更多
+   /* private Handler mainHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what){
@@ -52,10 +53,10 @@ public class AddPoemFragment extends Fragment{
                     break;
             }
         }
-    };
+    };*/
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         fragment=inflater.inflate(R.layout.addpoemview,container,false);
         //codebegin
@@ -70,9 +71,11 @@ public class AddPoemFragment extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(),CommunityDetail.class);
+                intent.putExtra("community",communityList.get(position));
                 startActivity(intent);
             }
         });
+
 
         //code end
         ViewGroup p=(ViewGroup)fragment.getParent();
@@ -103,28 +106,6 @@ public class AddPoemFragment extends Fragment{
         refreshLayout = fragment.findViewById(R.id.refreshLayout);
     }
     private void setListeners(){
-        //监听下拉刷新
-        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                //不能执行网络操作，需要使用多线程
-                new Thread(){
-                    @Override
-                    public void run() {
-                        try {
-                            Thread.sleep(2000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        //向主线程发送消息，更新视图
-                        Message msg = new Message();
-                        msg.what = REFRESH_FINISH;
-                        mainHandler.sendMessage(msg);
-                    }
-                }.start();
-
-            }
-        });
 
         //监听上拉加载更多
         refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {

@@ -29,6 +29,4 @@ public class UserServiceImpl {
 		return this.userDaoImpl.back();
 	}
 
-
-
 }

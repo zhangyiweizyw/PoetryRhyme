@@ -5,15 +5,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:fitsSystemWindows="true">
-    <com.example.a15632.poetrydemo.TitleLayout
-        android:id="@+id/toolbar"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/title_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:title="评论喜欢"
-        app:left_icon="@drawable/toleft"
-        app:right_icon="@drawable/plus"
-        app:titlebar_type="11"
-        />
+        android:layout_height="?attr/actionBarSize"
+        app:layout_collapseMode="pin"
+        android:background="#fff"
+        android:fontFamily="serif"
+        app:navigationIcon="@drawable/toleft">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="社区"
+            android:textColor="@color/colorText"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+    </android.support.v7.widget.Toolbar>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="10dp"

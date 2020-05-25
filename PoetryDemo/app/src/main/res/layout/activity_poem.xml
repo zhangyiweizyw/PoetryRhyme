@@ -22,11 +22,12 @@
                 android:id="@+id/toolbar_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:contentScrim="#fff"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                app:contentScrim="#f8f7f3"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                android:fontFamily="serif">
                 <ImageView
                     android:id="@+id/image_view"
-                    android:src="@drawable/poem6"
+                    android:src="@drawable/poem03"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
                 <android.support.v7.widget.Toolbar
@@ -35,7 +36,8 @@
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
                     app:title="静夜思"
-                    app:navigationIcon="@drawable/toleft"/>
+                    app:navigationIcon="@drawable/toleft"
+                    android:fontFamily="serif"/>
             </android.support.design.widget.CollapsingToolbarLayout>
 
 
@@ -68,7 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         style="@style/MyCustomTabLayout"
-        android:background="#fff"/>
+        android:background="#f8f7f3"/>
 
 
 </RelativeLayout>

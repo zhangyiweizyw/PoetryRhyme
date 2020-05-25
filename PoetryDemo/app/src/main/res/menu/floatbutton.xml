@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/item_seeanswer"
+        android:title="查看答案" />
+    <item
+        android:id="@+id/item_submit"
+        android:title="提交" />
+
+</menu>

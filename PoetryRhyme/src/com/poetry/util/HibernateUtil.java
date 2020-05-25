@@ -16,10 +16,12 @@ public class HibernateUtil {
 			StandardServiceRegistryBuilder.destroy(registry);
 		}
 	}
+	
 	//实例化返回SessionFactory
 	public static SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
+	
 	//关闭SessionFactory
 	public static void closeSessionFactory() {
 		sessionFactory.close();

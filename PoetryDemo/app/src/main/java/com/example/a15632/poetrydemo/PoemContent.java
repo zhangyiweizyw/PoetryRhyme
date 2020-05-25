@@ -1,18 +1,16 @@
 package com.example.a15632.poetrydemo;
 
 
-import android.annotation.TargetApi;
+
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Typeface;
-import android.os.Build;
+
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
+
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.Gravity;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.a15632.poetrydemo.Entity.Poetry;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import com.example.a15632.poetrydemo.util.AddViewsUtil;
 
 public class PoemContent extends Fragment {
 
@@ -31,7 +27,13 @@ public class PoemContent extends Fragment {
     private TextView tv_title;
     private LinearLayout layout_content;
     private Intent intent;
+    private static final String APP_ID = "20200516000457247";
+    private static final String SECURITY_KEY = "MRyaVMjtisEE4hryRWb_";
+    private final String request = "http://api.fanyi.baidu.com/api/trans/vip/translate";
+
     private Poetry poetry;
+    private String text;
+    private AddViewsUtil addViewsUtil=new AddViewsUtil();
 
 
 
@@ -47,12 +49,10 @@ public class PoemContent extends Fragment {
         findViews();
         initViews();
 
-        btn_language.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // makeTranslate();
-            }
-        });
+
+
+
+
 
 
         //code end
@@ -77,45 +77,11 @@ public class PoemContent extends Fragment {
     private void initViews(){
         tv_title.setText(poetry.getName());
         tv_author.setText(poetry.getAuthor());
-        String[]words=spiltString(poetry.getContent());
+        String[]words=addViewsUtil.spiltString(poetry.getContent());
         for(int index = 0; index < words.length; index++) {
-            addTextView(words[index]);
+            TextView t=addViewsUtil.addTextView3(words[index],getContext());
+            layout_content.addView(t);;
         }
-    }
-
-    private String[] spiltString(String str){
-        /*正则表达式：句子结束符*/
-        String regEx="[`~!|':;',\\\\\\\\[\\\\\\\\].<>/?~！;‘；：”“’。，、？|-]";
-        Pattern p =Pattern.compile(regEx);
-        Matcher m = p.matcher(str);
-        /*按照句子结束符分割句子*/
-        String[] words = p.split(str);
-        /*将句子结束符连接到相应的句子后*/
-        if(words.length > 0) {
-            int count = 0;
-            while(count < words.length) {
-                if(m.find()) {
-                    words[count] += m.group();
-                }
-                count++;
-            }
-        }
-        return words;
-    }
-    //@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private void addTextView(String text){
-        TextView textView=new TextView(getContext());
-        textView.setText(text);
-        textView.setTextSize(18);
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(40, 10, 0, 0);
-        textView.setLayoutParams(layoutParams);
-        // textView.setLetterSpacing(0.09f);//字间距
-        textView.setScaleX(1.0f);
-        textView.setLineHeight(8);//行间距
-        textView.setGravity(Gravity.CENTER);
-        textView.setTypeface(Typeface.SERIF);//字体样式
-        layout_content.addView(textView);
     }
 
 

@@ -5,13 +5,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="#fff">
-    <com.example.a15632.poetrydemo.TitleLayout
+    <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:title="消息"
-        app:left_icon="@drawable/toleft"
-        app:right_icon="@drawable/plus"
-        app:titlebar_type="12"/>
+        android:layout_height="?attr/actionBarSize"
+        app:layout_collapseMode="pin"
+        android:background="#fff"
+        android:fontFamily="serif">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="消息"
+            android:textColor="@color/colorText"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+    </android.support.v7.widget.Toolbar>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="10dp"
