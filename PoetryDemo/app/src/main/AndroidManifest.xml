@@ -32,15 +32,11 @@
         <activity android:name=".AddCommunity" />
         <activity android:name=".DakaActivity" />
         <activity android:name=".DakaShareActivity" />
-<<<<<<< HEAD
         <activity android:name=".GameActivity"></activity>
         <activity android:name=".PoemDetail"></activity>
         <activity android:name=".SortDetail"></activity>
-=======
-        <activity android:name=".GameActivity" />
-        <activity android:name=".PoemDetail" />
         <activity android:name=".DoublePlayActivity"></activity>
->>>>>>> f5f9d82d1c020d387ffc50b24bcf78cc4f0d78e0
+
     </application>
 
 </manifest>
