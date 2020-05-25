@@ -1,5 +1,7 @@
 package com.poetry.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -20,6 +22,11 @@ public class UserServiceImpl {
 		
 		this.userDaoImpl.saveUser(user);
 
+	}
+	
+	public List<User> back(){
+		
+		return this.userDaoImpl.back();
 	}
 
 

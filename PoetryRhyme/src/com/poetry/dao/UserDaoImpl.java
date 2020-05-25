@@ -1,5 +1,7 @@
 package com.poetry.dao;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.hibernate.Query;
@@ -19,6 +21,15 @@ public class UserDaoImpl {
 		System.out.println("Dao");
 		this.sessionFactory.getCurrentSession().save(user);
 
+	}
+	
+	
+	public List<User> back(){
+		
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from User");
+		List list = query.list();
+		return list;
+		
 	}
 //  修改user相关信息
 

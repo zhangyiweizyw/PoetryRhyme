@@ -8,10 +8,44 @@ public class Poetry implements Serializable {
         this.author=author;
         this.content=content;
     }
+
+    private int id;
+    private int authorId;
     private String name;
     private String author;
     private String content;
     private String dynasty;//朝代
+
+    public Poetry(){
+
+    }
+
+    public int getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
+    }
+
+    public Poetry(int id, int authorId, String name, String author, String content, String dynasty) {
+        this.id = id;
+        this.authorId = authorId;
+
+        this.name = name;
+        this.author = author;
+        this.content = content;
+        this.dynasty = dynasty;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     public Poetry(String name, String author, String content, String dynasty) {
         this.name = name;

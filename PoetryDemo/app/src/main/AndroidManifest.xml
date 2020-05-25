@@ -34,6 +34,7 @@
         <activity android:name=".DakaShareActivity" />
         <activity android:name=".GameActivity"></activity>
         <activity android:name=".PoemDetail"></activity>
+        <activity android:name=".SortDetail"></activity>
     </application>
 
 </manifest>
