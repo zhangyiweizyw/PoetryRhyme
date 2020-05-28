@@ -6,4 +6,7 @@
         <attr name="right_icon" format="reference"/>
         <attr name="titlebar_type" format="integer"/>
     </declare-styleable>
+
 </resources>
+
+
