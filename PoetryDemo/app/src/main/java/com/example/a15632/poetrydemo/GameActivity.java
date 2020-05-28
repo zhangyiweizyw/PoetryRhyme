@@ -47,6 +47,9 @@ public class GameActivity extends AppCompatActivity {
 
     private MediaPlayer music;
 
+    private TextView problem_num;
+    private int pn;
+
     private final static int CHANGEPROBLEM=1;
     private Handler handler=new Handler(){
         @Override
@@ -54,9 +57,10 @@ public class GameActivity extends AppCompatActivity {
             super.handleMessage(msg);
             switch (msg.what){
                 case CHANGEPROBLEM:{
-                    if(my_problem.length()>0){
+                    if(my_problem.isEmpty()!=true&&my_problem.length()>0){
                         problem.setText(my_problem);
                         anwser.setText("");
+                        problem_num.setText(pn+"");
                     }
                     break;
                 }
@@ -85,6 +89,10 @@ public class GameActivity extends AppCompatActivity {
         problem=findViewById(R.id.tv_game_problem);
         anwser=findViewById(R.id.et_game_you_anwser);
         done=findViewById(R.id.btn_game_done);
+
+        problem_num=findViewById(R.id.tv_game_problem_num);
+
+        pn=Integer.parseInt(problem_num.getText().toString());
 
     }
     private void action() {
@@ -145,6 +153,7 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(GameActivity.this,"下一题",Toast.LENGTH_SHORT).show();
+                pn=pn+1;
                 gameBegin();
             }
         });
@@ -153,6 +162,7 @@ public class GameActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(GameActivity.this,"取消",Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
+                finish();
             }
         });
         AlertDialog dialog=builder.create();
@@ -161,8 +171,11 @@ public class GameActivity extends AppCompatActivity {
     public void alertFail(){
         playSound(R.raw.game_fail_sound);
         final AlertDialog.Builder builder=new AlertDialog.Builder(GameActivity.this);
-        builder.setTitle("回答错误QAQ");
+        builder.setTitle("很遗憾，回答错误QAQ");
         builder.setMessage("正确答案是： "+my_key);
+        if(problem_num.getText().toString()!="1"){
+            builder.setMessage("你获得了"+pn*5+"个金币，请继续努力~");
+        }
         builder.setNegativeButton("结束", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

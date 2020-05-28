@@ -13,6 +13,15 @@ public class Poetry implements Serializable {
     private String dynasty;//朝代
     private String translate;//译文
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+>>>>>>> e74b33ac8958b64914700431bfb85353be68e781
     public Poetry(){
 
     }
@@ -44,6 +53,11 @@ public class Poetry implements Serializable {
     }
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> e74b33ac8958b64914700431bfb85353be68e781
     public Poetry(String name, String author, String content, String translate) {
         this.name = name;
         this.author = author;

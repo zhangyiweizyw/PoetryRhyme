@@ -55,12 +55,14 @@ public class GameFragment extends Fragment {
         intoDoubleGame=fragment.findViewById(R.id.btn_into_double_game);
         paihang=fragment.findViewById(R.id.linear_home_game_paihang);
     }
+
     private void action(){
         //点击跳转事件
         intoGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(),GameActivity.class));
+                Intent intent=new Intent(getActivity(),GameActivity.class);
+               startActivity(intent);
             }
         });
         intoDoubleGame.setOnClickListener(new View.OnClickListener() {
