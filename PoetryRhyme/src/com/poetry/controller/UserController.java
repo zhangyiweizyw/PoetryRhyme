@@ -28,7 +28,7 @@ public class UserController {
 	private UserServiceImpl userServiceImpl;
 	
 	@RequestMapping("/register")
-	public boolean register(Model model,HttpServletRequest request) throws IOException {
+	public User register(Model model,HttpServletRequest request) throws IOException {
 		InputStream is = request.getInputStream();
 		InputStreamReader isr = new InputStreamReader(is);
 		//字符流
@@ -37,23 +37,26 @@ public class UserController {
 		
 		User user = new Gson().fromJson(jsonStr, User.class);
 		System.out.println(user.toString());
-		
 		this.userServiceImpl.addUser(user);
-		return true;
-	}
-	
-	@RequestMapping("/back")
-	public List<User> back(Model model,HttpServletRequest request) throws IOException {
-		
-		System.out.println("这是back");
-		return this.userServiceImpl.back();
-		
+		return this.userServiceImpl.findUser(user.getPhone());
 	}
 	
 	@RequestMapping("/load")
-	public void load(Model model) {
-		
+	public User load(Model model,HttpServletRequest request) throws IOException {
+		InputStream is = request.getInputStream();
+		InputStreamReader isr = new InputStreamReader(is);
+		//字符流
+		BufferedReader reader = new BufferedReader(isr);
+		String jsonStr = reader.readLine();
+		User user = new Gson().fromJson(jsonStr, User.class);
+		System.out.println(user.toString());
+		return this.userServiceImpl.findUser(user.getName(), user.getPassword());		
 	}
+	
+
+	
+	
+	
 	
 
 }

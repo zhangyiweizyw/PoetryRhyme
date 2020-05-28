@@ -12,32 +12,45 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name = "communitytopic")
 public class CommunityTopic {
+	@Expose
 	@Id
 	@GeneratedValue(generator="increment_generator")
 	@GenericGenerator(name="increment_generator",strategy="increment")
 	private int id;
+	@Expose
 	@Column(name="title")
 	private String title;//标题
 	@Column(name="content")
+	@Expose
     private String content;//文本
 	@Column(name="likequantity")
+	@Expose
     private int likequantity;//喜欢数量
 	@Column(name="commentquantity")
+	@Expose
     private int commentquantity;//评论数量
 	@Column(name="pageview")
+	@Expose
     private int pageview;//浏览数量
 	@Column(name="issuedate")
+	@Expose
     private Date issuedate;//发布时间
 	@Column(name="type")
+	@Expose
     private int type;//区别原创诗词or诗词赏析
-   
-	//社区话题与用户为多对一关系，映射到表中外键为userId
+	@Expose
 	@ManyToOne
 	@JoinColumn(name="userId")
+	//社区话题与用户为多对一关系，映射到表中外键为userId
 	private User user;
+	
+	
+	
 	public String getTitle() {
 		return title;
 	}

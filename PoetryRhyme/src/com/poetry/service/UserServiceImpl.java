@@ -19,14 +19,24 @@ public class UserServiceImpl {
 
 	public void addUser(User user) {
 		System.out.println("Service");
-		
+
 		this.userDaoImpl.saveUser(user);
 
 	}
-	
-	public List<User> back(){
-		
-		return this.userDaoImpl.back();
+
+	public User findUser(int id) {
+
+		return this.userDaoImpl.find(id);
+	}
+
+	public User findUser(String phone) {
+
+		return this.userDaoImpl.find(phone);
+	}
+
+	public User findUser(String name, String pwd) {
+
+		return this.userDaoImpl.find(name, pwd);
 	}
 
 }

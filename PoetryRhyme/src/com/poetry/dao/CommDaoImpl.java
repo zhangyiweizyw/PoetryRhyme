@@ -13,16 +13,16 @@ import com.poetry.entity.CommunityTopic;
 
 @Repository
 @Transactional(readOnly=true)
-public class CommunityTopicDaoImpl {
+public class CommDaoImpl {
 	
 	@Resource
 	private SessionFactory sessionFactory;
 	
 	//查询所有社区话题及对应作者姓名
-	public List<Object> selectCommunityTopic(){
+	public List selectCommunityTopic(){
 		System.out.println("communitytopic");
-		String hql="select u.userName，c.title,c.content,c.likequantity,c.commentquantity,c.pageview,c.issuedate from User u,CommunityTopic c where u.id=c.userId";
-		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+		
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from CommunityTopic");
 		return query.list();
 	}
 	

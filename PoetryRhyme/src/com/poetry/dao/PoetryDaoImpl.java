@@ -32,14 +32,29 @@ public class PoetryDaoImpl {
 	public List<Poetry> find(String str) {
 
 		Query query = this.sessionFactory.getCurrentSession()
-				.createQuery("from Poetry p where p.name like :name or p.content like :content or p.author like :author order by p.id");
+				.createQuery("from Poetry p where p.name like :name or p.content like :content or p.author like :author or p.dynasty like :dynasty order by p.id");
 		query.setParameter("name", "%"+str+"%");
 		query.setParameter("content", "%"+str+"%");
 		query.setParameter("author", "%"+str+"%");
-		query.setMaxResults(30);
+		query.setParameter("dynasty", "%"+str+"%");
+		query.setMaxResults(10);
 		List list = query.list();
 		System.out.println(list.size());
 		return list;
 
 	}
+	
+	// 查询天气诗句
+		public Poetry findWeather(String weather) {
+
+			Query query = this.sessionFactory.getCurrentSession()
+					.createQuery("from Poetry p where p.name like :name or p.content like :content order by rand()");
+			query.setParameter("name", "%"+weather+"%");
+			query.setParameter("content", "%"+weather+"%");
+			query.setMaxResults(1);
+			Poetry p = (Poetry)query.uniqueResult();
+			System.out.println(p.getContent());
+			return p;
+
+		}
 }

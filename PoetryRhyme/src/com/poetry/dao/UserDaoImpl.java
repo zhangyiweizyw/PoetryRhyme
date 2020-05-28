@@ -22,15 +22,40 @@ public class UserDaoImpl {
 		this.sessionFactory.getCurrentSession().save(user);
 
 	}
-	
-	
-	public List<User> back(){
-		
+
+	public List<User> back() {
+
 		Query query = this.sessionFactory.getCurrentSession().createQuery("from User");
 		List list = query.list();
 		return list;
-		
+
 	}
-//  修改user相关信息
+	
+	public User find(int id) {
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from User u where u.id = :id");
+		query.setParameter("id", id);
+		System.out.println(id);
+		User user = (User) query.uniqueResult();
+		System.out.println(user.toString());
+		return user;
+	}
+
+	public User find(String phone) {
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from User u where u.phone = :phone");
+		query.setParameter("phone", phone);
+		User user = (User) query.uniqueResult();
+		return user;
+	}
+
+	public User find(String name,String pwd) {
+
+		Query query = this.sessionFactory.getCurrentSession().createQuery("from User u where u.name = :name and u.password = :password");
+		query.setParameter("name", name);
+		query.setParameter("password", pwd);
+		User user = (User) query.uniqueResult();
+		System.out.println("DAO"+user.toString());
+		return user;
+
+	}
 
 }

@@ -15,7 +15,7 @@ import com.poetry.entity.User;
 
 @Repository
 @Transactional(readOnly = true)
-public class OriginalPoetryDaoImpl {
+public class OrigPoetryDaoImpl {
 	
 	@Resource
 	private SessionFactory sessionFactory;

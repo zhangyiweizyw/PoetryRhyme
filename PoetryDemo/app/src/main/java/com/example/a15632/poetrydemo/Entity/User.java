@@ -1,29 +1,16 @@
 package com.example.a15632.poetrydemo.Entity;
-
-<<<<<<< HEAD
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 public class User implements Serializable {
     private int id;
     private String name;
-=======
-
-import java.io.Serializable;
-
-public class User {
-    private int id;
-
-import java.io.Serializable;
-
-public class User implements Serializable {
-
-    private String username;
->>>>>>> e74b33ac8958b64914700431bfb85353be68e781
     private String password;
     private String phone;
     private int headImg;
-
-
+    private Set<OriginalPoetry> origianlPoetrys = new HashSet<>();
+    private Set<CommunityTopic> communityTopics = new HashSet<>();
     public User(String name, String password, int headImg) {
         this.name = name;
         this.password = password;
@@ -36,6 +23,16 @@ public class User implements Serializable {
         this.password = password;
         this.phone = phone;
         this.headImg = headImg;
+    }
+
+    public User(int id, String name, String password, String phone, int headImg, Set<OriginalPoetry> origianlPoetrys, Set<CommunityTopic> communityTopics) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.phone = phone;
+        this.headImg = headImg;
+        this.origianlPoetrys = origianlPoetrys;
+        this.communityTopics = communityTopics;
     }
 
     public int getHeadImg() {

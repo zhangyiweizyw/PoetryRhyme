@@ -26,4 +26,8 @@ public class PoetryServiceImpl {
 	public List<Poetry> findPoetry(String str){
 		return this.poetryDaoImpl.find(str);
 	}
+	
+	public Poetry getPoetry(String weather){
+		return this.poetryDaoImpl.findWeather(weather);
+	}
 }

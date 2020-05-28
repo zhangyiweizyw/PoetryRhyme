@@ -8,28 +8,28 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.poetry.dao.CommunityTopicDaoImpl;
+import com.poetry.dao.CommDaoImpl;
 import com.poetry.entity.CommunityTopic;
 
 @Service
 @Transactional(readOnly=true)
-public class CommunityTopicServiceImpl {
+public class CommServiceImpl {
 	
 	@Resource
-	private CommunityTopicDaoImpl communityTopicDaoImpl;
+	private CommDaoImpl commDaoImpl;
 	
 	
 	//查询所有社区话题及其作者姓名
-	public List<Object> findAllCommunityTopic(){
-		List<Object> topics = new ArrayList<>();
-		topics = this.communityTopicDaoImpl.selectCommunityTopic();
+	public List findAllCommunityTopic(){
+		List topics = new ArrayList<>();
+		topics = this.commDaoImpl.selectCommunityTopic();
 		return topics;
 	}
 	
 	//根据ID查找单条社区话题
 	public CommunityTopic findTopicById(int id) {
 		CommunityTopic communityTopic = new CommunityTopic();
-		communityTopic = this.communityTopicDaoImpl.selectCommunityTopicById(id);
+		communityTopic = this.commDaoImpl.selectCommunityTopicById(id);
 		return communityTopic;
 	}
 }

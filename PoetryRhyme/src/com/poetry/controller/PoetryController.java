@@ -60,6 +60,22 @@ public class PoetryController {
 			System.out.println(p.toString());
 		}
 		return list;
-
 	}
+	
+	@RequestMapping("/weather")
+	public Poetry weather(Model model, HttpServletRequest request) throws IOException {
+		
+		InputStream is = request.getInputStream();
+		InputStreamReader isr = new InputStreamReader(is);
+		//字符流
+		BufferedReader reader = new BufferedReader(isr);
+		String jsonStr = reader.readLine();
+		String str = new Gson().fromJson(jsonStr,String.class);
+		System.out.println(str);
+		Poetry p = new Poetry();
+		
+		p = this.poetryServiceImpl.getPoetry(str);
+		return p;
+	}
+	
 }
