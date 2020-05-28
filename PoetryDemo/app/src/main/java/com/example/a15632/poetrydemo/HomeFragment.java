@@ -1,6 +1,7 @@
 package com.example.a15632.poetrydemo;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.a15632.poetrydemo.drawer.AboutActivity;
 import com.example.a15632.poetrydemo.drawer.CollectActivity;
@@ -22,11 +24,15 @@ import com.example.a15632.poetrydemo.drawer.WorksActivity;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class HomeFragment extends Fragment {
     private View fragment;
     private LinearLayout layout_to_search;
     private ImageView home_avator;
     private DrawerLayout drawerLayout;
+    private TextView tv_name;
+
     private LinearLayout left_drawer;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -36,8 +42,8 @@ public class HomeFragment extends Fragment {
     private LinearLayout worksLayout;//作品
     private LinearLayout settingLayout;//设置
     private LinearLayout aboutLayout;//关于
-
-
+    private SharedPreferences sharedPreferences;
+    private String name;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -51,14 +57,19 @@ public class HomeFragment extends Fragment {
 
 
 
+        sharedPreferences = getContext().getSharedPreferences("loginInfo",
+                MODE_PRIVATE);
+        name = sharedPreferences.getString("name","");
 
-
-
+        if(!name.equals(null)){
+            tv_name.setText(name);
+        }
         //code end
         ViewGroup p=(ViewGroup)fragment.getParent();
         if(p!=null){
             p.removeView(fragment);
         }
+
 
         return fragment;
     }
@@ -73,6 +84,8 @@ public class HomeFragment extends Fragment {
         viewPager=fragment.findViewById(R.id.viewpager_id);
         circleImageView=fragment.findViewById(R.id.img_avator);
         daka=fragment.findViewById(R.id.img_into_daka);
+
+        tv_name = fragment.findViewById(R.id.tv_name);
         //drawer
         collectLayout=fragment.findViewById(R.id.linear_collect);
         worksLayout=fragment.findViewById(R.id.linear_works);

@@ -62,8 +62,8 @@ public class ComLikeActivity extends AppCompatActivity {
         myAdapter=new MyAdapter<ComAndLike>(comAndLikes, R.layout.item_comlike) {
             @Override
             public void bindView(ViewHolder holder, ComAndLike obj) {
-                holder.setImageResource(R.id.imageview,obj.getU().getHeadimg());
-                holder.setText(R.id.username,obj.getU().getUsername());
+                holder.setImageResource(R.id.imageview,obj.getU().getHeadImg());
+                holder.setText(R.id.username,obj.getU().getName());
                 holder.setText(R.id.tv_date,obj.getDate().toString());
                 holder.setText(R.id.tv_content,obj.getCommunity().getContent());
             }

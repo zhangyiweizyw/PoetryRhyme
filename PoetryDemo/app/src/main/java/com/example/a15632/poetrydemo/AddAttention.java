@@ -67,8 +67,8 @@ public class AddAttention extends Fragment {
         myAdapter=new MyAdapter<Community>(communities, R.layout.item_attention) {
             @Override
             public void bindView(ViewHolder holder, Community obj) {
-                holder.setImageResource(R.id.imageview,obj.getUser().getHeadimg());
-                holder.setText(R.id.username,obj.getUser().getUsername());
+                holder.setImageResource(R.id.imageview,obj.getUser().getHeadImg());
+                holder.setText(R.id.username,obj.getUser().getName());
                 holder.setText(R.id.tv_date,obj.getTime().toString());
                 if(obj.getType()==1){
                     holder.setText(R.id.tv_type,"原创诗词");

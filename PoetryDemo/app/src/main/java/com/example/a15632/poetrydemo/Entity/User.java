@@ -1,49 +1,73 @@
 package com.example.a15632.poetrydemo.Entity;
 
-<<<<<<< HEAD
-public class User {
-    private int id;
-=======
 import java.io.Serializable;
 
 public class User implements Serializable {
-
->>>>>>> f5f9d82d1c020d387ffc50b24bcf78cc4f0d78e0
-    private String username;
+    private int id;
+    private String name;
     private String password;
-    private int headimg;
+    private String phone;
+    private int headImg;
 
-    public int getId() {
-        return id;
-    }
 
-    public User(String username, String password, int headimg) {
-        this.username = username;
+    public User(String name, String password, int headImg) {
+        this.name = name;
         this.password = password;
-        this.headimg = headimg;
+        this.headImg = headImg;
     }
 
-    public User(int id, String username, String password, int headimg) {
+    public User(int id, String name, String password, String phone, int headImg) {
         this.id = id;
-        this.username = username;
+        this.name = name;
         this.password = password;
-        this.headimg = headimg;
+        this.phone = phone;
+        this.headImg = headImg;
+    }
+
+    public int getHeadImg() {
+        return headImg;
+    }
+
+    public void setHeadImg(int headImg) {
+        this.headImg = headImg;
     }
 
     public User() {
 
     }
 
+    public User(int id, String phone) {
+        this.id = id;
+        this.phone = phone;
+    }
+
+    public User(String name, String password, String phone) {
+        this.name = name;
+        this.password = password;
+        this.phone = phone;
+    }
+
+    public User(int id, String name, String password, String phone) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.phone = phone;
+    }
+
+    public int getId() {
+        return id;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -54,13 +78,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public int getHeadimg() {
-        return headimg;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setHeadimg(int headimg) {
-        this.headimg = headimg;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
-
-
 }

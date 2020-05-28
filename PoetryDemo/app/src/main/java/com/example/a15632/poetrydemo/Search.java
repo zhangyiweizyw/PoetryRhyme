@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.a15632.poetrydemo.Entity.Constant;
 import com.example.a15632.poetrydemo.Entity.Poetry;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -36,7 +37,6 @@ public class Search extends AppCompatActivity {
     private MyAdapter<Poetry> myAdapter;
 
     //  交互
-    private static String ip = "http://192.168.0.103:8080/PoetryRhyme/";
     private OkHttpClient client;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,6 @@ public class Search extends AppCompatActivity {
         client = new OkHttpClient();
         findView();
         setListener();
-
     }
 
 
@@ -62,7 +61,7 @@ public class Search extends AppCompatActivity {
                 jsonStr);
         //3.创建Request对象
         Request request = new Request.Builder()
-                .url(ip + "poetry/search")
+                .url(Constant.lcIp + "poetry/search")
                 .post(body)//请求方式POST
                 .build();
         //4.创建Call对象
@@ -86,6 +85,7 @@ public class Search extends AppCompatActivity {
                 resource.clear();
                 for(Poetry poetry:list){
                     Log.e("得到的诗句",poetry.toString());
+                    poetry.setTranslate("我还是译文");
                     resource.add(poetry);
                 }
 

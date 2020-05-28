@@ -89,8 +89,8 @@ public class AddTalkFragment extends Fragment{
             @Override
             public void bindView(ViewHolder holder, Community obj) {
                 holder.setText(R.id.tv_title,obj.getTitle());
-                holder.setImageResource(R.id.iv_userhead,obj.getUser().getHeadimg());
-                holder.setText(R.id.username,obj.getUser().getUsername());
+                holder.setImageResource(R.id.iv_userhead,obj.getUser().getHeadImg());
+                holder.setText(R.id.username,obj.getUser().getName());
                 holder.setText(R.id.tv_content,obj.getContent());
                 holder.setText(R.id.c_type,"社区话题");
                 holder.setText(R.id.tv_time,obj.getTime().toString());

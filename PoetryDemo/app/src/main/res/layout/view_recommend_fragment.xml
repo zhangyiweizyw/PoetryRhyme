@@ -5,7 +5,7 @@
     android:orientation="vertical"
     >
     <LinearLayout
-
+        android:id="@+id/weather_img"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:background="@drawable/bg03">
@@ -47,12 +47,14 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
+                        android:id="@+id/tv_day"
                         android:textSize="30dp"
                         android:textColor="#ffff"
                         android:text="22"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
+                        android:id="@+id/tv_moon"
                         android:textSize="18dp"
                         android:textColor="#ffff"
                         android:text="/04"
@@ -61,6 +63,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tv_lunar"
                     android:layout_marginBottom="20dp"
                     android:textColor="#fff"
                     android:text="农历三月三十"

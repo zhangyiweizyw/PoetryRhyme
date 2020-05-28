@@ -3,29 +3,16 @@ package com.example.a15632.poetrydemo.Entity;
 import java.io.Serializable;
 
 public class Poetry implements Serializable {
-    public Poetry(String name,String author,String content){
-        this.name=name;
-        this.author=author;
-        this.content=content;
-    }
 
-<<<<<<< HEAD
+
     private int id;
     private int authorId;
-=======
->>>>>>> f5f9d82d1c020d387ffc50b24bcf78cc4f0d78e0
     private String name;
     private String author;
     private String content;
     private String dynasty;//朝代
     private String translate;//译文
 
-
-
-
-
-
-<<<<<<< HEAD
     public Poetry(){
 
     }
@@ -57,10 +44,7 @@ public class Poetry implements Serializable {
     }
 
 
-    public Poetry(String name, String author, String content, String dynasty) {
-=======
     public Poetry(String name, String author, String content, String translate) {
->>>>>>> f5f9d82d1c020d387ffc50b24bcf78cc4f0d78e0
         this.name = name;
         this.author = author;
         this.content = content;

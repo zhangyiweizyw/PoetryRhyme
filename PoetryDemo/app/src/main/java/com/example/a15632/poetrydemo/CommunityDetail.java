@@ -123,8 +123,8 @@ public class CommunityDetail extends AppCompatActivity {
     }
 
     public void initViews(){
-        tv_author.setText(community.getUser().getUsername());
-        iv_userhead.setImageDrawable(getResources().getDrawable(community.getUser().getHeadimg()));
+        tv_author.setText(community.getUser().getName());
+        iv_userhead.setImageDrawable(getResources().getDrawable(community.getUser().getHeadImg()));
         if(community.getType()==1){
             //原创诗词
             layout_poem.setVisibility(View.VISIBLE);
@@ -239,8 +239,8 @@ public class CommunityDetail extends AppCompatActivity {
                     myAdapter = new MyAdapter<Comment>(comments, R.layout.item_comment) {
                         @Override
                         public void bindView(ViewHolder holder, Comment obj) {
-                            holder.setImageResource(R.id.imageview, obj.getUser().getHeadimg());
-                            holder.setText(R.id.username, obj.getUser().getUsername());
+                            holder.setImageResource(R.id.imageview, obj.getUser().getHeadImg());
+                            holder.setText(R.id.username, obj.getUser().getName());
                             holder.setText(R.id.content, obj.getContent());
                             holder.setText(R.id.tv_date, obj.getDate().toString());
                         }

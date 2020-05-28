@@ -1,6 +1,7 @@
 package com.example.a15632.poetrydemo;
 
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.news_click,
             R.drawable.gamepad_click
     };
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initTabHost();
+
+
+
+
 
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override

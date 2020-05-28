@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.a15632.poetrydemo.Entity.Constant;
 import com.example.a15632.poetrydemo.Entity.Poetry;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -35,7 +36,6 @@ public class SortDetail extends AppCompatActivity {
     private MyAdapter<Poetry> myAdapter;
 
     //  交互
-    private static String ip = "http://192.168.0.103:8080/PoetryRhyme/";
     private OkHttpClient client;
 
 
@@ -48,7 +48,30 @@ public class SortDetail extends AppCompatActivity {
         Intent intent = getIntent();
         str = intent.getStringExtra("sort");
         findView();
-        search(str);
+        switch (str) {
+            case "诗词":
+                list();
+                break;
+            case "古诗":
+
+                break;
+
+            case "诗经":
+                break;
+            case "唐朝":
+                search("T");
+                break;
+            case "宋朝":
+                search("S");
+                break;
+            default:
+                search(str);
+                break;
+
+        }
+
+
+
         setListener();
 
     }
@@ -57,8 +80,8 @@ public class SortDetail extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(SortDetail.this,PoemDetail.class);
-                intent.putExtra("poem",resource.get(position));
+                Intent intent = new Intent(SortDetail.this, PoemDetail.class);
+                intent.putExtra("poem", resource.get(position));
                 startActivity(intent);
             }
         });
@@ -82,7 +105,7 @@ public class SortDetail extends AppCompatActivity {
                 jsonStr);
         //3.创建Request对象
         Request request = new Request.Builder()
-                .url(ip + "poetry/search")
+                .url(Constant.lcIp + "poetry/search")
                 .post(body)//请求方式POST
                 .build();
         //4.创建Call对象
@@ -102,10 +125,12 @@ public class SortDetail extends AppCompatActivity {
 
                 Log.e("查询的诗句", "-" + jsonStr);
 
-                List<Poetry> list = new Gson().fromJson(jsonStr,new TypeToken<List<Poetry>>(){}.getType());
+                List<Poetry> list = new Gson().fromJson(jsonStr, new TypeToken<List<Poetry>>() {
+                }.getType());
                 resource.clear();
-                for(Poetry poetry:list){
-                    Log.e("得到的诗句",poetry.toString());
+                for (Poetry poetry : list) {
+                    Log.e("得到的诗句", poetry.toString());
+                    poetry.setTranslate("我也是译文");
                     resource.add(poetry);
                 }
 
@@ -122,14 +147,66 @@ public class SortDetail extends AppCompatActivity {
         });
     }
 
+    //list
+    private void list() {
+
+        //2.创建Request对象
+        Request request = new Request.Builder()
+                .url(Constant.lcIp + "poetry/get")//设置网络请求的URL地址
+                .get()
+                .build();
+        //3.创建Call对象
+        Call call = client.newCall(request);
+        //4.发送请求
+        //异步请求，不需要创建线程
+        call.enqueue(new Callback() {
+            @Override
+            //请求失败时回调
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();//打印异常信息
+            }
+
+            @Override
+            //请求成功之后回调
+            public void onResponse(Call call, Response response) throws IOException {
+                //不能直接更新界面
+//                Log.e("异步GET请求结果",response.body().string());
+                String jsonStr = response.body().string();
+                Log.e("结果", "-" + jsonStr);
+
+                /* User msg = new Gson().fromJson(jsonStr, User.class);*/
+                List<Poetry> list = new Gson().fromJson(jsonStr,new TypeToken<List<Poetry>>(){}.getType());
+
+                resource.clear();
+                for(Poetry poetry:list){
+                    Log.e("得到的诗句",poetry.toString());
+                    poetry.setTranslate("我是译文");
+                    resource.add(poetry);
+                }
+
+                SortDetail.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        action();
+                    }
+                });
+
+//                response.close();
+
+
+            }
+        });
+    }
+
     private void action() {
         myAdapter = new MyAdapter<Poetry>(resource, R.layout.item_recommend) {
             @Override
             public void bindView(ViewHolder holder,
                                  Poetry obj) {
                 holder.setText(R.id.tv_recommend_name, obj.getName());
-                holder.setText(R.id.tv_recommend_author,obj.getAuthor());
-                holder.setText(R.id.tv_recommend_content,obj.getContent());
+                holder.setText(R.id.tv_recommend_author, obj.getAuthor());
+                holder.setText(R.id.tv_recommend_content, obj.getContent());
             }
         };
         listView.setAdapter(myAdapter);

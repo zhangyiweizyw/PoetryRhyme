@@ -89,6 +89,7 @@
                         android:layout_height="60dp"
                         android:src="@drawable/avatar_unlogin"/>
                     <TextView
+                        android:id="@+id/tv_name"
                         android:gravity="center"
                         android:text="未登录"
                         android:layout_width="60dp"
