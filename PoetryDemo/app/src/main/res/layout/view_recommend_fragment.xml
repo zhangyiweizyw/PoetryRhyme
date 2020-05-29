@@ -16,7 +16,7 @@
             <TextView
                 android:textColor="#FFFFFF"
                 android:id="@+id/tv_poetry_everyday"
-                android:layout_marginRight="70dp"
+                android:layout_marginRight="80dp"
                 android:layout_marginTop="10dp"
                 android:layout_alignParentRight="true"
                 android:textSize="15dp"
