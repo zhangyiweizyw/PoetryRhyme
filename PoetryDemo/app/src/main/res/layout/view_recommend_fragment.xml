@@ -19,8 +19,8 @@
                 android:layout_marginRight="80dp"
                 android:layout_marginTop="10dp"
                 android:layout_alignParentRight="true"
-                android:textSize="13dp"
-                android:textStyle="bold"
+                android:textSize="15dp"
+                android:textStyle="normal"
                 android:text="身后有余忘缩手"
                 android:layout_width="13dp"
                 android:layout_height="wrap_content"/>
@@ -30,8 +30,8 @@
                 android:layout_marginRight="101dp"
                 android:layout_marginTop="10dp"
                 android:layout_alignParentRight="true"
-                android:textSize="13dp"
-                android:textStyle="bold"
+                android:textSize="15dp"
+                android:textStyle="normal"
                 android:text="眼前无路想回头"
                 android:layout_width="13dp"
                 android:layout_height="wrap_content"/>
@@ -54,10 +54,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="/"
+                        android:textColor="#fff"
+                        android:textSize="20dp"/>
+                    <TextView
                         android:id="@+id/tv_moon"
                         android:textSize="18dp"
                         android:textColor="#ffff"
-                        android:text="/04"
+                        android:text="04"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
@@ -66,7 +72,7 @@
                     android:id="@+id/tv_lunar"
                     android:layout_marginBottom="20dp"
                     android:textColor="#fff"
-                    android:text="农历三月三十"
+                    android:text="农历闰四月十三"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>

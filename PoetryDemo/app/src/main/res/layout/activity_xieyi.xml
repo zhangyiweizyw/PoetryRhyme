@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:textColor="#333"
-                android:textSize="18dp"
+                android:textSize="15dp"
                 android:text="用户只有无条件接受本协议，才能继续使用本服务。诗韵对本使用协议享有最终解释权。
 1　接受条款
 

@@ -24,7 +24,7 @@
             android:layout_marginLeft="20dp"
             android:text="隐私政策"
             android:textColor="#333"
-            android:textSize="18dp" />
+            android:textSize="15dp" />
 
     </LinearLayout>
     <ScrollView

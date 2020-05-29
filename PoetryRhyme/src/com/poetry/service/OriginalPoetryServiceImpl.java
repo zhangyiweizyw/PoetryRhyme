@@ -8,7 +8,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.poetry.dao.OriginalPoetryDaoImpl;
+import com.poetry.dao.OrigPoetryDaoImpl;
+
 import com.poetry.entity.OriginalPoetry;
 
 @Service
@@ -16,19 +17,19 @@ import com.poetry.entity.OriginalPoetry;
 public class OriginalPoetryServiceImpl {
 	
 	@Resource
-	private OriginalPoetryDaoImpl originalPoetryDaoImpl;
+	private OrigPoetryDaoImpl origPoetryDaoImpl;
 	
 	//查询所有原创诗词及其作者姓名
 	public List<Object> findAllOriginalPoetry(){
 		List<Object> poetrys = new ArrayList<>();
-		poetrys = this.originalPoetryDaoImpl.selectOriginalPeotry();
+		poetrys = this.origPoetryDaoImpl.selectOriginalPeotry();
 		return poetrys;
 	}
 	
 	//根据ID查找单条原创诗词
 	public OriginalPoetry findPoetryById(int id) {
 		OriginalPoetry originalPoetry = new OriginalPoetry();
-		originalPoetry = this.originalPoetryDaoImpl.selectOriginalPoetryById(id);
+		originalPoetry = this.origPoetryDaoImpl.selectOriginalPoetryById(id);
 		return originalPoetry;
 	}
 	
