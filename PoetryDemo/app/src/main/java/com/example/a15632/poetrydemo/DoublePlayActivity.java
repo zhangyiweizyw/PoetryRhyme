@@ -46,7 +46,7 @@ public class DoublePlayActivity extends AppCompatActivity {
     private static final String IP="192.168.0.104";
     private static final int PORT=4321;
     private Socket clientSocket;
-    private int userId=19;//模拟已登录的用户的id
+    private int userId=21;//模拟已登录的用户的id
     private int friendId;
     private String friendID;
 
@@ -106,11 +106,11 @@ public class DoublePlayActivity extends AppCompatActivity {
                     try{
                         String message=(String)msg.obj;
                         JSONObject jsonObject=new JSONObject(message);
-                        if(jsonObject.getString("game_friendId")!=null){
+                        if(jsonObject.has("game_friendId")){
                             Log.e("成功","接收到了对方的id");
-                        }else if(jsonObject.getString("game_problem")!=null){
+                        }else if(jsonObject.has("game_problem")){
                             Log.e("成功","接收到了题目");
-                        }else if(jsonObject.getString("other_anwser")!=null){
+                        }else if(jsonObject.has("game_other_anwser")){
                             Log.e("成功","接收到了对方的答案");
                         }
                     }catch (JSONException e){
@@ -162,12 +162,19 @@ public class DoublePlayActivity extends AppCompatActivity {
             public void run() {
                 super.run();
                 try {
+                    Log.e("成功！","准备发送我的答案");
                     writer=new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream(),"utf-8"));
                     String anwser=your_anwser.getText().toString();
+                    Log.e("准备发送的内容是：",anwser);
                     JSONObject jsonObject=new JSONObject();
                     jsonObject.put("game_my_anwser",anwser);
-                    writer.write(jsonObject.toString()+"\n");
-                    writer.flush();
+                    int s=2;
+                    while(s-->0){
+                        writer.write(jsonObject.toString()+"\n");
+                        writer.flush();
+                    }
+
+                    Log.e("结束","发送题目结束");
                 }catch (JSONException e){
                     e.printStackTrace();
                 }catch (IOException e){
