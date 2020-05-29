@@ -21,6 +21,8 @@ import com.example.a15632.poetrydemo.drawer.AboutActivity;
 import com.example.a15632.poetrydemo.drawer.CollectActivity;
 import com.example.a15632.poetrydemo.drawer.SettingActivity;
 import com.example.a15632.poetrydemo.drawer.WorksActivity;
+import com.example.a15632.poetrydemo.drawer.XieyiActivity;
+import com.example.a15632.poetrydemo.drawer.YinsiActivity;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -42,6 +44,8 @@ public class HomeFragment extends Fragment {
     private LinearLayout worksLayout;//作品
     private LinearLayout settingLayout;//设置
     private LinearLayout aboutLayout;//关于
+    private LinearLayout yinsiLayout;//隐私
+    private LinearLayout xieyiLayout;//协议
     private SharedPreferences sharedPreferences;
     private String name;
     @Nullable
@@ -91,6 +95,8 @@ public class HomeFragment extends Fragment {
         worksLayout=fragment.findViewById(R.id.linear_works);
         settingLayout=fragment.findViewById(R.id.linear_setting);
         aboutLayout=fragment.findViewById(R.id.linear_about);
+        yinsiLayout=fragment.findViewById(R.id.linear_yinsi);
+        xieyiLayout=fragment.findViewById(R.id.linear_xieyi);
 
     }
     private void action() {
@@ -153,5 +159,18 @@ public class HomeFragment extends Fragment {
                 startActivity(new Intent(getActivity(),AboutActivity.class));
             }
         });
+        yinsiLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), YinsiActivity.class));
+            }
+        });
+        xieyiLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), XieyiActivity.class));
+            }
+        });
+
     }
 }

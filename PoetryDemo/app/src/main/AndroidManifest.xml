@@ -4,39 +4,31 @@
 
     <!-- 网络权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 允许访问WiFi网络状态信息（必须） -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 允许读取手机状态（必须） -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 允许访问网络状态（必须） -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 允许写手机存储（必须） -->
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <!-- GUI自动填充验证码功能（非必须） -->
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <!-- 从短信中读取验证码接口（非必须） -->
 
-    <uses-permission
-        android:name="android.permission.ACCESS_WIFI_STATE" />
-    <!--允许访问WiFi网络状态信息（必须）-->
-    <uses-permission
-        android:name="android.permission.READ_PHONE_STATE" />
-    <!--允许读取手机状态（必须）-->
-    <uses-permission
-        android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!--允许访问网络状态（必须）-->
-    <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!--允许写手机存储（必须）-->
-    <uses-permission
-        android:name="android.permission.RECEIVE_SMS" />
-    <!--GUI自动填充验证码功能（非必须）-->
-    <uses-permission
-        android:name="android.permission.READ_SMS" />
-    <!--从短信中读取验证码接口（非必须）-->
-
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION	"/>
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION " />
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
-    <!-- 这个权限用于进行网络定位-->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <!-- 这个权限用于访问GPS定位-->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <!-- 用于读取手机当前的状态-->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 用于读取手机当前的状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -64,11 +56,12 @@
         <activity android:name=".AddCommunity" />
         <activity android:name=".DakaActivity" />
         <activity android:name=".DakaShareActivity" />
-        <activity android:name=".GameActivity"></activity>
-        <activity android:name=".PoemDetail"></activity>
-        <activity android:name=".SortDetail"></activity>
-        <activity android:name=".DoublePlayActivity"></activity>
-
+        <activity android:name=".GameActivity" />
+        <activity android:name=".PoemDetail" />
+        <activity android:name=".SortDetail" />
+        <activity android:name=".DoublePlayActivity" />
+        <activity android:name=".drawer.XieyiActivity" />
+        <activity android:name=".drawer.YinsiActivity"></activity>
     </application>
 
 </manifest>
