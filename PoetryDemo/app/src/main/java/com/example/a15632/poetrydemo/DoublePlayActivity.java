@@ -157,18 +157,25 @@ public class DoublePlayActivity extends AppCompatActivity {
      * 将发送的消息，传给服务端然后传给连接那方
      */
     public void sendAnwser(){
-        try {
-            writer=new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream(),"utf-8"));
-            String anwser=your_anwser.getText().toString();
-            JSONObject jsonObject=new JSONObject();
-            jsonObject.put("game_my_anwser",anwser);
-            writer.write(jsonObject.toString()+"\n");
-            writer.flush();
-        }catch (JSONException e){
-            e.printStackTrace();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                try {
+                    writer=new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream(),"utf-8"));
+                    String anwser=your_anwser.getText().toString();
+                    JSONObject jsonObject=new JSONObject();
+                    jsonObject.put("game_my_anwser",anwser);
+                    writer.write(jsonObject.toString()+"\n");
+                    writer.flush();
+                }catch (JSONException e){
+                    e.printStackTrace();
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+
     }
 
     //双人游戏开始，，
