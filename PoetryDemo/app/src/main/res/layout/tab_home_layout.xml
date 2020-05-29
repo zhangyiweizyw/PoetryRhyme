@@ -97,14 +97,14 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:clickable="true"
                     android:id="@+id/img_into_daka"
+                    android:layout_width="29dp"
+                    android:layout_height="26dp"
+                    android:layout_alignParentRight="true"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_alignParentRight="true"
-                    android:src="@drawable/daka01"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp" />
+                    android:clickable="true"
+                    android:src="@drawable/daka01" />
 
 
             </RelativeLayout>
