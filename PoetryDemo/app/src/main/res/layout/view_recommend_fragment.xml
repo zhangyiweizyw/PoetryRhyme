@@ -32,19 +32,13 @@
                 android:id="@+id/tv_poetry_everyday"
                 android:layout_width="13dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:layout_marginRight="80dp"
                 android:layout_marginTop="10dp"
-<<<<<<< HEAD
-=======
                 android:layout_alignParentRight="true"
                 android:textSize="15dp"
                 android:textStyle="normal"
->>>>>>> ac8c12d0276c4755a32bdfc5cd57e12d61c3ef82
                 android:text="身后有余忘缩手"
-                android:textColor="#FFFFFF"
-                android:textSize="13dp"
-                android:textStyle="bold" />
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:id="@+id/tv_poetry_everyday2"
@@ -53,16 +47,10 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="101dp"
                 android:layout_marginTop="10dp"
-<<<<<<< HEAD
-=======
-                android:layout_alignParentRight="true"
                 android:textSize="15dp"
                 android:textStyle="normal"
->>>>>>> ac8c12d0276c4755a32bdfc5cd57e12d61c3ef82
                 android:text="眼前无路想回头"
-                android:textColor="#FFFFFF"
-                android:textSize="13dp"
-                android:textStyle="bold" />
+                android:textColor="#FFFFFF" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -93,33 +81,20 @@
                         android:textSize="20dp"/>
                     <TextView
                         android:id="@+id/tv_moon"
-<<<<<<< HEAD
-=======
-                        android:textSize="18dp"
-                        android:textColor="#ffff"
                         android:text="04"
->>>>>>> ac8c12d0276c4755a32bdfc5cd57e12d61c3ef82
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="/04"
                         android:textColor="#ffff"
                         android:textSize="18dp" />
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/tv_lunar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
-<<<<<<< HEAD
-                    android:text="农历三月三十"
-                    android:textColor="#fff" />
-=======
                     android:textColor="#fff"
                     android:text="农历闰四月十三"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
->>>>>>> ac8c12d0276c4755a32bdfc5cd57e12d61c3ef82
             </LinearLayout>
 
 
