@@ -38,5 +38,8 @@ public class UserServiceImpl {
 
 		return this.userDaoImpl.find(name, pwd);
 	}
+	public List<User> findFoucsUser(int myuserid){
+		return this.userDaoImpl.findFoucsUser(myuserid);
+	}
 
 }

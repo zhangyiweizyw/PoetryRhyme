@@ -12,7 +12,7 @@ import com.poetry.dao.CommDaoImpl;
 import com.poetry.entity.CommunityTopic;
 
 @Service
-@Transactional(readOnly=true)
+@Transactional(readOnly=false)
 public class CommServiceImpl {
 	
 	@Resource
@@ -31,5 +31,14 @@ public class CommServiceImpl {
 		CommunityTopic communityTopic = new CommunityTopic();
 		communityTopic = this.commDaoImpl.selectCommunityTopicById(id);
 		return communityTopic;
+	}
+	
+	//新增一条社区话题
+	public void addCommunityTopic(CommunityTopic ct){
+		this.commDaoImpl.addCommunityTopic(ct);
+	}
+	//修改信息
+	public void updateCommunityTopic(CommunityTopic ct){
+		this.commDaoImpl.updateCommunityTopic(ct);
 	}
 }

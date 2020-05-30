@@ -57,5 +57,13 @@ public class UserDaoImpl {
 		return user;
 
 	}
+	public List<User> findFoucsUser(int myuserid){
+		String hql="select u from User u where u.id in(select ur.foucsid from UserRelation ur where ur.myuserid=?)";
+		Query query=this.sessionFactory.getCurrentSession().createQuery(hql);
+		query.setParameter(0, myuserid);
+		List<User>users=query.list();
+		return users;
+		
+	}
 
 }

@@ -18,25 +18,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.poetry.entity.CommunityTopic;
-import com.poetry.entity.User;
+import com.poetry.entity.OriginalPoetry;
 import com.poetry.service.CommServiceImpl;
+import com.poetry.service.OriginalPoetryServiceImpl;
 
 
 @Controller
 @ResponseBody
-@RequestMapping("/comm")
-public class CommController {
+@RequestMapping("/oripoetry")
+public class OriPoetryController {
 	@Resource
-	private CommServiceImpl commServiceImpl;
+	private OriginalPoetryServiceImpl opServiceImpl;
 
 	
 	@RequestMapping("/get")
 	public String back(Model model, HttpServletRequest request,HttpServletResponse response) throws IOException {
 		response.setCharacterEncoding("UTF8"); // this line solves the problem
 		response.setContentType("application/json");
-		List<CommunityTopic> list = new ArrayList<>();
+		List<OriginalPoetry> list = new ArrayList<>();
 
-		list = this.commServiceImpl.findAllCommunityTopic();
+		list = this.opServiceImpl.findAllOriginalPoetry();
 		System.out.println(list.size()+"条");
 		System.out.println(list.get(0).toString());
 		/*String str = URLEncoder.encode(list.toString(), "utf-8");*/
@@ -47,22 +48,19 @@ public class CommController {
 		return str;
 
 	}
+	
 	@RequestMapping("/add")
 	public void add(Model model, HttpServletRequest request,HttpServletResponse response)throws IOException{
-		/*InputStream is = request.getInputStream();
+		InputStream is = request.getInputStream();
 		InputStreamReader isr = new InputStreamReader(is);
 		// 字符流
 		BufferedReader reader = new BufferedReader(isr);
 		String jsonStr = reader.readLine();
-		CommunityTopic ct= new Gson().fromJson(jsonStr, CommunityTopic.class);*/
-		CommunityTopic ct=new CommunityTopic();
-		User u=new User();
-		u.setId(1);
-		ct.setUser(u);
-		ct.setTitle("测试");
+		OriginalPoetry op= new Gson().fromJson(jsonStr, OriginalPoetry.class);
 		response.setCharacterEncoding("UTF8"); // this line solves the problem
 		response.setContentType("application/json");
-		this.commServiceImpl.addCommunityTopic(ct);
+		this.opServiceImpl.addOriginalPoetry(op);
+		
 	}
 	
 	@RequestMapping("/update")
@@ -72,10 +70,10 @@ public class CommController {
 		// 字符流
 		BufferedReader reader = new BufferedReader(isr);
 		String jsonStr = reader.readLine();
-		CommunityTopic ct= new Gson().fromJson(jsonStr, CommunityTopic.class);
+		OriginalPoetry op= new Gson().fromJson(jsonStr, OriginalPoetry.class);
 		response.setCharacterEncoding("UTF8"); // this line solves the problem
 		response.setContentType("application/json");
-		this.commServiceImpl.updateCommunityTopic(ct);
+		this.opServiceImpl.updateOriginalPoetry(op);
 	}
 
 }
