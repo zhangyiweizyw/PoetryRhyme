@@ -127,13 +127,13 @@
                     android:padding="10dp">
                     <ImageView
                         android:layout_gravity="center"
-                        android:src="@drawable/collect"
+                        android:src="@drawable/wodeshoucang033"
                         android:layout_width="25dp"
                         android:layout_height="25dp" />
                     <TextView
                         android:layout_marginLeft="10dp"
                         android:textSize="14dp"
-                        android:textColor="#333"
+                        android:textColor="#fff"
                         android:layout_gravity="center"
                         android:text="收藏"
                         android:layout_width="wrap_content"
@@ -149,13 +149,13 @@
                     android:padding="10dp">
                     <ImageView
                         android:layout_gravity="center"
-                        android:src="@drawable/works"
+                        android:src="@drawable/wodezuoping033"
                         android:layout_width="25dp"
                         android:layout_height="25dp" />
                     <TextView
                         android:layout_marginLeft="10dp"
                         android:textSize="14dp"
-                        android:textColor="#333"
+                        android:textColor="#fff"
                         android:layout_gravity="center"
                         android:text="我的作品"
                         android:layout_width="wrap_content"
@@ -171,13 +171,13 @@
                     android:padding="10dp">
                     <ImageView
                         android:layout_gravity="center"
-                        android:src="@drawable/setting"
+                        android:src="@drawable/shezhi033"
                         android:layout_width="25dp"
                         android:layout_height="25dp" />
                     <TextView
                         android:layout_marginLeft="10dp"
                         android:textSize="14dp"
-                        android:textColor="#333"
+                        android:textColor="#fff"
                         android:layout_gravity="center"
                         android:text="设置"
                         android:layout_width="wrap_content"
@@ -194,13 +194,13 @@
                     android:padding="10dp">
                     <ImageView
                         android:layout_gravity="center"
-                        android:src="@drawable/xieyi"
+                        android:src="@drawable/shiyongxieyi033"
                         android:layout_width="25dp"
                         android:layout_height="25dp" />
                     <TextView
                         android:layout_marginLeft="10dp"
                         android:textSize="14dp"
-                        android:textColor="#333"
+                        android:textColor="#fff"
                         android:layout_gravity="center"
                         android:text="用户使用协议"
                         android:layout_width="wrap_content"
@@ -216,7 +216,7 @@
                     android:padding="10dp">
                     <ImageView
                         android:layout_gravity="center"
-                        android:src="@drawable/yinsi"
+                        android:src="@drawable/yinsizhengce033"
                         android:layout_width="25dp"
                         android:layout_height="25dp" />
                     <TextView
@@ -238,13 +238,13 @@
                     android:padding="10dp">
                     <ImageView
                         android:layout_gravity="center"
-                        android:src="@drawable/about"
+                        android:src="@drawable/guanyuwomen033"
                         android:layout_width="25dp"
                         android:layout_height="25dp" />
                     <TextView
                         android:layout_marginLeft="10dp"
                         android:textSize="14dp"
-                        android:textColor="#333"
+                        android:textColor="#fff"
                         android:layout_gravity="center"
                         android:text="关于我们"
                         android:layout_width="wrap_content"
