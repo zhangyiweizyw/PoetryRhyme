@@ -24,7 +24,7 @@
                 android:layout_height="match_parent" />
             <EditText
                 android:id="@+id/et_home_input"
-                android:hint="请输入"
+                android:hint="搜索诗句、诗名、关键词"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
                 android:background="@null"
