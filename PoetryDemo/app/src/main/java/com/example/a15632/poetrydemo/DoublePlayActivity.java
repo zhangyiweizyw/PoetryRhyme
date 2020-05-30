@@ -1,6 +1,9 @@
 package com.example.a15632.poetrydemo;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.media.MediaPlayer;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -41,6 +45,7 @@ import java.net.Socket;
 public class DoublePlayActivity extends AppCompatActivity {
     //等待加载框
     private static AlertDialog alertDialog;
+    private static AlertDialog alertDialog_waiting_data;
     //网络相关
     private static final int CHANGE = 1;
     private static final int CUT_ALERT = 2;
@@ -48,7 +53,7 @@ public class DoublePlayActivity extends AppCompatActivity {
     private static final String IP = "192.168.0.104";
     private static final int PORT = 4321;
     private Socket clientSocket;
-    private int userId = 19;//模拟已登录的用户的id
+    private int userId = 21;//模拟已登录的用户的id
     private int friendId;
     private String friendID;
 
@@ -73,12 +78,20 @@ public class DoublePlayActivity extends AppCompatActivity {
     private TextView sum;//题目总数
     private int sums=8;
 
+    private TextView daojishi2;
+
     //题目相关
     private TextView problem;
     private String key;
 
     //对方的回答
     private String otherAnwser;
+
+    //倒计时
+    private static MyCountDown mCountDown;
+
+    //音乐播放
+    private MediaPlayer music;
 
     private Handler handler = new Handler() {
         @Override
@@ -106,6 +119,9 @@ public class DoublePlayActivity extends AppCompatActivity {
                         } else if (jsonObject.has("game_problem")) {
                             Log.e("成功", "接收到了题目");
                             if(sums>0){
+                                loadingProblem();
+                                mCountDown=new MyCountDown(20*1000,1000);
+                                mCountDown.start();
                                 problem.setText(jsonObject.getString("game_problem").toString());
                                 key = jsonObject.getString("game_key");
                                 sum.setText(sums--+"");
@@ -142,6 +158,7 @@ public class DoublePlayActivity extends AppCompatActivity {
                 case CHANGE_MY_SCORE:{
                     ++mScore;
                     my_score.setText(mScore+"");
+
                     break;
                 }
             }
@@ -165,17 +182,61 @@ public class DoublePlayActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mCountDown.cancel();
+
                 sendAnwser();
                 String anwser=your_anwser.getText().toString();
                 if(key.equals(anwser)){
                     Log.e("成功！","我的回答是正确的！");
                     changMyScore();
+                    alertSuccess();
+
                 }else{
                     Log.e("啊哦！","我的回答有误");
+                    alertFail();
                 }
-                your_anwser.setText("");
+
+
             }
         });
+    }
+
+    public void playSound(int MusicId){
+        music=MediaPlayer.create(this,MusicId);
+        music.start();
+    }
+    public void alertSuccess(){
+        playSound(R.raw.game_success_sound);
+        final android.support.v7.app.AlertDialog.Builder builder=new android.support.v7.app.AlertDialog.Builder(DoublePlayActivity.this);
+        builder.setTitle("回答正确！(。・∀・)ノ");
+        builder.setMessage("等待对面玩家完成答题中。。");
+
+
+        final android.support.v7.app.AlertDialog dialog=builder.create();
+        dialog.show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                dialog.dismiss();
+            }
+        },500);
+    }
+    public void alertFail(){
+        playSound(R.raw.game_fail_sound);
+        final android.support.v7.app.AlertDialog.Builder builder=new android.support.v7.app.AlertDialog.Builder(DoublePlayActivity.this);
+        builder.setTitle("回答有误！QAQ");
+        builder.setMessage("等待对面玩家完成答题中。。");
+
+        final android.support.v7.app.AlertDialog dialog=builder.create();
+        dialog.show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                dialog.dismiss();
+            }
+        },500);
+
     }
     public void changMyScore(){
         new Thread(){
@@ -204,6 +265,7 @@ public class DoublePlayActivity extends AppCompatActivity {
             public void run() {
                 super.run();
                 try {
+                    Thread.sleep(500);
                     Log.e("成功！", "准备发送我的答案");
                     writer = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream(), "utf-8"));
                     String anwser = your_anwser.getText().toString();
@@ -220,6 +282,8 @@ public class DoublePlayActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
+                    e.printStackTrace();
+                }catch (Exception e){
                     e.printStackTrace();
                 }
             }
@@ -275,6 +339,7 @@ public class DoublePlayActivity extends AppCompatActivity {
                         if (reader.ready()) {
                             dissmissAlert();
 
+
                             Message msg = handler.obtainMessage();
                             msg.what = CHANGE;
                             msg.obj = reader.readLine();
@@ -326,8 +391,13 @@ public class DoublePlayActivity extends AppCompatActivity {
         btn = findViewById(R.id.btn_double_game_btn);
 
         sum=findViewById(R.id.tv_double_game_problem_sum);
+
+        daojishi2=findViewById(R.id.tv_double_game_daojishi);
     }
 
+    /**
+     * 等待匹配的dialog
+     */
     public void loadingGame() {
         AlertDialog.Builder builder = new AlertDialog.Builder(DoublePlayActivity.this);
         View view = getLayoutInflater().inflate(R.layout.loading_play, null);
@@ -337,5 +407,56 @@ public class DoublePlayActivity extends AppCompatActivity {
         alertDialog.show();
 
 
+    }
+
+    /**
+     * 加载题目dialog
+     */
+    public void loadingProblem() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(DoublePlayActivity.this);
+        View view = getLayoutInflater().inflate(R.layout.loading_problem, null);
+
+        builder.setView(view);
+        alertDialog_waiting_data = builder.create();
+        alertDialog_waiting_data.show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                alertDialog_waiting_data.dismiss();
+            }
+        },1000);
+
+
+    }
+
+
+    /**
+     * 倒计时class
+     */
+    private  class MyCountDown extends CountDownTimer {
+
+        /**
+         * @param millisInFuture    The number of millis in the future from the call
+         *                          to {@link #start()} until the countdown is done and {@link #onFinish()}
+         *                          is called.
+         * @param countDownInterval The interval along the way to receive
+         *                          {@link #onTick(long)} callbacks.
+         */
+        public MyCountDown(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            daojishi2.setEnabled(false);
+            daojishi2.setText(millisUntilFinished/1000+"");
+        }
+
+        @Override
+        public void onFinish() {
+
+
+        }
     }
 }

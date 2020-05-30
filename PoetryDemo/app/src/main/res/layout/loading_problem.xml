@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="130dp">
+     <pl.droidsonroids.gif.GifImageView
+         android:layout_centerHorizontal="true"
+         android:src="@mipmap/refresh3red"
+         android:layout_width="130dp"
+         android:layout_height="130dp" />
+    <TextView
+        android:layout_centerHorizontal="true"
+         android:layout_marginTop="80dp"
+        android:text="-正在出题-"
+        android:textSize="20dp"
+        android:textColor="#333"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
