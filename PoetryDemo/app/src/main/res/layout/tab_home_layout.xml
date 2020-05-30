@@ -70,7 +70,7 @@
             android:layout_width="300dp"
             android:orientation="vertical"
             android:layout_gravity="left"
-            android:background="#fcfcfc"
+            android:background="@color/colorTheme"
             android:layout_height="match_parent">
 
             <RelativeLayout
@@ -98,14 +98,14 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:clickable="true"
                     android:id="@+id/img_into_daka"
+                    android:layout_width="29dp"
+                    android:layout_height="26dp"
+                    android:layout_alignParentRight="true"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_alignParentRight="true"
-                    android:src="@drawable/daka01"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp" />
+                    android:clickable="true"
+                    android:src="@drawable/daka01" />
 
 
             </RelativeLayout>
@@ -180,6 +180,51 @@
                         android:textColor="#333"
                         android:layout_gravity="center"
                         android:text="设置"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear_xieyi"
+                    android:clickable="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/xieyi"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp" />
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:textSize="14dp"
+                        android:textColor="#333"
+                        android:layout_gravity="center"
+                        android:text="用户使用协议"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linear_yinsi"
+                    android:clickable="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/yinsi"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp" />
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:textSize="14dp"
+                        android:textColor="#fff"
+                        android:layout_gravity="center"
+                        android:text="隐私政策"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 

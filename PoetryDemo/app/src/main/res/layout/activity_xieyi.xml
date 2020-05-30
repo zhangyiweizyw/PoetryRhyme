@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:clickable="true"
+            android:id="@+id/img_xieyi_back"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:src="@drawable/left3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:text="用户使用协议"
+            android:textColor="#333"
+            android:textSize="18dp" />
+
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:padding="15dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:textColor="#333"
+                android:textSize="25dp"
+                android:text="用户使用协议"
+                android:layout_marginBottom="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textColor="#333"
+                android:textSize="15dp"
+                android:text="用户只有无条件接受本协议，才能继续使用本服务。诗韵对本使用协议享有最终解释权。
+1　接受条款
+
+欢迎使用诗韵。诗韵同意按照《用户使用协议》(下简称本协议)规定以及不时发布的操作规则等提供基于互联网的相关服务。
+本协议可由诗韵随时更新，且毋须另行通知。本协议一旦发生变动，诗韵将在网页和软件中公布修改内容。修改后的使用协议一旦在上述平台公布即有效代替原来的使用协议。此外，当您使用诗韵特殊服务时，您和诗韵应遵守诗韵随时公布的与该服务相关的指引和规则。前述所有的指引和规则，均构成本使用协议的一部分。
+请您仔细阅读本协议（特别是加粗部分），在注册账号过程中勾选 “我已经阅读并且同意有诗韵用户使用协议”并完成注册即表示您与诗韵达成并接受以下所有协议，并成为诗韵用户（以下简称用户）。
+如您不同意本协议及/或随时对其的修改，请您立即停止使用诗韵所提供的全部服务。
+2　服务说明
+
+诗韵通过提供算法，存储平台，计算资源，网络带宽向用户提供无偿的服务。除非本使用协议另有其它明示规定，增加或强化目前本服务的任何新功能，包括所推出的新产品，均受到本使用协议之规范。您了解并同意，本服务仅依其当前所呈现的状况提供，对于任何用户信息或个人化设定之时效、删除、传递错误、未予储存或其它任何问题，诗韵均不承担任何责任。对于所有无偿服务，诗韵保留不经事先通知为维修保养、升级或其它目的暂停任何部分的权利。关于有偿服务，诗韵因产品升级需要保留对付费产品进行修改和升级的权利。
+3　注册与登录
+
+用户在注册账号时承诺遵守法律法规、社会主义制度、国家利益、公民合法权益、公共秩序、社会道德风尚和信息真实性等七条底线，不得在账号注册资料中出现违法和不良信息，且用户保证其在注册和使用账号时，不得有以下情形：
+（1）违反宪法或法律法规规定的；
+（2）危害国家安全，泄露国家秘密，颠覆国家政权，破坏国家统一的；
+（3）损害国家荣誉和利益的，损害公共利益的；
+（4）煽动民族仇恨、民族歧视，破坏民族团结的；
+（5）破坏国家宗教政策，宣扬邪教和封建迷信的；
+（6）散布谣言，扰乱社会秩序，破坏社会稳定的
+（7）散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的；
+（8）侮辱或者诽谤他人，侵害他人合法权益的；
+（9）含有法律、行政法规禁止的其他内容的。
+根据相关法律、法规规定以及考虑到有诗韵产品服务的重要性，用户必需同意：
+（1）在注册账号时提交个人有效准确的个人信息进行实名认证；
+（2）提供及时、详尽及准确的账户注册资料；
+（3）用户不得以任何不正当手段或以违反诚实信用原则等为自己或他人开通本服务；
+（4）每个用户都要对其帐号中的所有行为和事件负全责，不得售卖、转借账号。如果用户未保管好自己的帐号和密码而对其自己、诗韵或第三方造成的损害，用户将负全部责任；
+（5）若用户提供给账号注册资料不准确，不真实，含有违法或不良信息的，扇贝有权不予注册，并保留终止用户使用诗韵各项服务的权利。
+用户需充分了解并同意遵守中华人民共和国相关法律法规的所有规定，如用户的行为违反国家法律和法规的任何规定，有可能构成犯罪的，将被追究刑事责任，并由用户个人承担全部法律责任。
+同时如果诗韵有理由认为用户的任何行为，包括但不限于用户的任何言论和其它行为违反或可能违反国家法律和法规的任何规定，诗韵可在任何时候不经任何事先通知终止向用户提供服务。
+诗韵无须对任何用户的任何登记资料承担任何责任，包括但不限于鉴别、核实任何登记资料的真实性、正确性、完整性、适用性及/或是否为最新资料的责任。
+同时如果诗韵有理由认为您的任何行为，包括但不限于您的任何言论和其它行为违反或可能违反国家法律和法规的任何规定，诗韵可在任何时候不经任何事先通知终止向您提供服务。
+4 诗韵隐私权政策
+
+诗韵对每一位用户的隐私权采取高度尊重且保护的态度。您提供的登记资料及诗韵保留的有关您的若干其它资料将受到《中华人民共和国网络安全法》、《信息安全技术个人信息安规范》（GB/T35273-2017）以及其他相关法律法规与技术规范和本公司《隐私政策》、《儿童隐私政策》的规范。
+5 内容提供者之责任
+
+根据有关法律法规，诗韵在此郑重提请您注意，任何经由本服务而发布、上传的文字、资讯、资料、音乐、照片、图形、视讯、信息或其它资料（以下简称“内容 ”），无论系公开还是私下传送，均由内容提供者承担责任，用户应保证其为著作权人或已取得合法授权，并且该内容不会侵犯任何第三方的合法权益，用户同意授予诗韵所有上述内容在全球范围内的免费、不可撤销的、永久的、可再许可或转让的独家使用权许可，据该许可诗韵将有权以展示、推广及其他不为我法律所禁止的方式使用前述内容。
+诗韵仅为用户提供内容存储空间，无法控制经由本服务传送之内容，因此不保证内容的正确性、完整性或品质。您已预知使用本服务时，可能会接触到令人不快、不适当或令人厌恶之内容。在任何情况下，诗韵均不为任何内容负责，但您可以向诗韵举报，诗韵有权依法停止传输任何前述内容并采取相应行动，包括但不限于暂停用户使用本服务的全部或部分，保存有关记录，并向有关机关报告"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:clickable="true"
+            android:id="@+id/img_yinsi_back"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:src="@drawable/left3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:text="隐私政策"
+            android:textColor="#333"
+            android:textSize="15dp" />
+
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:padding="15dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:textColor="#333"
+                android:textSize="25dp"
+                android:text="隐私政策"
+                android:layout_marginBottom="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textColor="#333"
+                android:textSize="18dp"
+                android:text="欢迎您使用诗韵。诗韵对每一位用户的隐私权采取高度尊重且保护的态度。我们非常重视用户的个人信息和隐私保护，为给您提供更准确的个性化的服务和更安全的互联网环境，我们依据《中华人民共和国网络安全法》、《信息安全技术个人信息安全规范》（GB/T35273-2017）以及其他相关法律法规和技术规范，将原先体现在《用户隐私与使用协议》中的“用户隐私“相关内容进行了更新并单独以本《隐私政策》的形式进行发布， 本次更新的内容较多，进一步明确了收集/使用/对外提供的原则，进一步阐述了关于您个人信息的相关权利。
+
+本政策适用于我们的所有产品及服务，本政策与您所使用的我们的产品或服务息息相关，您在下载、安装、启动、浏览、注册、登录、使用诗韵的产品或服务时，我们将按照本政策的约定处理和保护您的个人信息。我们将尽量以简明、扼要的表述向您解释本政策所涉及的技术词汇，以便于您理解。
+
+您在使用诗韵的产品或服务时，诗韵可能会收集和使用您的相关信息。为此，希望通过本《隐私政策》向您说明，诗韵如何取得、使用、分享、保存和管理这些信息。请在使用或继续使用我们的各项产品与服务前，仔细阅读并充分理解本政策（尤其是加粗提示的内容），并在需要时，按照本政策的指引，作出适当的选择。
+
+                                                         诗韵开发团队
+                                                         2020.05.29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

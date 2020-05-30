@@ -23,7 +23,7 @@ android {
 MobSDK {
     appKey "2d0f808219f71"
     appSecret "3fbace76120dd6d8b1027a591ef49002"
-    SMSSDK {"autoSMS true"}
+    SMSSDK { "autoSMS true" }
 }
 
 dependencies {
