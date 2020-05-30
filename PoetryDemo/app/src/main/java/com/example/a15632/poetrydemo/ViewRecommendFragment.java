@@ -59,6 +59,7 @@ public class ViewRecommendFragment extends Fragment {
     private LinearLayout layout;
     private String search_weather = "";
     //day
+    private TextView tv_tianqi;
     private TextView tv_day;
     private TextView tv_moon;
     private TextView poetry_one;
@@ -199,6 +200,7 @@ public class ViewRecommendFragment extends Fragment {
         tv_moon = fragment.findViewById(R.id.tv_moon);
         poetry_one = fragment.findViewById(R.id.tv_poetry_everyday);
         poetry_two = fragment.findViewById(R.id.tv_poetry_everyday2);
+        tv_tianqi = fragment.findViewById(R.id.tv_tianqi);
     }
 
     private void action() {
@@ -267,6 +269,7 @@ public class ViewRecommendFragment extends Fragment {
                         e.printStackTrace();
                     }
 
+                    tv_tianqi.setText(tianqi);
 
                     if (tianqi.equals("晴")) {
                         layout.setBackgroundResource(R.drawable.sunny);

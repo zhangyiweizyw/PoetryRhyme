@@ -10,15 +10,51 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <Button
-        android:text="头像"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
-    <Button
-        android:text="昵称"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="60dp">
+        <TextView
+            android:textSize="20dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="头像"
+            android:layout_width="0dp"
+            android:layout_height="60dp" />
+        <ImageView
+            android:src="@drawable/avatar_unlogin"
+            android:layout_weight="3"
+            android:clickable="true"
+            android:id="@+id/set_head"
+            android:layout_width="0dp"
+            android:layout_height="60dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <TextView
+            android:textSize="20dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="昵称"
+            android:layout_width="0dp"
+            android:layout_height="60dp" />
+        <TextView
+            android:textSize="20dp"
+            android:gravity="center"
+            android:text="name"
+            android:layout_weight="3"
+            android:clickable="true"
+            android:id="@+id/set_name"
+            android:layout_width="0dp"
+            android:layout_height="60dp" />
+
+    </LinearLayout>
 
 
 
@@ -28,16 +64,19 @@
         android:layout_height="wrap_content" />
 
     <Button
+        android:id="@+id/set_change_pwd"
         android:text="修改密码"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Button
+        android:id="@+id/set_change_phone"
         android:text="更换手机"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Button
+        android:id="@+id/set_exit"
         android:text="注销"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
