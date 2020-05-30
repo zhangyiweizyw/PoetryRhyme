@@ -27,11 +27,23 @@ import android.widget.Toast;
 
 import android.app.AlertDialog;
 
+import com.example.a15632.poetrydemo.Entity.Community;
 import com.example.a15632.poetrydemo.util.ImageUtils;
 import com.example.a15632.poetrydemo.util.ScreenUtils;
+import com.google.gson.Gson;
 import com.jaeger.library.StatusBarUtil;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URLDecoder;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class AddCommunity extends AppCompatActivity {
 
@@ -41,6 +53,10 @@ public class AddCommunity extends AppCompatActivity {
     private TextView tv_type;
     private ImageView iv_send;
     private ImageView iv_delete;
+
+    private Community community;
+    private OkHttpClient okHttpClient=new OkHttpClient();
+    private String ip="http://192.168.0.57:8080/MyPoetryRhyme/";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,9 +71,11 @@ public class AddCommunity extends AppCompatActivity {
         int type=intent.getIntExtra("type",0);
         if(type==1){
             tv_type.setText("原创诗词");
+            community.setType(1);
         }
         else if(type==2){
             tv_type.setText("社区话题");
+            community.setType(2);
         }
         else{
             tv_type.setText("发布类型");
@@ -77,6 +95,8 @@ public class AddCommunity extends AppCompatActivity {
         iv_send=findViewById(R.id.iv_send);
         iv_delete=findViewById(R.id.iv_back);
     }
+
+
 
 
     private class MyListener implements View.OnClickListener{
@@ -109,6 +129,49 @@ public class AddCommunity extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     // TODO Auto-generated method stub
                                     finish();
+                                    //保存会数据库
+                                    Request request;
+                                    community.setTitle(title.getText().toString());
+                                    community.setContent(content.getText().toString());
+                                    Gson gson=new Gson();
+                                    MediaType jsonType = MediaType.parse("application/json; charset=utf-8");
+                                    String jsonStr = gson.toJson(community);//json数据.
+                                    RequestBody body = RequestBody.create(jsonType, jsonStr);
+                                    if(community.getType()==1){
+                                        //诗词
+                                        request = new Request.Builder()
+                                                .url(ip+"oripoetry/add")//设置网络请求的URL地址
+                                                .post(body)
+                                                .build();
+                                    }
+                                    else{
+                                        //话题
+                                        request = new Request.Builder()
+                                                .url(ip+"comm/add")//设置网络请求的URL地址
+                                                .post(body)
+                                                .build();
+                                    }
+                                    //3.创建Call对象
+                                    Call call = okHttpClient.newCall(request);
+                                    //4.发送请求
+                                    //异步请求，不需要创建线程
+                                    call.enqueue(new Callback() {
+                                        @Override
+                                        //请求失败时回调
+                                        public void onFailure(Call call, IOException e) {
+                                            e.printStackTrace();//打印异常信息
+                                        }
+
+                                        @Override
+                                        //请求成功之后回调
+                                        public void onResponse(Call call, Response response) throws IOException {
+                                            //不能直接更新界面
+                                            String jsonStr = response.body().string();
+                                            String str = URLDecoder.decode(jsonStr, "utf-8");
+                                            Log.e("content",str);
+                                        }
+                                    });
+
                                 }
                             })
                             .setNegativeButton("返回修改", null)

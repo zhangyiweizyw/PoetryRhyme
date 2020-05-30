@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,14 +29,24 @@ import com.example.a15632.poetrydemo.Entity.Comment;
 import com.example.a15632.poetrydemo.Entity.Community;
 import com.example.a15632.poetrydemo.Entity.User;
 import com.example.a15632.poetrydemo.util.AddViewsUtil;
+import com.google.gson.Gson;
 import com.jaeger.library.StatusBarUtil;
 
+import java.io.IOException;
+import java.net.URLDecoder;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class CommunityDetail extends AppCompatActivity {
 
@@ -53,6 +64,8 @@ public class CommunityDetail extends AppCompatActivity {
     private  LinearLayout layout2=null;
     private Intent intent;
     private Community community;
+    private TextView tv_like;
+    private TextView tv_comment;
 
     private TextView tv_title;
     private TextView tv_title2;
@@ -68,6 +81,7 @@ public class CommunityDetail extends AppCompatActivity {
     private CircleImageView iv_userhead;
 
     private AddViewsUtil addViewsUtil=new AddViewsUtil();
+    private OkHttpClient okHttpClient;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,13 +90,53 @@ public class CommunityDetail extends AppCompatActivity {
         setContentView(R.layout.community_layout);
         StatusBarUtil.setColor(this,getResources().getColor(R.color.colorback));
 
-
         findViews();
         initViews();
+
         titlebar.setNavigationOnClickListener(new View.OnClickListener() {
+            Request request;
             @Override
             public void onClick(View v) {
                 finish();
+                //当点击返回时，把信息保存会数据库
+                Gson gson=new Gson();
+                MediaType jsonType = MediaType.parse("application/json; charset=utf-8");
+                String jsonStr = gson.toJson(community);//json数据.
+                RequestBody body = RequestBody.create(jsonType, jsonStr);
+                if(community.getType()==1){
+                    //诗词
+                    request = new Request.Builder()
+                            .url("http://192.168.0.57:8080/MyPoetryRhyme/oripoetry/update")//设置网络请求的URL地址
+                            .post(body)
+                            .build();
+                }
+                else{
+                    //话题
+                    request = new Request.Builder()
+                            .url("http://192.168.0.57:8080/MyPoetryRhyme/comm/update")//设置网络请求的URL地址
+                            .post(body)
+                            .build();
+                }
+                //3.创建Call对象
+                Call call = okHttpClient.newCall(request);
+                //4.发送请求
+                //异步请求，不需要创建线程
+                call.enqueue(new Callback() {
+                    @Override
+                    //请求失败时回调
+                    public void onFailure(Call call, IOException e) {
+                        e.printStackTrace();//打印异常信息
+                    }
+
+                    @Override
+                    //请求成功之后回调
+                    public void onResponse(Call call, Response response) throws IOException {
+                        //不能直接更新界面
+                        String jsonStr = response.body().string();
+                        String str = URLDecoder.decode(jsonStr, "utf-8");
+                        Log.e("content",str);
+                    }
+                });
             }
         });
         MyListener myListener=new MyListener();
@@ -91,7 +145,7 @@ public class CommunityDetail extends AppCompatActivity {
         btn_attention.setOnClickListener(myListener);
         btn_collect.setOnClickListener(myListener);
 
-        updateLikeToEdit();
+        //  updateLikeToEdit();
 
 
 
@@ -118,13 +172,20 @@ public class CommunityDetail extends AppCompatActivity {
         tv_title=findViewById(R.id.tv_title);
         tv_author=findViewById(R.id.tv_author);
         iv_userhead=findViewById(R.id.iv_userhead);
+        tv_like=findViewById(R.id.tv_likecount);
+        tv_comment=findViewById(R.id.tv_commentcount);
 
 
     }
 
     public void initViews(){
         tv_author.setText(community.getUser().getName());
-        iv_userhead.setImageDrawable(getResources().getDrawable(community.getUser().getHeadImg()));
+        //iv_userhead.setImageDrawable(getResources().getDrawable(community.getUser().getHeadimg()));
+        Log.e("name",community.getUser().getName()+"");
+        Log.e("like",community.getLikequantity()+"");
+        Log.e("comment",community.getCommentquantity()+"");
+        tv_like.setText(community.getLikequantity()+"喜欢");
+        tv_comment.setText(community.getCommentquantity()+"评论");
         if(community.getType()==1){
             //原创诗词
             layout_poem.setVisibility(View.VISIBLE);
@@ -239,7 +300,7 @@ public class CommunityDetail extends AppCompatActivity {
                     myAdapter = new MyAdapter<Comment>(comments, R.layout.item_comment) {
                         @Override
                         public void bindView(ViewHolder holder, Comment obj) {
-                            holder.setImageResource(R.id.imageview, obj.getUser().getHeadImg());
+                            //holder.setImageResource(R.id.imageview, obj.getUser().getHeadimg());
                             holder.setText(R.id.username, obj.getUser().getName());
                             holder.setText(R.id.content, obj.getContent());
                             holder.setText(R.id.tv_date, obj.getDate().toString());
@@ -251,6 +312,9 @@ public class CommunityDetail extends AppCompatActivity {
                 }
                 editText.setText("");
                 editText.setHint("友善的评论是交流的起点。");
+                int count=community.getCommentquantity();
+                count=count+1;
+                community.setCommentquantity(count);
             }
         });
 
@@ -258,11 +322,14 @@ public class CommunityDetail extends AppCompatActivity {
 
     //点击喜欢按钮
     public void isFavourite(){
+        int count=community.getLikequantity();
         if(isLike){
             //点击按钮变灰
             Drawable drawable=getResources().getDrawable(R.drawable.unlike);
             iv_like.setImageDrawable(drawable);
             isLike=false;
+            count=count-1;
+            tv_like.setText(count+"喜欢");
         }
 
 
@@ -270,7 +337,10 @@ public class CommunityDetail extends AppCompatActivity {
             Drawable drawable=getResources().getDrawable(R.drawable.like_flower);
             iv_like.setImageDrawable(drawable);
             isLike=true;
+            count=count+1;
+            tv_like.setText(count+"喜欢");
         }
+        community.setLikequantity(count);
     }
     //点击关注按钮
     public void isAttention(){
@@ -304,11 +374,11 @@ public class CommunityDetail extends AppCompatActivity {
             isCollect=true;
         }
     }
-    //如果是自己的回答就把喜欢改为修改
+   /* //如果是自己的回答就把喜欢改为修改
     public void updateLikeToEdit(){
         //判断当前页面的用户是否为本人
         //是本人的
-        TextView tv_like=findViewById(R.id.tv_like);
+        TextView tv_like=findViewById(R.id.tv_likecount);
         if(isYour){
             Drawable drawable=getResources().getDrawable(R.drawable.toedit);
             iv_like.setImageDrawable(drawable);
@@ -320,7 +390,7 @@ public class CommunityDetail extends AppCompatActivity {
             tv_like.setText("xxx喜欢");
         }
 
-    }
+    }*/
 
 
 
