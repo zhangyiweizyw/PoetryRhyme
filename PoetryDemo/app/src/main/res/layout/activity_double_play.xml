@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp">
+    android:padding="15dp"
+    android:background="@drawable/banner_2">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -16,6 +17,8 @@
             android:src="@drawable/avatar_unlogin" />
 
         <TextView
+            android:textSize="17dp"
+            android:textStyle="bold"
             android:id="@+id/tv_player1_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,6 +49,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:textColor="@color/colorTheme"
                 android:id="@+id/tv_double_game_my_score"
                 android:text="0"
                 android:layout_width="wrap_content"
@@ -54,11 +60,6 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/vs" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -72,6 +73,8 @@
             android:src="@drawable/avatar_unlogin" />
 
         <TextView
+            android:textSize="17dp"
+            android:textStyle="bold"
             android:id="@+id/tv_player2_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -102,6 +105,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:textColor="@color/colorTheme"
                 android:id="@+id/tv_double_game_other_score"
                 android:text="0"
                 android:layout_width="wrap_content"
@@ -110,7 +116,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -143,7 +149,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="60dp"
         android:text="20"
         android:textColor="#333"
         android:textSize="40dp" />
@@ -165,12 +171,7 @@
         android:layout_marginTop="210dp"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="空格里应该填的是："
-            android:textColor="#333"
-            android:textSize="22dp" />
+
 
         <EditText
             android:id="@+id/et_double_game_et"
@@ -180,6 +181,10 @@
     </LinearLayout>
 
     <Button
+        android:background="@color/colorTheme"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:textSize="20dp"
         android:id="@+id/btn_double_game_btn"
         android:layout_width="200dp"
         android:layout_height="50dp"
