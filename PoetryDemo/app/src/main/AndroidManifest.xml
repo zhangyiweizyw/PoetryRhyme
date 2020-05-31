@@ -67,7 +67,6 @@
         <activity android:name=".SortDetail" />
         <activity android:name=".DoublePlayActivity" />
         <activity android:name=".drawer.XieyiActivity" />
-<<<<<<< HEAD
         <activity android:name=".drawer.YinsiActivity" />
         <activity
             android:name=".drawer.CheckActivity"
@@ -75,11 +74,8 @@
         <activity android:name=".drawer.PhoneActivity" />
         <activity android:name=".drawer.PasswordChooseActivity" />
         <activity android:name=".drawer.PasswordActivity"></activity>
-=======
-        <activity android:name=".drawer.YinsiActivity"></activity>
         <activity android:name=".SystemMessage"></activity>
         <activity android:name=".OfficialMessage"></activity>
->>>>>>> c9733dc5967b6e8a6d9d54cad1c5cdb9df049732
     </application>
 
 </manifest>
