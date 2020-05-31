@@ -1,6 +1,7 @@
 package com.example.a15632.poetrydemo;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -36,6 +37,8 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class AddAttention extends Fragment {
     private View fragment;
 
@@ -46,6 +49,7 @@ public class AddAttention extends Fragment {
     private ArrayList<Community>communities=new ArrayList<>();
     private OkHttpClient okHttpClient=new OkHttpClient();
     private String ip="http://192.168.0.57:8080/MyPoetryRhyme/";
+    private SharedPreferences sharedPreferences;
 
 
     public View onCreateView(@NonNull final LayoutInflater inflater,
@@ -79,24 +83,9 @@ public class AddAttention extends Fragment {
     private void findView(){
         banner=fragment.findViewById(R.id.xbanner);
         listView=fragment.findViewById(R.id.lv_data);
+        sharedPreferences = getContext().getSharedPreferences("loginInfo",
+                MODE_PRIVATE);
         initData();
-        /*myAdapter=new MyAdapter<Community>(communities, R.layout.item_attention) {
-            @Override
-            public void bindView(ViewHolder holder, Community obj) {
-               // holder.setImageResource(R.id.imageview,obj.getUser().getHeadimg());
-                holder.setText(R.id.username,obj.getUser().getUsername());
-                //holder.setText(R.id.tv_date,obj.getIssuedate().toString());
-                if(obj.getType()==1){
-                    holder.setText(R.id.tv_type,"原创诗词");
-                }else{
-                    holder.setText(R.id.tv_type,"社区话题");
-                }
-                holder.setText(R.id.tv_title,obj.getTitle());
-                holder.setText(R.id.tv_content,obj.getContent());
-
-            }
-        };
-        listView.setAdapter(myAdapter);*/
     }
     private void initView(){
         List<LocalImageInfo> localImageInfoList=new ArrayList<>();
@@ -117,19 +106,13 @@ public class AddAttention extends Fragment {
     //准备数据源
     private void initData(){
         //获取当前userid，以2为例
+        int myuserid=sharedPreferences.getInt("id",0);
         //访问数据库
         //2.创建Request对象
         Gson gson=new Gson();
         MediaType jsonType = MediaType.parse("application/json; charset=utf-8");
-        String jsonStr = gson.toJson(2);//json数据.
+        String jsonStr = gson.toJson(myuserid);//json数据.
         RequestBody body = RequestBody.create(jsonType, jsonStr);
-       /* FormBody formBody=new FormBody.Builder()
-                .add("idtip",jsonStr)
-                .build();
-        Request request = new Request.Builder()
-                .url(ip+ "foucscomm/get")//设置网络请求的URL地址ip
-                .post(formBody)
-                .build();*/
         Request request = new Request.Builder()
                 .url(ip+"foucscomm/get")//设置网络请求的URL地址
                 .post(body)

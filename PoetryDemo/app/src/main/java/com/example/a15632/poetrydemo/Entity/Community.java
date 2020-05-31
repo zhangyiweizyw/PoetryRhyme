@@ -23,6 +23,10 @@ public class Community implements Serializable {
         this.id = id;
     }
 
+
+    public Community() {
+    }
+
     public Community(String title, String content, int likecount, int commentcount, int seecount, int type, Date time, User user) {
         this.title = title;
         this.content = content;

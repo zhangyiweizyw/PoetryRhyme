@@ -6,6 +6,7 @@
     android:background="#fff"
     android:orientation="vertical">
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -77,9 +78,10 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="5dp"
             android:text="诗韵官方将和中央电视台《中国诗词大会》节目组联合举办第一届线上诗词大会！届时，不仅有来自天南地北的小伙伴们共同切磋诗词，更有董卿老师，康震老师，蒙曼老师等线上亲切指导。本活动旨在传扬中国传统优秀诗词文化，诚邀小伙伴们积极参加！"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:letterSpacing="0.1"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="10dp"></LinearLayout>
+            android:layout_height="15dp"></LinearLayout>
     </LinearLayout>
 </LinearLayout>
