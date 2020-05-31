@@ -62,6 +62,8 @@
         <activity android:name=".DoublePlayActivity" />
         <activity android:name=".drawer.XieyiActivity" />
         <activity android:name=".drawer.YinsiActivity"></activity>
+        <activity android:name=".SystemMessage"></activity>
+        <activity android:name=".OfficialMessage"></activity>
     </application>
 
 </manifest>
