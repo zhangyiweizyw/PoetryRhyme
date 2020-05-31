@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -28,12 +29,12 @@ import android.widget.Toast;
 import android.app.AlertDialog;
 
 import com.example.a15632.poetrydemo.Entity.Community;
+import com.example.a15632.poetrydemo.Entity.User;
 import com.example.a15632.poetrydemo.util.ImageUtils;
 import com.example.a15632.poetrydemo.util.ScreenUtils;
 import com.google.gson.Gson;
 import com.jaeger.library.StatusBarUtil;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URLDecoder;
 
@@ -54,9 +55,11 @@ public class AddCommunity extends AppCompatActivity {
     private ImageView iv_send;
     private ImageView iv_delete;
 
-    private Community community;
+    private Community community=new Community();
     private OkHttpClient okHttpClient=new OkHttpClient();
     private String ip="http://192.168.0.57:8080/MyPoetryRhyme/";
+    private SharedPreferences sharedPreferences;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -94,6 +97,8 @@ public class AddCommunity extends AppCompatActivity {
         tv_type=findViewById(R.id.tv_type);
         iv_send=findViewById(R.id.iv_send);
         iv_delete=findViewById(R.id.iv_back);
+        sharedPreferences = this.getSharedPreferences("loginInfo",
+                MODE_PRIVATE);
     }
 
 
@@ -131,6 +136,12 @@ public class AddCommunity extends AppCompatActivity {
                                     finish();
                                     //保存会数据库
                                     Request request;
+                                    User u=new User();
+                                    u.setId(sharedPreferences.getInt("id",0));
+                                    u.setName(sharedPreferences.getString("name","张三"));
+                                    u.setPassword(sharedPreferences.getString("password","123"));
+                                    u.setPhone(sharedPreferences.getString("phone","123456"));
+                                    community.setUser(u);
                                     community.setTitle(title.getText().toString());
                                     community.setContent(content.getText().toString());
                                     Gson gson=new Gson();
