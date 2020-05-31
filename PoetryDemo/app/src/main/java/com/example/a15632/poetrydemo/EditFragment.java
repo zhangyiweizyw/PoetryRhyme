@@ -190,8 +190,8 @@ public class EditFragment extends Fragment {
             refreshLayout.setVisibility(View.VISIBLE);
         }
         //获得消息个数
-        addBadgeView(iv_offical,10);
-        addBadgeView(iv_system,100);
+        addBadgeView(iv_offical,2);
+        addBadgeView(iv_system,2);
     }
 
     private class MyListener implements View.OnClickListener{
@@ -199,8 +199,12 @@ public class EditFragment extends Fragment {
         public void onClick(View v) {
             switch(v.getId()){
                 case R.id.iv_offical:
+                    Intent intent1=new Intent(getActivity(),SystemMessage.class);
+                    startActivity(intent1);
                     break;
                 case R.id.iv_system:
+                    Intent intent2=new Intent(getActivity(),OfficialMessage.class);
+                    startActivity(intent2);
                     break;
                 case R.id.iv_comlike:
                     Intent intent=new Intent(getActivity(),ComLikeActivity.class);

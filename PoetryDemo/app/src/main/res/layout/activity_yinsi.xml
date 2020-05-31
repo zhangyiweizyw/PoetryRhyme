@@ -20,13 +20,29 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="返回"
+            android:textColor="#333"
             android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="95dp"
             android:text="隐私政策"
             android:textColor="#333"
-            android:textSize="15dp" />
+            android:textSize="18dp" />
 
     </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:text="隐私政策"
+        android:textColor="#333"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -35,18 +51,10 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <TextView
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                android:textColor="#333"
-                android:textSize="25dp"
-                android:text="隐私政策"
-                android:layout_marginBottom="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+
             <TextView
                 android:textColor="#333"
-                android:textSize="18dp"
+                android:textSize="15dp"
                 android:text="欢迎您使用诗韵。诗韵对每一位用户的隐私权采取高度尊重且保护的态度。我们非常重视用户的个人信息和隐私保护，为给您提供更准确的个性化的服务和更安全的互联网环境，我们依据《中华人民共和国网络安全法》、《信息安全技术个人信息安全规范》（GB/T35273-2017）以及其他相关法律法规和技术规范，将原先体现在《用户隐私与使用协议》中的“用户隐私“相关内容进行了更新并单独以本《隐私政策》的形式进行发布， 本次更新的内容较多，进一步明确了收集/使用/对外提供的原则，进一步阐述了关于您个人信息的相关权利。
 
 本政策适用于我们的所有产品及服务，本政策与您所使用的我们的产品或服务息息相关，您在下载、安装、启动、浏览、注册、登录、使用诗韵的产品或服务时，我们将按照本政策的约定处理和保护您的个人信息。我们将尽量以简明、扼要的表述向您解释本政策所涉及的技术词汇，以便于您理解。

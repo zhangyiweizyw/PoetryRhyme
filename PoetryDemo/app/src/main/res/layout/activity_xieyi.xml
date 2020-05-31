@@ -16,12 +16,18 @@
             android:layout_height="20dp"
             android:layout_gravity="center"
             android:src="@drawable/left3" />
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="返回"
+            android:textColor="#333"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="85dp"
             android:text="用户使用协议"
             android:textColor="#333"
             android:textSize="18dp" />
@@ -36,10 +42,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <TextView
-                android:layout_gravity="center"
+
                 android:textStyle="bold"
                 android:textColor="#333"
-                android:textSize="25dp"
+                android:textSize="15dp"
                 android:text="用户使用协议"
                 android:layout_marginBottom="20dp"
                 android:layout_width="wrap_content"

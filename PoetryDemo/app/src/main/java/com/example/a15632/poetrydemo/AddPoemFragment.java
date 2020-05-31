@@ -21,14 +21,28 @@ import android.widget.TextView;
 
 import com.example.a15632.poetrydemo.Entity.Community;
 import com.example.a15632.poetrydemo.Entity.User;
+//import com.example.a15632.poetrydemo.util.VisitCommunityUtil;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
+import java.io.IOException;
+import java.net.URLDecoder;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 import static android.view.Gravity.CENTER;
 
@@ -36,12 +50,16 @@ public class AddPoemFragment extends Fragment{
 
     private View fragment;
 
+    //private VisitCommunityUtil visitCommunityUtil=new VisitCommunityUtil();
+
 
     private ArrayList<Community>communityList=new ArrayList<>();
     private MyAdapter<Community>myAdapter;
     private ListView listView;
     private SmartRefreshLayout refreshLayout;
     private static final int REFRESH_FINISH = 1;
+    private OkHttpClient okHttpClient=new OkHttpClient();
+    private String ip="http://192.168.0.57:8080/MyPoetryRhyme/";
     //暂不使用下拉刷新，只是用上拉加载更多
    /* private Handler mainHandler = new Handler(){
         @Override
@@ -89,19 +107,19 @@ public class AddPoemFragment extends Fragment{
     private void findViews(){
         listView =fragment.findViewById(R.id.lv_data);
         initData();
-        myAdapter=new MyAdapter<Community>(communityList,R.layout.community_list) {
+       /* myAdapter=new MyAdapter<Community>(communityList,R.layout.community_list) {
             @Override
             public void bindView(ViewHolder holder, Community obj) {
                 holder.setText(R.id.tv_title,obj.getTitle());
-                holder.setImageResource(R.id.iv_userhead,obj.getUser().getHeadImg());
-                holder.setText(R.id.username,obj.getUser().getName());
+                //holder.setImageResource(R.id.iv_userhead,obj.getUser().getHeadimg());
+                holder.setText(R.id.username,obj.getUser().getUsername());
                 holder.setText(R.id.tv_content,obj.getContent());
                 holder.setText(R.id.c_type,"原创诗词");
-                holder.setText(R.id.tv_time,obj.getTime().toString());
-                holder.setText(R.id.seecount,obj.getSeecount()+"");
+                //holder.setText(R.id.tv_time,obj.getTime().toString());
+                holder.setText(R.id.seecount,obj.getPageview()+"");
             }
         };
-        listView.setAdapter(myAdapter);
+        listView.setAdapter(myAdapter);*/
         //获取智能刷新布局
         refreshLayout = fragment.findViewById(R.id.refreshLayout);
     }
@@ -136,15 +154,62 @@ public class AddPoemFragment extends Fragment{
     }
     //准备数据源
     private void initData(){
-        User u = new User("李四","123446",R.drawable.default_headimg);
-        long time=System.currentTimeMillis();
-        Date date=new Date(time);
-        Community c=new Community("静夜思","床前明月光，疑是地上霜。举头望明月，低头思故乡。",
-                100,100,100,1,date,u);
-        communityList.add(c);
-        communityList.add(c);
-        communityList.add(c);
-        communityList.add(c);
-        communityList.add(c);
+        //访问数据库
+        //2.创建Request对象
+        Request request = new Request.Builder()
+                .url(ip+"oripoetry/get")//设置网络请求的URL地址
+                .get()
+                .build();
+        //3.创建Call对象
+        Call call = okHttpClient.newCall(request);
+        //4.发送请求
+        //异步请求，不需要创建线程
+        call.enqueue(new Callback() {
+            @Override
+            //请求失败时回调
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();//打印异常信息
+            }
+
+            @Override
+            //请求成功之后回调
+            public void onResponse(Call call, Response response) throws IOException {
+                //不能直接更新界面
+                String jsonStr = response.body().string();
+                String str = URLDecoder.decode(jsonStr, "utf-8");
+                communityList=(ArrayList<Community>) parseJsonStr(str);
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        myAdapter=new MyAdapter<Community>(communityList,R.layout.community_list) {
+                            @Override
+                            public void bindView(ViewHolder holder, Community obj) {
+                                holder.setText(R.id.tv_title,obj.getTitle());
+                                //holder.setImageResource(R.id.iv_userhead,obj.getUser().getHeadimg());
+                                holder.setText(R.id.username,obj.getUser().getName());
+                                holder.setText(R.id.tv_content,obj.getContent());
+                                holder.setText(R.id.c_type,"原创诗词");
+                                // holder.setText(R.id.tv_time,obj.getIssuedate().toString());
+                                holder.setText(R.id.seecount,obj.getPageview()+"");
+                            }
+                        };
+                        listView.setAdapter(myAdapter);
+                    }
+                });
+
+
+            }
+        });
+
     }
+    public List<Community> parseJsonStr(String jsondata){
+        Gson gson=new Gson();
+        List<Community>communities=gson.fromJson(jsondata,new TypeToken<List<Community>>(){}.getType());
+        for(int i=0;i<communities.size();i++){
+            Log.e("community",communities.get(i).toString());
+        }
+        return communities;
+    }
+
+
 }

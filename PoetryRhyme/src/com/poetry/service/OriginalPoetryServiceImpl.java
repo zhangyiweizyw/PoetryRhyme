@@ -16,29 +16,29 @@ import com.poetry.entity.OriginalPoetry;
 public class OriginalPoetryServiceImpl {
 	
 	@Resource
-	private OrigPoetryDaoImpl originalPoetryDaoImpl;
+	private OrigPoetryDaoImpl origPoetryDaoImpl;
 	
 	//查询所有原创诗词及其作者姓名
 	public List<OriginalPoetry> findAllOriginalPoetry(){
 		List<OriginalPoetry> poetrys = new ArrayList<>();
-		poetrys = this.originalPoetryDaoImpl.selectOriginalPeotry();
+		poetrys = this.origPoetryDaoImpl.selectOriginalPeotry();
 		return poetrys;
 	}
 	
 	//根据ID查找单条原创诗词
 	public OriginalPoetry findPoetryById(int id) {
 		OriginalPoetry originalPoetry = new OriginalPoetry();
-		originalPoetry = this.originalPoetryDaoImpl.selectOriginalPoetryById(id);
+		originalPoetry = this.origPoetryDaoImpl.selectOriginalPoetryById(id);
 		return originalPoetry;
 	}
 	
 	//新增一条原创诗词
 	public void addOriginalPoetry(OriginalPoetry op){
-		this.originalPoetryDaoImpl.addOriginalPoetry(op);
+		this.origPoetryDaoImpl.addOriginalPoetry(op);
 	}
 	//修改信息
 	public void updateOriginalPoetry(OriginalPoetry op){
-		this.originalPoetryDaoImpl.updateOriginalPoetry(op);
+		this.origPoetryDaoImpl.updateOriginalPoetry(op);
 	}
 	
 	

@@ -1,29 +1,36 @@
 package com.example.a15632.poetrydemo.Entity;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 public class Community implements Serializable {
 
+    private int id;
     private String title;//标题
     private String content;//文本
-    private int likecount;//喜欢数量
-    private int commentcount;//评论数量
-    private int seecount;//浏览数量
+    private int likequantity;//喜欢数量
+    private int commentquantity;//评论数量
+    private int pageview;//浏览数量
+    private Date issuedate;//发布时间
     private int type;//类型1:原创诗词 2:社区话题
-    private Date time;//发布时间
     private User user;
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public Community(String title, String content, int likecount, int commentcount, int seecount, int type,Date time, User user) {
+    public Community(String title, String content, int likecount, int commentcount, int seecount, int type, Date time, User user) {
         this.title = title;
         this.content = content;
-        this.likecount = likecount;
-        this.commentcount = commentcount;
-        this.seecount = seecount;
+        this.likequantity = likecount;
+        this.commentquantity = commentcount;
+        this.pageview = seecount;
         this.type=type;
-        this.time = time;
+        this.issuedate = time;
         this.user = user;
     }
 
@@ -33,26 +40,10 @@ public class Community implements Serializable {
     }
     public Community(String title, String content,Date date,int type,User u) {
         this.user=u;
-        this.time=date;
+        this.issuedate=date;
         this.type=type;
         this.title = title;
         this.content = content;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
     }
 
     public String getTitle() {
@@ -67,42 +58,69 @@ public class Community implements Serializable {
         return content;
     }
 
-
-
     public void setContent(String content) {
         this.content = content;
     }
 
-    public int getLikecount() {
-        return likecount;
+    public int getLikequantity() {
+        return likequantity;
     }
 
-    public void setLikecount(int likecount) {
-        this.likecount = likecount;
+    public void setLikequantity(int likequantity) {
+        this.likequantity = likequantity;
     }
 
-    public int getCommentcount() {
-        return commentcount;
+    public int getCommentquantity() {
+        return commentquantity;
     }
 
-    public void setCommentcount(int commentcount) {
-        this.commentcount = commentcount;
-    }
-    public Date getTime() {
-        return time;
+    public void setCommentquantity(int commentquantity) {
+        this.commentquantity = commentquantity;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
-    }
-    public int getSeecount() {
-        return seecount;
+    public int getPageview() {
+        return pageview;
     }
 
-    public void setSeecount(int seecount) {
-        this.seecount = seecount;
+    public void setPageview(int pageview) {
+        this.pageview = pageview;
     }
 
+    public Date getIssuedate() {
+        return issuedate;
+    }
 
+    public void setIssuedate(Date issuedate) {
+        this.issuedate = issuedate;
+    }
 
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Community{" +
+                "title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", likecount=" + likequantity +
+                ", commentcount=" + commentquantity +
+                ", seecount=" + pageview +
+                ", type=" + type +
+                ", time=" + issuedate +
+                ", user=" + user +
+                '}';
+    }
 }

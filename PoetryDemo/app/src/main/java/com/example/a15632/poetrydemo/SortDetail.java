@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -30,6 +31,7 @@ import okhttp3.Response;
 
 public class SortDetail extends AppCompatActivity {
 
+    private ImageView iv_left;
     private ListView listView;
     private String str;
     private ArrayList<Poetry> resource = new ArrayList<>();
@@ -42,7 +44,7 @@ public class SortDetail extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_sort);
         client = new OkHttpClient();
         Intent intent = getIntent();
@@ -69,7 +71,13 @@ public class SortDetail extends AppCompatActivity {
                 break;
 
         }
-
+        iv_left = findViewById(R.id.img_collet_back);
+        iv_left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
         setListener();
