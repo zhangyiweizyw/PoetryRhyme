@@ -204,7 +204,7 @@ public class ViewSortFragment extends Fragment {
     private void getPoetry() {
         //2.创建Request对象
         Request request = new Request.Builder()
-                .url(Constant.lcIp + "comm/get")//设置网络请求的URL地址
+                .url(Constant.lcIp + "comm/add")//设置网络请求的URL地址
                 .get()
                 .build();
         //3.创建Call对象
@@ -225,16 +225,16 @@ public class ViewSortFragment extends Fragment {
 //                Log.e("异步GET请求结果",response.body().string());
                 String jsonStr = response.body().string();
                 String str = URLDecoder.decode(jsonStr, "utf-8");
-                Log.e("结果", "-" + str);
-                /* User msg = new Gson().fromJson(jsonStr, User.class);*/
+                Log.e("add结果", "-" + str);
+                /* User msg = new Gson().fromJson(jsonStr, User.class);*//*
                 List<CommunityTopic> list = new Gson().fromJson(str, new TypeToken<List<CommunityTopic>>() {
-                }.getType());
+                }.getType());*/
 
 
-                for (CommunityTopic comm : list) {
+              /*  for (CommunityTopic comm : list) {
                     Log.e("得到的社区", comm.toString());
 
-                }
+                }*/
 
 
 //                response.close();

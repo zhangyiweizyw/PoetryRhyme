@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView login_switch;
     private LinearLayout layout_one;
     private LinearLayout layout_two;
-    private final Handler mHandler = new MyHandler();;
+    private final Handler mHandler = new MyHandler();
     private final static int MSGWHAT = 3;
     //tow
     private EditText et_name;

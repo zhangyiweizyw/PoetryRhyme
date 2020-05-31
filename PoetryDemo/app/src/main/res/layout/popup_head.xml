@@ -9,13 +9,13 @@
 
 
     <Button
-        android:id="@+id/btn_photo"
+        android:id="@+id/head_photo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="拍照"/>
 
     <Button
-        android:id="@+id/btn_select"
+        android:id="@+id/head_select"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="从相册选择" />
@@ -30,7 +30,7 @@
         android:background="#FFFFFF" />
 
     <Button
-        android:id="@+id/btn_cancel"
+        android:id="@+id/head_cancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="取消" />
