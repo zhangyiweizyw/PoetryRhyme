@@ -49,78 +49,12 @@
             android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
-            <LinearLayout
-                android:id="@+id/linear_home_game_paihang"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
-                android:layout_toLeftOf="@+id/linear_game_box"
-                android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/game_paihang" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="7dp"
-                    android:text="排行榜"
-                    android:textColor="#fff" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linear_game_box"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/game_box" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="7dp"
-                    android:text="更多"
-                    android:textColor="#fff" />
-
-            </LinearLayout>
         </LinearLayout>
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:background="@drawable/circler_game"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_alignParentRight="true"
-        android:layout_width="wrap_content"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:src="@drawable/money"
-            android:layout_width="30dp"
-            android:layout_height="30dp" />
-        <TextView
-            android:text="0"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:textColor="#333"
-            android:textSize="22dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
 
-    </LinearLayout>
 
 
 </RelativeLayout>
