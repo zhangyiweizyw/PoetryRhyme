@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 import com.example.a15632.poetrydemo.Entity.Constant;
 import com.example.a15632.poetrydemo.Entity.User;
+import com.example.a15632.poetrydemo.HomeFragment;
 import com.example.a15632.poetrydemo.MainActivity;
 import com.example.a15632.poetrydemo.R;
 import com.google.gson.Gson;
@@ -74,6 +75,8 @@ public class SettingActivity extends AppCompatActivity {
 
     private EditText name_et;
 
+    private ImageView img_setting_back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,12 +94,13 @@ public class SettingActivity extends AppCompatActivity {
         change_pwd = findViewById(R.id.set_change_pwd);
         change_phone = findViewById(R.id.set_change_phone);
         exit = findViewById(R.id.set_exit);
+        img_setting_back=findViewById(R.id.img_setting_back);
     }
 
 
     private void listener() {
-        //head
 
+        //head
         head.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,6 +117,7 @@ public class SettingActivity extends AppCompatActivity {
                     showName();
             }
         });
+
         //注销
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,6 +148,14 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
+        //返回
+        img_setting_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingActivity.this, HomeFragment.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -297,6 +310,7 @@ public class SettingActivity extends AppCompatActivity {
     private void showHead() {
         // 创建popupWindow对象
         popupWindow = new PopupWindow();
+        //设置弹出窗体的宽和高
         popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         // 通过布局填充器创建View
@@ -308,6 +322,7 @@ public class SettingActivity extends AppCompatActivity {
         popupWindow.setOutsideTouchable(false);
         // 设置PopupWindow是否相应点击事件
         popupWindow.setTouchable(true);
+
 
         // 获取按钮并添加监听器
 
@@ -337,6 +352,7 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
+        //取消按钮
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -348,6 +364,8 @@ public class SettingActivity extends AppCompatActivity {
         popupWindow.showAsDropDown(head);
 
     }
+
+
 
     //申请权限回调方法
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
