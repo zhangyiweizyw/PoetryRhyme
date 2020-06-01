@@ -57,7 +57,6 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".drawer.WorksActivity" />
         <activity android:name=".drawer.CollectActivity" />
-        <activity android:name=".drawer.SettingActivity" />
         <activity android:name=".drawer.AboutActivity" />
         <activity android:name=".AddCommunity" />
         <activity android:name=".DakaActivity" />
@@ -76,6 +75,12 @@
         <activity android:name=".drawer.PasswordActivity"></activity>
         <activity android:name=".SystemMessage"></activity>
         <activity android:name=".OfficialMessage"></activity>
+        <activity android:name=".drawer.SettingActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:configChanges="keyboardHidden|orientation"></activity>
+
+
     </application>
 
 </manifest>

@@ -1,40 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="280dp"
-    android:layout_height="180dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@null"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:gravity="center">
 
-
+    <LinearLayout
+        android:id="@+id/popup_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <Button
         android:id="@+id/head_photo"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
         android:text="拍照"
-        android:background="#fff"/>
+        android:background="@drawable/circle_game1"
+        android:alpha="0.9"
+        android:textColor="#3478F6"/>
 
     <Button
         android:id="@+id/head_select"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
         android:text="从相册选择"
-        android:background="#fff"
-        android:layout_marginTop="1dp"/>
+        android:layout_marginTop="1dp"
+        android:background="@drawable/circle_game1"
+        android:alpha="0.9"
+        android:textColor="#3478F6"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="6dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="6dp"
-        android:background="#FFF" />
+        <Button
+            android:id="@+id/head_cancel"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:text="取消"
+            android:textSize="18sp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/circle_game1"
+            android:textColor="#3478F6"/>
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/head_cancel"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:text="取消"
-        android:background="#fff"/>
+
+
 </LinearLayout>

@@ -1,31 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/back_ground"
+    android:layout_height="168dp"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="305dp"
+        android:layout_height="160dp"
+        android:orientation="vertical"
+        android:background="@drawable/circle_game1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="设置用户名"
+            android:textColor="#333"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_marginTop="6dp"/>
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="1dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请输入："
+            android:textSize="15sp"
+            android:textColor="#333"
+            android:layout_marginLeft="42dp"
+            android:layout_gravity="center_vertical"/>
+        <EditText
+            android:id="@+id/name_et"
+            android:textSize="15dp"
+            android:layout_width="170dp"
+            android:layout_height="45dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="6dp"
+            android:background="#fff"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+        <View android:layout_height="1dp"
+            android:layout_width="match_parent"
+            android:background="#efefef"
+        />
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="3dp">
+
+            <Button
+                android:id="@+id/name_cancel"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="取消"
+                android:textColor="#eb4d3d"
+                android:background="#fff"
+                android:textSize="16sp"
+                android:layout_marginLeft="1dp"/>
+                <Button
+                    android:id="@+id/name_true"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="确认修改"
+                    android:background="#fff"
+                    android:textColor="#3478F6"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="1dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
 
 
-    <EditText
-        android:id="@+id/name_et"
-        android:textSize="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginBottom="6dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="6dp"
-        android:background="#FFFFFF" />
-
-    <Button
-        android:id="@+id/name_true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="确认修改" />
-    <Button
-        android:id="@+id/name_cancel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="取消" />
 </LinearLayout>

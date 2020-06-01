@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Handler;
 import android.provider.MediaStore;
@@ -18,6 +19,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -54,6 +57,7 @@ public class SettingActivity extends AppCompatActivity {
     //弹窗
     private PopupWindow popupWindow = null;
     private View popupView = null;
+    private Context context;
     //头像
     private ImageView head;
     private final int REQUEST_CAMERA = 1;
@@ -107,6 +111,7 @@ public class SettingActivity extends AppCompatActivity {
                 if (popupWindow == null || !popupWindow.isShowing())
                     showHead();
 
+
             }
         });
         //name
@@ -152,8 +157,9 @@ public class SettingActivity extends AppCompatActivity {
         img_setting_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SettingActivity.this, HomeFragment.class);
-                startActivity(intent);
+//                Intent intent = new Intent(SettingActivity.this, HomeFragment.class);
+//                startActivity(intent);
+                finish();
             }
         });
     }
@@ -207,6 +213,8 @@ public class SettingActivity extends AppCompatActivity {
 
     @SuppressLint("WrongConstant")
     private void showName() {
+        //显示遮罩
+        bgAlpha(0.5f);
         // 创建popupWindow对象
         popupWindow = new PopupWindow();
         popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
@@ -220,7 +228,11 @@ public class SettingActivity extends AppCompatActivity {
         popupWindow.setOutsideTouchable(false);
         // 设置PopupWindow是否相应点击事件
         popupWindow.setTouchable(true);
+        //popupWindow.setFocusable(false);
 
+
+        //设置弹窗位置
+        popupWindow.showAtLocation(popupView, Gravity.CENTER|Gravity.CENTER_HORIZONTAL,0,0);
         // 获取按钮并添加监听器
 
         Button btnTrue = popupView.findViewById(R.id.name_true);
@@ -228,13 +240,14 @@ public class SettingActivity extends AppCompatActivity {
         name_et = popupView.findViewById(R.id.name_et);
         //防止PopupWindow被软件盘挡住
         popupWindow.setFocusable(true);
-        /*popupWindow.setSoftInputMode(PopupWindow.INPUT_METHOD_NEEDED);
-        popupWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+//        popupWindow.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
+//        popupWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
         InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         //这里给它设置了弹出的时间，
-        imm.toggleSoftInput(1000, InputMethodManager.HIDE_NOT_ALWAYS);*/
+        imm.toggleSoftInput(1000, InputMethodManager.HIDE_NOT_ALWAYS);
 
+        //确认修改
         btnTrue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -243,21 +256,22 @@ public class SettingActivity extends AppCompatActivity {
                         MODE_PRIVATE);//只在本程序内部访问
                 newName = name_et.getText().toString();
 
-
                 changeName();
 
             }
         });
 
+        //取消
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                bgAlpha(1.0f);
                 popupWindow.dismiss();
             }
         });
 
         // 在指定控件下方显示PopupWindow
-        popupWindow.showAsDropDown(head);
+        //popupWindow.showAsDropDown(head);
 
     }
 
@@ -307,6 +321,8 @@ public class SettingActivity extends AppCompatActivity {
 
     //头像
     private void showHead() {
+        //显示遮罩
+        bgAlpha(0.5f);
         // 创建popupWindow对象
         popupWindow = new PopupWindow();
         //设置弹出窗体的宽和高
@@ -320,8 +336,35 @@ public class SettingActivity extends AppCompatActivity {
         // 设置PopupWindow是否能响应外部点击事件
         popupWindow.setOutsideTouchable(false);
         // 设置PopupWindow是否相应点击事件
-        popupWindow.setTouchable(true);
+        //popupWindow.setTouchable(true);
+       popupWindow.setFocusable(false);
+        //设置动画
+        popupWindow.setAnimationStyle(R.style.mypopwindow_anim_style);
+        //设置背景透明
+        popupWindow.setBackgroundDrawable(new ColorDrawable(0*00000000));
 
+        //设置弹窗位置
+        popupWindow.showAtLocation(popupView, Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL,0,0);
+
+//        //如果触摸位置在窗口外面则销毁
+//        popupView.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                //取消遮罩
+//                bgAlpha(1.0f);
+//                int height = popupView.findViewById(R.id.popup_layout).getTop();
+//                int y = (int)event.getY();
+//                if (event.getAction() == MotionEvent.ACTION_UP){
+//                    if(y < height){
+//
+//                        popupWindow.dismiss();
+//
+//                    }
+//
+//                }
+//                return true;
+//            }
+//        });
 
         // 获取按钮并添加监听器
 
@@ -355,7 +398,10 @@ public class SettingActivity extends AppCompatActivity {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //取消遮罩
+                bgAlpha(1.0f);
                 popupWindow.dismiss();
+
             }
         });
 
@@ -447,5 +493,13 @@ public class SettingActivity extends AppCompatActivity {
             }
         }, 0);
     }*/
+
+   //实现弹窗遮罩
+    public void bgAlpha(float alpha){
+
+        WindowManager.LayoutParams lp = this.getWindow().getAttributes();
+        lp.alpha = alpha;
+        this.getWindow().setAttributes(lp);
+    }
 
 }
