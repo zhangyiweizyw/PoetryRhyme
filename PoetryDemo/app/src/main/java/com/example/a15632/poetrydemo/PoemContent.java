@@ -83,14 +83,4 @@ public class PoemContent extends Fragment {
             layout_content.addView(t);;
         }
     }
-
-
-
-
-
-
-
-
-
-
 }
