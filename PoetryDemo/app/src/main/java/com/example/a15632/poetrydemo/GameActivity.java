@@ -173,9 +173,6 @@ public class GameActivity extends AppCompatActivity {
         final AlertDialog.Builder builder=new AlertDialog.Builder(GameActivity.this);
         builder.setTitle("很遗憾，回答错误QAQ");
         builder.setMessage("正确答案是： "+my_key);
-        if(problem_num.getText().toString()!="1"){
-            builder.setMessage("你获得了"+pn*5+"个金币，请继续努力~");
-        }
         builder.setNegativeButton("结束", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

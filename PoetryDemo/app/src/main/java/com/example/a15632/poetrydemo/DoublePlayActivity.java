@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.LoginFilter;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -74,6 +75,7 @@ public class DoublePlayActivity extends AppCompatActivity {
 
     private EditText your_anwser;
     private Button btn;
+    private boolean one=true;//锁，限制每次题目，只能点一次按钮
 
     private TextView sum;//题目总数
     private int sums=8;
@@ -119,14 +121,17 @@ public class DoublePlayActivity extends AppCompatActivity {
                         } else if (jsonObject.has("game_problem")) {
                             Log.e("成功", "接收到了题目");
                             if(sums>0){
+                                one=true;
                                 loadingProblem();
                                 mCountDown=new MyCountDown(20*1000,1000);
                                 mCountDown.start();
                                 problem.setText(jsonObject.getString("game_problem").toString());
                                 key = jsonObject.getString("game_key");
-                                sum.setText(sums--+"");
+                                sum.setText(--sums+"");
                             }else {
                                 Log.e("嗷","两人答题已结束");
+                                gameEnd();
+
                             }
 
                         } else if (jsonObject.has("game_other_anwser")) {
@@ -182,62 +187,41 @@ public class DoublePlayActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCountDown.cancel();
+                if(one==true){
+                    mCountDown.cancel();
 
-                sendAnwser();
-                String anwser=your_anwser.getText().toString();
-                if(key.equals(anwser)){
-                    Log.e("成功！","我的回答是正确的！");
-                    changMyScore();
-                    alertSuccess();
+                    sendAnwser();
+                    String anwser=your_anwser.getText().toString();
+                    if(key.equals(anwser)){
+                        Log.e("成功！","我的回答是正确的！");
+                        changMyScore();
+                        Toast.makeText(DoublePlayActivity.this,"回答正确辽~",Toast.LENGTH_LONG).show();
 
-                }else{
-                    Log.e("啊哦！","我的回答有误");
-                    alertFail();
+                    }else{
+                        Log.e("啊哦！","我的回答有误");
+                        Toast.makeText(DoublePlayActivity.this,"错误QAQ,正确答案是:"+key,Toast.LENGTH_LONG).show();
+                    }
+                    one=false;
                 }
+
 
 
             }
         });
     }
 
-    public void playSound(int MusicId){
-        music=MediaPlayer.create(this,MusicId);
-        music.start();
+
+    @Override
+    protected void onDestroy() {
+        Log.e("按下了返回键","===");
+        try{
+            clientSocket.close();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        super.onDestroy();
     }
-    public void alertSuccess(){
-        playSound(R.raw.game_success_sound);
-        final android.support.v7.app.AlertDialog.Builder builder=new android.support.v7.app.AlertDialog.Builder(DoublePlayActivity.this);
-        builder.setTitle("回答正确！(。・∀・)ノ");
-        builder.setMessage("等待对面玩家完成答题中。。");
 
-
-        final android.support.v7.app.AlertDialog dialog=builder.create();
-        dialog.show();
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                dialog.dismiss();
-            }
-        },500);
-    }
-    public void alertFail(){
-        playSound(R.raw.game_fail_sound);
-        final android.support.v7.app.AlertDialog.Builder builder=new android.support.v7.app.AlertDialog.Builder(DoublePlayActivity.this);
-        builder.setTitle("回答有误！QAQ");
-        builder.setMessage("等待对面玩家完成答题中。。");
-
-        final android.support.v7.app.AlertDialog dialog=builder.create();
-        dialog.show();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                dialog.dismiss();
-            }
-        },500);
-
-    }
     public void changMyScore(){
         new Thread(){
             @Override
@@ -273,7 +257,7 @@ public class DoublePlayActivity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject();
                     jsonObject.put("game_my_anwser", anwser);
                     int s = 2;
-                    while (s-- > 0) {
+                    while (s-- > 0) {//不知道为什么要发两次才可以。。。。
                         writer.write(jsonObject.toString() + "\n");
                         writer.flush();
                     }
@@ -338,7 +322,6 @@ public class DoublePlayActivity extends AppCompatActivity {
                     while (true) {
                         if (reader.ready()) {
                             dissmissAlert();
-
 
                             Message msg = handler.obtainMessage();
                             msg.what = CHANGE;
@@ -425,8 +408,33 @@ public class DoublePlayActivity extends AppCompatActivity {
             public void run() {
                 alertDialog_waiting_data.dismiss();
             }
-        },1000);
+        },500);
 
+
+    }
+    /**
+     * 游戏结束dialog
+     */
+    public void gameEnd(){
+        AlertDialog.Builder builder=new AlertDialog.Builder(DoublePlayActivity.this);
+        builder.setTitle("游戏结束辽~");
+       if (mScore>oScore){
+           builder.setMessage("你更胜一筹");
+       }else if(oScore>mScore){
+           builder.setMessage("请继续努力");
+       }else if(mScore==oScore){
+           builder.setMessage("OMFG 你们几乎平起平坐");
+       }
+        builder.setNegativeButton("结束", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                finish();
+            }
+        });
+
+       AlertDialog dialog=builder.create();
+        dialog.show();
 
     }
 
