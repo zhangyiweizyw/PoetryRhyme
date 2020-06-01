@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,10 +25,12 @@ import cn.smssdk.SMSSDK;
 
 public class CheckActivity extends AppCompatActivity {
 
+
     private TextView check_phone;
     private TextView check_msg;//按钮
     private EditText check_et;
     private Button check_next;
+    private ImageView check_phone_back;
     //user
     private SharedPreferences sharedPreferences;
     private String phone;
@@ -43,6 +46,7 @@ public class CheckActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();//去掉顶部标题栏
         setContentView(R.layout.activity_check);
         Intent intent = getIntent();
         origin_activity = intent.getStringExtra("next");
@@ -134,6 +138,14 @@ public class CheckActivity extends AppCompatActivity {
             }
         });
 
+        //返回
+        check_phone_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
     private void find() {
@@ -141,6 +153,7 @@ public class CheckActivity extends AppCompatActivity {
         check_et = findViewById(R.id.check_et);
         check_msg = findViewById(R.id.check_msg);
         check_next = findViewById(R.id.check_btn);
+        check_phone_back = findViewById(R.id.check_phone_back);
     }
 
     // 使用完EventHandler需注销，否则可能出现内存泄漏

@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +48,7 @@ public class PhoneActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
 
     private String phone;
+    private ImageView phone_login_back;
     //msg
     private String message;
     private EventHandler eh;
@@ -140,6 +142,15 @@ public class PhoneActivity extends AppCompatActivity {
             }
         });
 
+        //返回
+        phone_login_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
 
     }
 
@@ -148,6 +159,7 @@ public class PhoneActivity extends AppCompatActivity {
         phone_msg =  findViewById(R.id.phone_msg);
         phone_et_msg = findViewById(R.id.phone_et_msg);
         phone_new = findViewById(R.id.phone_new);
+        phone_login_back = findViewById(R.id.phone_login_back);
 
     }
 

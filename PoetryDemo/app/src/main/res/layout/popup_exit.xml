@@ -1,36 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="10dp"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-
-    <TextView
-        android:layout_marginBottom="40dp"
-        android:textSize="20dp"
-        android:gravity="center"
-        android:text="确定退出该账号吗?"
-        android:layout_width="match_parent"
-        android:layout_height="40dp" />
+    android:layout_height="160dp"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:gravity="center">
 
     <LinearLayout
+        android:layout_width="305dp"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        android:background="@drawable/circle_game1">
 
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/exit_true"
-            android:text="确定"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
-        <Button
-            android:id="@+id/exit_cancel"
-            android:text="取消"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:layout_marginBottom="1dp">
+            <TextView
+                android:layout_marginBottom="40dp"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:text="确定退出该账号吗?"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="25dp"/>
+        </LinearLayout>
+        <View android:layout_height="1dp"
+            android:layout_width="match_parent"
+            android:background="#efefef"
+            android:layout_marginTop="20dp"/>
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            >
+
+            <Button
+                android:id="@+id/exit_cancel"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="取消"
+                android:textColor="#eb4d3d"
+                android:background="#fff"
+                android:textSize="16sp"
+                android:layout_marginLeft="1dp" />
+            <Button
+                android:id="@+id/exit_true"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="确定"
+                android:background="#fff"
+                android:textColor="#3478F6"
+                android:textSize="16sp"
+                android:layout_marginLeft="1dp" />
+
+
+        </LinearLayout>
+
 
     </LinearLayout>
 

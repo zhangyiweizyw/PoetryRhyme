@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ public class PasswordActivity extends AppCompatActivity {
     private EditText newPwdTrue;
     private Button pwdBtn;
     private String pass = "";
+    private ImageView password_back;
 
     private SharedPreferences sharedPreferences;
 
@@ -46,6 +48,7 @@ public class PasswordActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();//去掉顶部标题栏
         setContentView(R.layout.activity_password);
         client = new OkHttpClient();
         find();
@@ -58,7 +61,6 @@ public class PasswordActivity extends AppCompatActivity {
             layout.setVisibility(View.VISIBLE);
 
         }
-
 
 
 
@@ -84,7 +86,15 @@ public class PasswordActivity extends AppCompatActivity {
                 }
             }
         });
+
+        password_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
+
 
     private void find() {
         oldPwd = findViewById(R.id.pwd_old);
@@ -92,6 +102,7 @@ public class PasswordActivity extends AppCompatActivity {
         newPwd = findViewById(R.id.pwd_new);
         pwdBtn = findViewById(R.id.pwd_btn);
         layout = findViewById(R.id.pwd_pass_pwd);
+        password_back = findViewById(R.id.password_back);
     }
 
     private void changePhone() {
