@@ -24,7 +24,7 @@ public class GameFragment extends Fragment {
     private View fragment;
     private Button intoGame;
     private Button intoDoubleGame;
-    private LinearLayout paihang;
+//    private LinearLayout paihang;
     private ImageView imgclose;
     private ListView paihangbanglv;
     private ArrayList<GamePaiHangBang> gamePaiHangBangs=new ArrayList<>();
@@ -53,7 +53,7 @@ public class GameFragment extends Fragment {
     private void findView() {
         intoGame=fragment.findViewById(R.id.btn_into_game);
         intoDoubleGame=fragment.findViewById(R.id.btn_into_double_game);
-        paihang=fragment.findViewById(R.id.linear_home_game_paihang);
+
     }
 
     private void action(){
@@ -71,13 +71,7 @@ public class GameFragment extends Fragment {
                 startActivity(new Intent(getActivity(),DoublePlayActivity.class));
             }
         });
-        //点击弹窗事件
-        paihang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPaiHangDialog();
-            }
-        });
+
     }
     public void showPaiHangDialog(){
         AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
