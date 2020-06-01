@@ -90,7 +90,7 @@
         android:text="Copyright 2020 shiyun.com.All rights reserved."
         android:textColor="#000"
         android:layout_gravity="center"
-        android:layout_marginTop="280dp"/>
+        android:layout_marginTop="270dp"/>
 
 </LinearLayout>
 

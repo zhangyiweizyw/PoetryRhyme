@@ -225,8 +225,16 @@ public class SettingActivity extends AppCompatActivity {
         bgAlpha(0.5f);
         // 创建popupWindow对象
         popupWindow = new PopupWindow();
+
+        //设置Popupwindow宽和高
         popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        //防止PopupWindow被软件盘挡住
+        popupWindow.setFocusable(true);
+        popupWindow.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
+        popupWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
         // 通过布局填充器创建View
         popupView = getLayoutInflater()
                 .inflate(R.layout.popup_name, null);
@@ -246,10 +254,7 @@ public class SettingActivity extends AppCompatActivity {
         Button btnTrue = popupView.findViewById(R.id.name_true);
         Button btnCancel = popupView.findViewById(R.id.name_cancel);
         name_et = popupView.findViewById(R.id.name_et);
-        //防止PopupWindow被软件盘挡住
-        popupWindow.setFocusable(true);
-        popupWindow.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
-        popupWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
 
         InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         //这里给它设置了弹出的时间，
