@@ -2,6 +2,7 @@ package com.example.a15632.poetrydemo;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -180,6 +181,8 @@ public class DoublePlayActivity extends AppCompatActivity {
         loadingGame();//dialog
         initSocket();
         aciton();
+
+
 
     }
 

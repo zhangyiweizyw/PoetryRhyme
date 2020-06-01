@@ -8,19 +8,24 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class SocketServer {
+	private static String poem_url="https://v1.jinrishici.com/all.json";
 	private static ServerSocket serverSocket;
 	private static final int SERVER_PORT=4321;
-	private static String example_problem="醉后不知_在水 满船清梦压星河 ";
-	private static String example_key="天";
+	private static String problem="醉后不知_在水 满船清梦压星河 ";
+	private static String key="天";
 	private static ArrayList<SocketClass> socketList=new ArrayList<SocketClass>();
 	private static  int classId=1;//从一开始
 	private static Map<Integer,Boolean> firstMap=new HashMap<Integer, Boolean>();//记录发送过的
@@ -63,41 +68,7 @@ public class SocketServer {
 			// TODO Auto-generated method stub
 			super.run();
 			try {
-//				System.out.println("某个readThread启动了");
-//				if(socketClass.getFriendId()!=0) {//不等于0表示已经匹配上了
-//					//自己的输入流
-//					InputStream inputStream=socketClass.getSocket().getInputStream();
-//					reader=new BufferedReader(new InputStreamReader(inputStream,"utf-8"));
-//					//对方的输出流
-//					OutputStream outputStream = null;
-//					for(int i=0;i<socketList.size();i++) {
-//						if(socketList.get(i).getFriendId()==socketClass.getUserId()) {
-//							System.out.println("在readThread里，有匹配的了");
-//							outputStream=socketList.get(i).getSocket().getOutputStream();
-//						}
-//					}
-//					writer=new BufferedWriter(new OutputStreamWriter(outputStream,"utf-8"));
-//					while(true) {
-//						
-//					if(reader.ready()) {
-//						System.out.println("id为"+socketClass.getId()+"的reader准备好了。。。");
-//						String comeData=reader.readLine();
-//						JSONObject msgJson=new JSONObject(comeData);//解析android端传过来的json数据
-//						if(msgJson.has("game_my_anwser")) {
-//							System.out.println("user id为"+socketClass.getUserId()+"发过来的答案是："+msgJson.getString("game_my_anwser"));
-//							writer.write(msgJson.getString("game_my_anwser")+"\n");
-//							writer.flush();
-//							
-//							firstMap.put(socketClass.getId(), true);
-//							sysoutMap();
-//						}
-//						
-//						
-//					}
-//					Thread.sleep(200);
-//					System.out.println("id为"+socketClass.getId()+"的readThread循环中。。。");
-//				}
-//				}
+
 				System.out.println("id为"+socketClass.getId()+"的readThread启动了");
 				while(true) {
 					if(socketClass.getFriendId()!=0) {//不等于0表示已经匹配上了
@@ -253,6 +224,91 @@ public class SocketServer {
 			}
 		}.start();
 	}
+	
+	  /**
+	   * 获取题目和答案
+	   * @param requestUrl
+	   * @return
+	   */
+	  public static String getXpath(String requestUrl){
+	        String res="";
+	        String hh="";
+	        JSONObject object = null;
+	        StringBuffer buffer = new StringBuffer();
+	        try{
+	            URL url = new URL(requestUrl);
+	            HttpURLConnection urlCon= (HttpURLConnection)url.openConnection();
+	            if(200==urlCon.getResponseCode()){
+	                InputStream is = urlCon.getInputStream();
+	                InputStreamReader isr = new InputStreamReader(is,"utf-8");
+	                BufferedReader br = new BufferedReader(isr);
+
+	                String str = null;
+	                while((str = br.readLine())!=null){
+	                    buffer.append(str);
+	                }
+	                br.close();
+	                isr.close();
+	                is.close();
+	                res = buffer.toString();
+	                System.out.println("第一次获取的数据是："+res);
+	                hh=getPoetry(res);
+	            }
+	        }catch(IOException e){
+	            e.printStackTrace();
+	        }
+	        return hh;
+	    }
+	  
+	  private static String getPoetry(String json) {
+		   String ge = "无";
+	        //判空 似乎没必要QAQ
+	        if (json == null || json.trim().length() == 0) {
+	            System.out.println("居然为空");
+	        } else {
+	            try {
+	                JSONObject jsonObject = new JSONObject(json);
+	                String mProblem = jsonObject.getString("content");
+	                System.out.println("得到的诗句为："+mProblem);
+	                ge=getProblem(mProblem);
+	            } catch (JSONException e) {
+	                e.printStackTrace();
+	            }
+
+	        }
+			return ge;
+
+	    }
+	  private static String getProblem(String allPoetry){
+	        if(allPoetry.length()>0){
+	            Random random=new Random();
+	            char[] charArray=allPoetry.toCharArray();
+	            while(true){
+	                int randnum=random.nextInt(allPoetry.length());
+	                String tt=String.valueOf(charArray[randnum]);
+	                //如果不等于就可以进行下一步
+	                if(tt.equals("，")==false&&tt.equals("。")==false){
+
+	                    System.out.println("获得的随机数是: "+randnum+"");
+	                    System.out.println("随机摘取的字是: "+charArray[randnum]+"");
+	                    key=charArray[randnum]+"";
+	                    System.out.println("my_key答案等于: "+key);
+	                    charArray[randnum]='_';
+	                    problem=new String(charArray);
+	                    System.out.println("my_problem等于： "+problem);
+	                    
+	                    break;
+	                }
+
+	            }
+	        }else{
+	            System.out.println("错误！！！"+"未正确获得诗词！");
+	        }
+	        
+	        return problem;
+	    }
+
+	
 	//专门用来发题目的方法
 	public static void sendProblemThread() {
 		new Thread() {
@@ -278,9 +334,10 @@ public class SocketServer {
 											BufferedWriter writer2=new BufferedWriter(new OutputStreamWriter(output2,"utf-8"));
 											
 											//2.封装题目和答案
+											System.out.println("获取到的题目是："+getXpath(poem_url)+"答案是："+key);
 											JSONObject jsonObject=new JSONObject();
-											jsonObject.put("game_problem", example_problem);
-											jsonObject.put("game_key", example_key);
+											jsonObject.put("game_problem", problem);
+											jsonObject.put("game_key", key);
 											
 											//3.写入
 											writer1.write(jsonObject.toString()+"\n");
@@ -299,7 +356,7 @@ public class SocketServer {
 							}
 							}
 						}
-						Thread.sleep(1000);
+						Thread.sleep(500);
 					}
 				} catch (Exception e) {
 					// TODO: handle exception
@@ -309,6 +366,7 @@ public class SocketServer {
 		}.start();
 		
 	}
+	
 	
 	//开始匹配
 	public static void match() {
