@@ -17,7 +17,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/default_head2"/>
+                android:src="@drawable/flower"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -36,8 +36,8 @@
                         android:textColor="@color/colorText"
                         android:textSize="17sp"/>
                     <TextView
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="13dp"
                         android:id="@+id/latestnews"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

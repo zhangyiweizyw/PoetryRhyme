@@ -23,6 +23,9 @@ import android.widget.Toast;
 
 import com.example.a15632.poetrydemo.Entity.Msg;
 
+import com.example.a15632.poetrydemo.talkingroom.activity.ChatActivity;
+import com.example.a15632.poetrydemo.talkingroom.activity.Splash1Activity;
+import com.example.a15632.poetrydemo.talkingroom.activity.SplashActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -93,13 +96,23 @@ public class EditFragment extends Fragment {
             }
         });
 
-        //慧儿，往这里面写啊。
+        //慧儿，往这里面写啊。OK~
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Intent intent = new Intent(getActivity(),);
-                //intent.putExtra("msg", msgs.get(position));
-                //startActivity(intent);
+                switch (position){
+                    case 0:
+                        Intent intent = new Intent(getActivity(), SplashActivity.class);
+                        intent.putExtra("msg", msgs.get(position));
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        Intent intent1 = new Intent(getActivity(), Splash1Activity.class);
+                        intent1.putExtra("msg1",msgs.get(position));
+                        startActivity(intent1);
+                        break;
+                }
+
             }
         });
         //code end
@@ -245,8 +258,8 @@ public class EditFragment extends Fragment {
     public void getPrivateMsg(){
         long time=System.currentTimeMillis();
         Date date=new Date(time);
-        Msg msg=new Msg("李四",R.drawable.default_head,"你好，我想问你个问题",date);
-        Msg msg1=new Msg("张三",R.drawable.default_headimg,"你好，在吗？",date);
+        Msg msg=new Msg("李四",R.drawable.flower,"[图片]",date);
+        Msg msg1=new Msg("张三",R.drawable.pinkflower,"你好，在吗？",date);
         msgs.add(msg);
         msgs.add(msg1);
         isNull=false;

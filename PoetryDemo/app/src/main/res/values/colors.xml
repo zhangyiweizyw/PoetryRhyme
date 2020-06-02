@@ -8,4 +8,8 @@
     <color name="colorback">#fff</color>
     <color name="color_4EA6FD">#4EA6FD</color>
     <color name="white">#FFFFFF</color>
+
+    <color name="colorPrimary1">#008577</color>
+    <color name="colorPrimaryDark1">#00574B</color>
+    <color name="colorAccent1">#D81B60</color>
 </resources>

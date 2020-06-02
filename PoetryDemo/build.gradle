@@ -3,8 +3,14 @@
 buildscript {
     
     repositories {
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "http://maven.aliyun.com/nexus/content/repositories/jcenter/" }
         google()
         jcenter()
+        maven { url "https://jitpack.io" }
+        maven {
+            url  "http://dl.bintray.com/lukaville/maven"
+        }
 
     }
     dependencies {
@@ -18,9 +24,14 @@ buildscript {
 
 allprojects {
     repositories {
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "http://maven.aliyun.com/nexus/content/repositories/jcenter/" }
         google()
         jcenter()
         maven { url 'https://jitpack.io' }
+        maven {
+            url  "http://dl.bintray.com/lukaville/maven"
+        }
     }
 }
 

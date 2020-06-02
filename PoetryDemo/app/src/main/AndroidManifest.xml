@@ -35,8 +35,15 @@
     <!--读取SD卡的权限:打开相册选取图片所必须的权限-->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <!--聊天室读取视频权限-->
+
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <!--聊天室在SDCard中创建与删除文件权限-->
+
     <application
         android:allowBackup="true"
+        android:name=".talkingroom.MyApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="诗韵"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -80,7 +87,47 @@
             android:windowSoftInputMode="adjustUnspecified|stateHidden"
             android:configChanges="keyboardHidden|orientation"></activity>
 
+        <activity android:name=".talkingroom.activity.ChatActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
 
+            android:windowSoftInputMode="stateHidden">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+        <activity android:name=".talkingroom.activity.SplashActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+
+            android:windowSoftInputMode="stateHidden">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+
+        <activity android:name=".talkingroom.activity.Chat1Activity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+
+            android:windowSoftInputMode="stateHidden">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+        <activity android:name=".talkingroom.activity.Splash1Activity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+
+            android:windowSoftInputMode="stateHidden">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
     </application>
 
 </manifest>
