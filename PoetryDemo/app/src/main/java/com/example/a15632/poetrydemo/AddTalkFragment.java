@@ -53,7 +53,7 @@ public class AddTalkFragment extends Fragment{
     //private VisitCommunityUtil visitCommunityUtil=new VisitCommunityUtil();
     private static final int REFRESH_FINISH = 1;
     private OkHttpClient okHttpClient=new OkHttpClient();
-    private String ip="http://192.168.0.57:8080/MyPoetryRhyme/";
+    private String ip="http://192.168.1.101:8080/MyPoetryRhyme/";
     /*private Handler mainHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -82,6 +82,8 @@ public class AddTalkFragment extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(),CommunityDetail.class);
+                int count=communityList.get(position).getPageview();
+                communityList.get(position).setPageview(count+1);
                 intent.putExtra("community",communityList.get(position));
                 startActivity(intent);
             }

@@ -48,7 +48,7 @@ public class AddAttention extends Fragment {
     private MyAdapter<Community> myAdapter;
     private ArrayList<Community>communities=new ArrayList<>();
     private OkHttpClient okHttpClient=new OkHttpClient();
-    private String ip="http://192.168.0.57:8080/MyPoetryRhyme/";
+    private String ip="http://192.168.1.101:8080/MyPoetryRhyme/";
     private SharedPreferences sharedPreferences;
 
 
@@ -64,6 +64,8 @@ public class AddAttention extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(),CommunityDetail.class);
+                /*int count=communities.get(position).getPageview();
+                communities.get(position).setPageview(count+1);*/
                 intent.putExtra("isAttention",true);
                 intent.putExtra("community",communities.get(position));
                 startActivity(intent);
@@ -106,7 +108,7 @@ public class AddAttention extends Fragment {
     //准备数据源
     private void initData(){
         //获取当前userid，以2为例
-        int myuserid=sharedPreferences.getInt("id",0);
+        int myuserid=sharedPreferences.getInt("id",1);
         //访问数据库
         //2.创建Request对象
         Gson gson=new Gson();

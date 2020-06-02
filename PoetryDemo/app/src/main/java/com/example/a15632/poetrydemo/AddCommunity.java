@@ -57,7 +57,7 @@ public class AddCommunity extends AppCompatActivity {
 
     private Community community=new Community();
     private OkHttpClient okHttpClient=new OkHttpClient();
-    private String ip="http://192.168.0.57:8080/MyPoetryRhyme/";
+    private String ip="http://192.168.1.101:8080/MyPoetryRhyme/";
     private SharedPreferences sharedPreferences;
 
 
@@ -137,7 +137,7 @@ public class AddCommunity extends AppCompatActivity {
                                     //保存会数据库
                                     Request request;
                                     User u=new User();
-                                    u.setId(sharedPreferences.getInt("id",0));
+                                    u.setId(sharedPreferences.getInt("id",1));
                                     u.setName(sharedPreferences.getString("name","张三"));
                                     u.setPassword(sharedPreferences.getString("password","123"));
                                     u.setPhone(sharedPreferences.getString("phone","123456"));

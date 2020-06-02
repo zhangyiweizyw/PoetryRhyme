@@ -277,6 +277,7 @@ public class CommunityDetail extends AppCompatActivity {
 
     }
     private void addComment(final View popupview){
+        tv_comment.setText(community.getCommentquantity()+1+"评论");
         comments.clear();
         final EditText editText=popupview.findViewById(R.id.edit_comment);
         TextView tv_publish=popupview.findViewById(R.id.tv_publish);

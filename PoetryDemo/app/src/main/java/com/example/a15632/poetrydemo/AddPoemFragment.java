@@ -59,7 +59,7 @@ public class AddPoemFragment extends Fragment{
     private SmartRefreshLayout refreshLayout;
     private static final int REFRESH_FINISH = 1;
     private OkHttpClient okHttpClient=new OkHttpClient();
-    private String ip="http://192.168.0.57:8080/MyPoetryRhyme/";
+    private String ip="http://192.168.1.101:8080/MyPoetryRhyme/";
     //暂不使用下拉刷新，只是用上拉加载更多
    /* private Handler mainHandler = new Handler(){
         @Override
@@ -89,6 +89,8 @@ public class AddPoemFragment extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(),CommunityDetail.class);
+                int count=communityList.get(position).getPageview();
+                communityList.get(position).setPageview(count+1);
                 intent.putExtra("community",communityList.get(position));
                 startActivity(intent);
             }
@@ -107,19 +109,6 @@ public class AddPoemFragment extends Fragment{
     private void findViews(){
         listView =fragment.findViewById(R.id.lv_data);
         initData();
-       /* myAdapter=new MyAdapter<Community>(communityList,R.layout.community_list) {
-            @Override
-            public void bindView(ViewHolder holder, Community obj) {
-                holder.setText(R.id.tv_title,obj.getTitle());
-                //holder.setImageResource(R.id.iv_userhead,obj.getUser().getHeadimg());
-                holder.setText(R.id.username,obj.getUser().getUsername());
-                holder.setText(R.id.tv_content,obj.getContent());
-                holder.setText(R.id.c_type,"原创诗词");
-                //holder.setText(R.id.tv_time,obj.getTime().toString());
-                holder.setText(R.id.seecount,obj.getPageview()+"");
-            }
-        };
-        listView.setAdapter(myAdapter);*/
         //获取智能刷新布局
         refreshLayout = fragment.findViewById(R.id.refreshLayout);
     }
