@@ -72,7 +72,6 @@ public class EditFragment extends Fragment {
         fragment=inflater.inflate(R.layout.tab_edit_layout,container,false);
 
         //code begin
-        getPrivateMsg();
         findViews();
         //初始化布局
         initLayout();
@@ -93,6 +92,16 @@ public class EditFragment extends Fragment {
                 return false;
             }
         });
+
+        //慧儿，往这里面写啊。
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Intent intent = new Intent(getActivity(),);
+                //intent.putExtra("msg", msgs.get(position));
+                //startActivity(intent);
+            }
+        });
         //code end
         ViewGroup p=(ViewGroup)fragment.getParent();
         if(p!=null){
@@ -110,6 +119,11 @@ public class EditFragment extends Fragment {
         iv_comlike=fragment.findViewById(R.id.iv_comlike);
         //iv_attention=fragment.findViewById(R.id.iv_attention);
         listView=fragment.findViewById(R.id.lv_data);
+        msgs.clear();
+        myAdapter=new MyAdapter<Msg>(msgs,R.layout.item_privatenews) {
+            @Override
+            public void bindView(ViewHolder holder, Msg obj) {}};
+        getPrivateMsg();
         myAdapter=new MyAdapter<Msg>(msgs,R.layout.item_privatenews) {
             @Override
             public void bindView(ViewHolder holder, Msg obj) {

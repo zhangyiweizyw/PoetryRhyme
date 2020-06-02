@@ -1,8 +1,9 @@
 package com.example.a15632.poetrydemo.Entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Msg {
+public class Msg implements Serializable{
 
     private String username;
     private int headpsth;
