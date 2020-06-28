@@ -4,14 +4,8 @@
 
 ## 部分截图
 
-<center class="half">
-    <img src="https://cdn.jsdelivr.net/gh/fushaolei/img/20200628210504.jpg" width="200"/><img src="https://cdn.jsdelivr.net/gh/fushaolei/img/20200628205335.png" width="200"/><img src="https://cdn.jsdelivr.net/gh/fushaolei/img/20200628210600.jpg" width="200"/>
-</center>
-
-<center class="half">
-    <img src="https://cdn.jsdelivr.net/gh/fushaolei/img/20200628205359.png" width="200"/><img src="https://cdn.jsdelivr.net/gh/fushaolei/img/20200628205351.png" width="200"/><img src="https://cdn.jsdelivr.net/gh/fushaolei/img/20200628205335.png" width="200"/>
-</center>
-
+![](https://cdn.jsdelivr.net/gh/fushaolei/img/20200628212026.png)
+![](https://cdn.jsdelivr.net/gh/fushaolei/img/20200628212032.png)
 ## 开发环境
 
 - Android Studio（version 3.1.4）
